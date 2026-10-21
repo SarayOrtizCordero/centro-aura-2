@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda · Champús Jaldún y tarjetas regalo | Centro Aura</title>
+  <meta name="description" content="Champús naturales Jaldún, y tarjetas regalo de Centro Aura. Pídelos por WhatsApp y recógelos en el salón.">
+  <link rel="canonical" href="https://centro-aura-2.vercel.app/pages/tienda.html">
+  <meta name="theme-color" content="#FFFDF7">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Centro Aura">
+  <meta property="og:title" content="Tienda · Centro Aura">
+  <meta property="og:description" content="Cosmética natural Jaldún y tarjetas regalo.">
+  <meta property="og:url" content="https://centro-aura-2.vercel.app/pages/tienda.html">
+  <meta property="og:image" content="https://centro-aura-2.vercel.app/assets/img/hero-salon.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="../assets/fonts/cormorant-garamond-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/dm-sans-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/data.js" defer></script>
+  <script src="../js/lib.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-spa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3c3.5 4.5 5.5 7.5 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 10.5 8.5 7.5 12 3z"/> <path d="M12 20v-8"/> <path d="M12 15l2.5-2.5"/> </symbol>
+    <symbol id="i-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 9h12l-1 10a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 9z"/> <path d="M5 9h14"/> <path d="M8.5 6h7"/> <path d="M9 13c1 1 2 1 3 0s2-1 3 0"/> </symbol>
+    <symbol id="i-alisado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 9c3-3 6 3 9 0s6 3 9 0"/> <path d="M3 15h18"/> <path d="M3 19h18"/> </symbol>
+    <symbol id="i-tijeras" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <circle cx="6" cy="6" r="3"/> <circle cx="6" cy="18" r="3"/> <line x1="20" y1="4" x2="8.12" y2="15.88"/> <line x1="14.47" y1="14.48" x2="20" y2="20"/> <line x1="8.12" y1="8.12" x2="12" y2="12"/> </symbol>
+    <symbol id="i-tricologia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <circle cx="11" cy="11" r="7"/> <line x1="21" y1="21" x2="16.2" y2="16.2"/> <path d="M11 8v6"/> <path d="M11 8c1 1.5 1.8 2 3 2"/> </symbol>
+    <symbol id="i-regalo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <polyline points="20 12 20 22 4 22 4 12"/> <rect x="2" y="7" width="20" height="5"/> <line x1="12" y1="22" x2="12" y2="7"/> <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/> <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/> </symbol>
+    <symbol id="i-reloj" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10"/> <polyline points="12 6 12 12 16 14"/> </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/> <circle cx="12" cy="10" r="3"/> </symbol>
+    <symbol id="i-telefono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/> </symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/> </symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/> <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/> <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/> </symbol>
+    <symbol id="i-flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="5" y1="12" x2="19" y2="12"/> <polyline points="12 5 19 12 12 19"/> </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <polyline points="20 6 9 17 4 12"/> </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="3" y1="7" x2="21" y2="7"/> <line x1="3" y1="12" x2="21" y2="12"/> <line x1="3" y1="17" x2="21" y2="17"/> </symbol>
+    <symbol id="i-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="18" y1="6" x2="6" y2="18"/> <line x1="6" y1="6" x2="18" y2="18"/> </symbol>
+  </svg>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Las Cabezas de San Juan</p>
+      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 9:30–14:00 · 17:00–20:30</span></p>
+      <a class="topbar__item topbar__phone" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span data-phone>+34 610 16 77 64</span></a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Centro Aura, inicio">
+        <span class="brand__name">AURA</span>
+        <span class="brand__rule" aria-hidden="true"></span>
+        <span class="brand__tag">Spa Capilar · Tricología</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú">
+        <svg class="icon icon--open" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
+        <svg class="icon icon--close" aria-hidden="true" focusable="false"><use href="#i-cerrar"/></svg>
+      </button>
+      <nav class="site-nav" id="site-menu" aria-label="Principal">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="tienda.html" aria-current="page">Tienda</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        <a class="btn btn--primary site-nav__cta" href="https://wa.me/34610167764" data-wa="">Reservar<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-hero">
+      <img class="page-hero__bg" src="../assets/img/textura-lino.webp" alt="" width="2000" height="900" fetchpriority="high">
+      <div class="page-hero__veil" aria-hidden="true"></div>
+      <div class="container page-hero__inner">
+        <img class="lotus" src="../assets/icons/loto.svg" alt="" width="64" height="40">
+        <h1>Tienda</h1>
+        <p>Cosmética natural Jaldún y tarjetas regalo.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <p class="note"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Recogida en el salón. Te confirmamos disponibilidad por WhatsApp.</p>
+    </div>
+
+    <section class="section" aria-labelledby="categorias-title">
+      <div class="container">
+        <h2 class="visually-hidden" id="categorias-title">Secciones de la tienda</h2>
+        <div class="category-tiles">
+          <a class="category-tile card" href="#jaldun">
+            <img src="../assets/img/champu-vitalzen.webp" alt="" width="2250" height="2250" loading="lazy">
+            <div><h3>Champús Jaldún</h3><p>Fitoterapia capilar para cada tipo de cuero cabelludo.</p><span class="link-arrow" aria-hidden="true">Ver champús</span></div>
+          </a>
+          <a class="category-tile card" href="#tarjetas-regalo">
+            <img src="../assets/img/tarjeta-regalo.webp" alt="" width="1200" height="900" loading="lazy">
+            <div><h3>Tarjetas regalo</h3><p>Una tarjeta para un spa capilar, un tratamiento o el importe que prefieras.</p><span class="link-arrow" aria-hidden="true">Ver tarjetas regalo</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="jaldun" aria-labelledby="jaldun-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Cosmética natural</span>
+          <h2 id="jaldun-title">Champús <em>Jaldún</em></h2>
+          <p>Fitoterapia capilar que devuelve al cuero cabelludo su equilibrio natural. Si no sabes cuál es el tuyo, pregúntame.</p>
+        </div>
+        <ul class="product-grid" role="list">
+        <li class="product-card product-card--featured card reveal">
+          <div class="product-card__visual arch"><img src="../assets/img/champu-equilibrante.webp" alt="Frasco del champú Equilibrante de Jaldún" width="2250" height="2250" loading="lazy"></div>
+          <div class="product-card__body">
+            <h3>Champú Equilibrante</h3>
+            <p>Para caspa y exceso de grasa. Equilibra el cuero cabelludo con árbol de té, sauce y aloe vera.</p>
+            <span class="price" data-price="jaldun-equilibrante">22 €</span>
+            <a class="btn btn--primary" href="https://wa.me/34610167764" data-wa="Champú Equilibrante Jaldún" data-wa-kind="producto">Lo quiero<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
+          </div>
+        </li>
+        <li class="product-card card reveal">
+          <div class="product-card__visual"><img src="../assets/img/champu-vitalzen.webp" alt="Frasco del champú Vitalzen Fortificante de Jaldún" width="2250" height="2250" loading="lazy"></div>
+          <div class="product-card__body">
+            <h3>Champú Vitalzen Fortificante</h3>
+            <p>Para la caída. Estimula la microcirculación y fortalece el cabello desde la raíz.</p>
+            <span class="price" data-price="jaldun-vitalzen">24 €</span>
+            <a class="btn btn--primary" href="https://wa.me/34610167764" data-wa="Champú Vitalzen Fortificante Jaldún" data-wa-kind="producto">Lo quiero<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
+          </div>
+        </li>
+        <li class="product-card card reveal">
+          <div class="product-card__visual"><img src="../assets/img/champu-multiefecto.webp" alt="Frasco del champú Multiefecto Regulador de Jaldún" width="2250" height="2250" loading="lazy"></div>
+          <div class="product-card__body">
+            <h3>Champú Multiefecto Regulador</h3>
+            <p>Para cuero cabelludo sensible o desequilibrado. Con limón y aguacate: calma, regula e hidrata.</p>
+            <span class="price" data-price="jaldun-multiefecto">22 €</span>
+            <a class="btn btn--primary" href="https://wa.me/34610167764" data-wa="Champú Multiefecto Regulador Jaldún" data-wa-kind="producto">Lo quiero<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
+          </div>
+        </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="tarjetas-regalo" aria-labelledby="regalo-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Un detalle con sentido</span>
+          <h2 id="regalo-title">Tarjetas regalo</h2>
+          <p>Elige un importe o regala un servicio concreto. La preparamos a mano y la recoges en el salón.</p>
+        </div>
+        <ul class="gift-grid" role="list">
+        <li class="gift-tile card reveal">
+          <div class="gift-tile__face" aria-hidden="true"><img class="lotus" src="../assets/icons/loto.svg" alt="" width="64" height="40"><span class="gift-tile__brand">AURA</span><span class="gift-tile__value" data-price="regalo-25">25 €</span></div>
+          <div class="gift-tile__body">
+            <h3>Tarjeta de 25 €</h3>
+            <p>Para gastar en cualquier servicio o producto.</p>
+            <span class="price" data-price="regalo-25">25 €</span>
+            <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tarjeta regalo de 25 €" data-wa-kind="producto">Regalar</a>
+          </div>
+        </li>
+        <li class="gift-tile card reveal">
+          <div class="gift-tile__face" aria-hidden="true"><img class="lotus" src="../assets/icons/loto.svg" alt="" width="64" height="40"><span class="gift-tile__brand">AURA</span><span class="gift-tile__value" data-price="regalo-50">50 €</span></div>
+          <div class="gift-tile__body">
+            <h3>Tarjeta de 50 €</h3>
+            <p>Para gastar en cualquier servicio o producto.</p>
+            <span class="price" data-price="regalo-50">50 €</span>
+            <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tarjeta regalo de 50 €" data-wa-kind="producto">Regalar</a>
+          </div>
+        </li>
+        <li class="gift-tile card reveal">
+          <div class="gift-tile__face" aria-hidden="true"><img class="lotus" src="../assets/icons/loto.svg" alt="" width="64" height="40"><span class="gift-tile__brand">AURA</span><span class="gift-tile__value" data-price="regalo-75">75 €</span></div>
+          <div class="gift-tile__body">
+            <h3>Tarjeta de 75 €</h3>
+            <p>Para gastar en cualquier servicio o producto.</p>
+            <span class="price" data-price="regalo-75">75 €</span>
+            <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tarjeta regalo de 75 €" data-wa-kind="producto">Regalar</a>
+          </div>
+        </li>
+        <li class="gift-tile card reveal">
+          <div class="gift-tile__face" aria-hidden="true"><img class="lotus" src="../assets/icons/loto.svg" alt="" width="64" height="40"><span class="gift-tile__brand">AURA</span><span class="gift-tile__value">Un servicio</span></div>
+          <div class="gift-tile__body">
+            <h3>El servicio que elijas</h3>
+            <p>Un spa capilar, un tratamiento o un peinado para una ocasión especial.</p>
+            <span class="price">A elegir</span>
+            <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tarjeta regalo de un servicio" data-wa-kind="producto">Regalar</a>
+          </div>
+        </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand brand--on-anchor" href="../index.html" aria-label="Centro Aura, inicio">
+          <span class="brand__name">AURA</span>
+          <span class="brand__rule" aria-hidden="true"></span>
+          <span class="brand__tag">Spa Capilar · Tricología</span>
+        </a>
+        <p class="site-footer__claim">Peluquería y salud capilar en Las Cabezas de San Juan.</p>
+        <a class="btn btn--light" href="https://wa.me/34610167764" data-wa="">Reservar por WhatsApp</a>
+      </div>
+      <div class="site-footer__col">
+        <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg></span><h2 class="site-footer__title">Visítanos</h2></div>
+        <address>C/ Dr. Domingo Gallego, 3<br>41730 Las Cabezas de San Juan<br>Sevilla</address>
+        <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div class="site-footer__col">
+        <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg></span><h2 class="site-footer__title">Horario</h2></div>
+        <dl class="hours" data-hours>
+          <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
+          <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+          <dt>Domingo</dt><dd>Cerrado</dd>
+        </dl>
+      </div>
+      <div class="site-footer__col">
+        <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg></span><h2 class="site-footer__title">Contacto</h2></div>
+        <ul class="site-footer__list" role="list">
+          <li><a class="site-footer__contact" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span><span class="site-footer__hint">Llámanos</span><span data-phone>+34 610 16 77 64</span></span></a></li>
+          <li><a class="site-footer__contact" href="https://wa.me/34610167764" data-wa=""><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg><span><span class="site-footer__hint">Pide cita o pregunta</span><span>WhatsApp</span></span></a></li>
+          <li><a class="site-footer__contact" href="https://www.instagram.com/centro__aura/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-instagram"/></svg><span><span class="site-footer__hint">Síguenos</span><span>Instagram</span></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container site-footer__bottom">
+      <nav class="site-footer__pages" aria-label="Pie">
+        <span class="site-footer__label">Páginas</span>
+        <ul class="site-footer__nav" role="list">
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__legal"><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad y cookies</a></p>
+      <p class="site-footer__copy">© 2026 Centro Aura</p>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/34610167764" data-wa="" aria-label="Reservar por WhatsApp">
+    <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
+    <span class="wa-float__label">WhatsApp</span>
+  </a>
+</body>
+</html>

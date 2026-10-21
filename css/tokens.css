@@ -1,0 +1,78 @@
+/* Centro Aura · demo B — tokens de diseño.
+   Capa 1: primitivas (los únicos hex del proyecto).
+   Capa 2: semánticos, por rol. Los componentes (capa 3, en styles.css) solo usan var(--…). */
+:root {
+  /* Capa 1 · primitivas */
+  --p-cream-50: #FFFDF7;
+  --p-cream-100: #F6F0E4;
+  --p-sand-200: #E9DDC8;
+  --p-sand-400: #B2A38F;
+  --p-gold-400: #D2C244;
+  --p-cocoa-500: #8C7F6D;
+  --p-cocoa-600: #6B6153;
+  --p-cocoa-700: #4A4238;
+  --p-cocoa-900: #3F372D;
+  --p-clay-100: #EAD3C6;
+  --p-clay-600: #9A5B43;
+  --p-brick-700: #9B3D2E;
+
+  /* Capa 2 · semánticos */
+  --c-bg: var(--p-cream-50);
+  --c-bg-alt: var(--p-cream-100);
+  --c-line: var(--p-sand-200);
+  --c-muted: var(--p-sand-400);        /* SOLO decorativo: nunca como color de texto */
+  --c-gold: var(--p-gold-400);         /* SOLO decorativo: loto y filetes, nunca como texto */
+  --c-text: var(--p-cocoa-700);
+  --c-text-soft: var(--p-cocoa-600);
+  --c-border: var(--p-cocoa-500);
+  --c-error: var(--p-brick-700);
+  --c-anchor: var(--p-cocoa-900);      /* banda "cacao" oscura */
+  --c-on-anchor: var(--p-cream-50);
+  --c-on-anchor-soft: var(--p-sand-200);
+  --c-clay: var(--p-clay-600);         /* acento de texto: palabra en cursiva, enlaces */
+  --c-clay-soft: var(--p-clay-100);    /* fondo de chips; el texto va en --c-anchor */
+
+  /* Velos sobre foto. Los números repiten --c-anchor y --c-bg; tests/css.test.js lo comprueba. */
+  --veil-dark-rgb: 63 55 45;
+  --veil-dark-alpha: 0.82;
+  --veil-light-rgb: 255 253 247;
+  --veil-light-alpha: 0.82;
+
+  /* Tipografía */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-base: 1.0625rem;
+  --lh-base: 1.65;
+  --fs-h1: clamp(2.75rem, 7vw, 5.25rem);
+  --fs-h2: clamp(2rem, 4.2vw, 3.1rem);
+  --fs-h3: clamp(1.4rem, 2.6vw, 1.75rem);
+  --fs-eyebrow: 0.75rem;
+  --ls-eyebrow: 0.14em;
+  --lh-h1: 1.05;
+  --lh-h2: 1.12;
+  --lh-h3: 1.2;
+
+  /* Espaciado (escala de 4 px) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-24: 6rem;
+  --s-32: 8rem;
+
+  /* Formas, sombra, medidas y movimiento */
+  --r-pill: 999px;
+  --r-card: 24px;
+  --r-arch: 999px 999px 24px 24px;
+  --r-curve: 32px;
+  --shadow-soft: 0 12px 32px -16px rgb(63 55 45 / 0.28);
+  --container: 1200px;
+  --measure: 62ch;
+  --header-h: 72px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 280ms;
+}

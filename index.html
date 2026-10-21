@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro Aura · Spa capilar y tricología en Las Cabezas de San Juan</title>
+  <meta name="description" content="Peluquería, spa capilar, barros, alisados y antifrizz en Las Cabezas de San Juan (Sevilla). Cosmética natural Jaldún y tarjetas regalo.">
+  <link rel="canonical" href="https://centro-aura-2.vercel.app/">
+  <meta name="theme-color" content="#FFFDF7">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Centro Aura">
+  <meta property="og:title" content="Centro Aura · Spa Capilar · Tricología">
+  <meta property="og:description" content="Cuidamos tu cabello desde la raíz. Peluquería, spa capilar y tricología en Las Cabezas de San Juan.">
+  <meta property="og:url" content="https://centro-aura-2.vercel.app/">
+  <meta property="og:image" content="https://centro-aura-2.vercel.app/assets/img/hero-salon.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="assets/fonts/cormorant-garamond-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/dm-sans-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/lib.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Centro Aura — Spa Capilar · Tricología",
+    "description": "Peluquería, spa capilar, barros, alisados y antifrizz con cosmética natural Jaldún.",
+    "url": "https://centro-aura-2.vercel.app/",
+    "image": "https://centro-aura-2.vercel.app/assets/img/hero-salon.webp",
+    "telephone": "+34610167764",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "C/ Dr. Domingo Gallego, 3",
+      "addressLocality": "Las Cabezas de San Juan",
+      "addressRegion": "Sevilla",
+      "postalCode": "41730",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 36.9853, "longitude": -5.9395 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:30", "closes": "14:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "17:00", "closes": "20:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "14:00" }
+    ],
+    "sameAs": ["https://www.instagram.com/centro__aura/"]
+  }
+  </script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-spa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3c3.5 4.5 5.5 7.5 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 10.5 8.5 7.5 12 3z"/> <path d="M12 20v-8"/> <path d="M12 15l2.5-2.5"/> </symbol>
+    <symbol id="i-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 9h12l-1 10a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 9z"/> <path d="M5 9h14"/> <path d="M8.5 6h7"/> <path d="M9 13c1 1 2 1 3 0s2-1 3 0"/> </symbol>
+    <symbol id="i-alisado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 9c3-3 6 3 9 0s6 3 9 0"/> <path d="M3 15h18"/> <path d="M3 19h18"/> </symbol>
+    <symbol id="i-tijeras" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <circle cx="6" cy="6" r="3"/> <circle cx="6" cy="18" r="3"/> <line x1="20" y1="4" x2="8.12" y2="15.88"/> <line x1="14.47" y1="14.48" x2="20" y2="20"/> <line x1="8.12" y1="8.12" x2="12" y2="12"/> </symbol>
+    <symbol id="i-tricologia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <circle cx="11" cy="11" r="7"/> <line x1="21" y1="21" x2="16.2" y2="16.2"/> <path d="M11 8v6"/> <path d="M11 8c1 1.5 1.8 2 3 2"/> </symbol>
+    <symbol id="i-regalo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <polyline points="20 12 20 22 4 22 4 12"/> <rect x="2" y="7" width="20" height="5"/> <line x1="12" y1="22" x2="12" y2="7"/> <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/> <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/> </symbol>
+    <symbol id="i-reloj" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10"/> <polyline points="12 6 12 12 16 14"/> </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/> <circle cx="12" cy="10" r="3"/> </symbol>
+    <symbol id="i-telefono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/> </symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/> </symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/> <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/> <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/> </symbol>
+    <symbol id="i-flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="5" y1="12" x2="19" y2="12"/> <polyline points="12 5 19 12 12 19"/> </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <polyline points="20 6 9 17 4 12"/> </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="3" y1="7" x2="21" y2="7"/> <line x1="3" y1="12" x2="21" y2="12"/> <line x1="3" y1="17" x2="21" y2="17"/> </symbol>
+    <symbol id="i-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="18" y1="6" x2="6" y2="18"/> <line x1="6" y1="6" x2="18" y2="18"/> </symbol>
+  </svg>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Las Cabezas de San Juan</p>
+      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 9:30–14:00 · 17:00–20:30</span></p>
+      <a class="topbar__item topbar__phone" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span data-phone>+34 610 16 77 64</span></a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="Centro Aura, inicio">
+        <span class="brand__name">AURA</span>
+        <span class="brand__rule" aria-hidden="true"></span>
+        <span class="brand__tag">Spa Capilar · Tricología</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú">
+        <svg class="icon icon--open" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
+        <svg class="icon icon--close" aria-hidden="true" focusable="false"><use href="#i-cerrar"/></svg>
+      </button>
+      <nav class="site-nav" id="site-menu" aria-label="Principal">
+        <ul class="site-nav__list">
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="pages/servicios.html">Servicios</a></li>
+          <li><a href="pages/tienda.html">Tienda</a></li>
+          <li><a href="pages/contacto.html">Contacto</a></li>
+        </ul>
+        <a class="btn btn--primary site-nav__cta" href="https://wa.me/34610167764" data-wa="">Reservar<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow">Spa capilar · Tricología</span>
+          <h1 class="hero__title" id="hero-title">Cuidamos tu cabello <em>desde la raíz</em></h1>
+          <div class="actions">
+            <a class="btn btn--primary" href="https://wa.me/34610167764" data-wa="">Reservar cita<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
+            <a class="btn btn--outline" href="pages/servicios.html">Ver servicios</a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <img class="hero__img" src="assets/img/hero-salon.webp" alt="Sillones de peluquería frente a espejos ovalados en el salón" width="2000" height="1333" fetchpriority="high">
+        </div>
+        <aside class="hero__card" aria-labelledby="hero-card-title">
+          <h2 class="hero__card-title" id="hero-card-title">Horario</h2>
+          <dl class="hours" data-hours>
+            <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
+            <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+            <dt>Domingo</dt><dd>Cerrado</dd>
+          </dl>
+          <a class="link-arrow" href="pages/contacto.html">Ver contacto</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="pillars" aria-labelledby="pillars-title">
+      <div class="container">
+        <h2 class="visually-hidden" id="pillars-title">Lo que hacemos en Aura</h2>
+        <ul class="pillars__list" role="list">
+          <li class="pillar reveal">
+            <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-tijeras"/></svg>
+            <h3>Peluquería titulada</h3>
+            <p>Paula, peluquera titulada y fundadora de Centro Aura.</p>
+          </li>
+          <li class="pillar reveal">
+            <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-spa"/></svg>
+            <h3>Spa capilar</h3>
+            <p>Tres rituales: esencial, equilibrio y aura.</p>
+          </li>
+          <li class="pillar reveal">
+            <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-tricologia"/></svg>
+            <h3>Tricología con microcámara</h3>
+            <p>Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p>
+          </li>
+          <li class="pillar reveal">
+            <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-barro"/></svg>
+            <h3>Cosmética natural Jaldún</h3>
+            <p>Fitoterapia capilar para cada tipo de cuero cabelludo.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="icon-row section" aria-labelledby="icon-row-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Servicios y tienda</span>
+          <h2 id="icon-row-title">Elige por dónde <em>empezar</em></h2>
+        </div>
+        <ul class="icon-row__list" role="list">
+          <li class="reveal"><a class="icon-row__item" href="pages/servicios.html#spa">
+            <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-spa"/></svg></span>
+            <h3>Spa</h3><p>Tres rituales, de menos a más completo.</p>
+          </a></li>
+          <li class="reveal"><a class="icon-row__item" href="pages/servicios.html#barros-alisados-antifrizz">
+            <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-barro"/></svg></span>
+            <h3>Barros, alisados y antifrizz</h3><p>Tratamientos para la fibra capilar.</p>
+          </a></li>
+          <li class="reveal"><a class="icon-row__item" href="pages/servicios.html#peluqueria">
+            <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-tijeras"/></svg></span>
+            <h3>Peluquería</h3><p>Cortes y peinados con el mismo mimo que todo lo demás.</p>
+          </a></li>
+          <li class="reveal"><a class="icon-row__item" href="pages/tienda.html">
+            <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-regalo"/></svg></span>
+            <h3>Tienda</h3><p>Cosmética Jaldún y tarjetas regalo, para recoger en el salón.</p>
+          </a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="service-cards section section--alt" aria-labelledby="spa-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Spa capilar</span>
+          <h2 id="spa-title">Tres rituales para <em>desconectar</em></h2>
+          <p class="lead">De menos a más completo: elige el que mejor encaje con lo que necesitas hoy.</p>
+        </div>
+        <ul class="card-grid" role="list">
+          <li class="reveal">
+            <article class="service-card card">
+              <div class="service-card__media"><img src="assets/img/destacado-spa.webp" alt="Masaje relajante en el cuero cabelludo durante un spa capilar" width="900" height="1125" loading="lazy"></div>
+              <div class="service-card__body">
+                <div class="chips"><span class="chip">Spa</span><span class="chip" data-duration="spa-esencial">50 min aprox.</span></div>
+                <h3><a href="pages/servicios.html#spa-esencial">Spa esencial</a></h3>
+                <p>Un momento para desconectar y disfrutar de un ritual de bienestar.</p>
+                <div class="service-card__foot"><span class="price" data-price="spa-esencial">40 €</span><span class="link-arrow" aria-hidden="true">Ver detalle</span></div>
+              </div>
+            </article>
+          </li>
+          <li class="reveal">
+            <article class="service-card card">
+              <div class="service-card__media"><img src="assets/img/destacado-tricologia.webp" alt="Primer plano del cabello, como se ve con la microcámara en el análisis" width="900" height="1125" loading="lazy"></div>
+              <div class="service-card__body">
+                <div class="chips"><span class="chip">Spa</span><span class="chip" data-duration="spa-equilibrio">1 h 10 min aprox.</span></div>
+                <h3><a href="pages/servicios.html#spa-equilibrio">Spa equilibrio</a></h3>
+                <p>Una experiencia que combina relajación y cuidado.</p>
+                <div class="service-card__foot"><span class="price" data-price="spa-equilibrio">50 €</span><span class="link-arrow" aria-hidden="true">Ver detalle</span></div>
+              </div>
+            </article>
+          </li>
+          <li class="reveal">
+            <article class="service-card card">
+              <div class="service-card__media"><img src="assets/img/destacado-terapias.webp" alt="Masaje suave en la cabeza durante un ritual de spa" width="900" height="1125" loading="lazy"></div>
+              <div class="service-card__body">
+                <div class="chips"><span class="chip">Spa</span><span class="chip" data-duration="spa-aura">1 h 30 min</span></div>
+                <h3><a href="pages/servicios.html#spa-aura">Spa aura</a></h3>
+                <p>El más completo.</p>
+                <div class="service-card__foot"><span class="price" data-price="spa-aura">70 €</span><span class="link-arrow" aria-hidden="true">Ver detalle</span></div>
+              </div>
+            </article>
+          </li>
+        </ul>
+        <p class="section-more"><a class="link-arrow" href="pages/servicios.html">Ver todos los servicios</a></p>
+      </div>
+    </section>
+
+    <section class="spotlight section" aria-labelledby="spotlight-title">
+      <div class="container spotlight__inner">
+        <div class="spotlight__panel arch reveal">
+          <div class="spotlight__bottles">
+            <img src="assets/img/champu-equilibrante.webp" alt="Frasco del champú Equilibrante de Jaldún" width="2250" height="2250" loading="lazy">
+            <img class="is-center" src="assets/img/champu-vitalzen.webp" alt="Frasco del champú Vitalzen Fortificante de Jaldún" width="2250" height="2250" loading="lazy">
+            <img src="assets/img/champu-multiefecto.webp" alt="Frasco del champú Multiefecto Regulador de Jaldún" width="2250" height="2250" loading="lazy">
+          </div>
+        </div>
+        <div class="spotlight__copy reveal">
+          <span class="eyebrow">Cosmética natural</span>
+          <h2 id="spotlight-title">Champús <em>Jaldún</em> para cada cuero cabelludo</h2>
+          <p>Fitoterapia capilar que devuelve al cuero cabelludo su equilibrio natural. Si no sabes cuál es el tuyo, pregúntame.</p>
+          <ul class="checklist" role="list">
+            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Equilibrante</strong> para caspa y exceso de grasa.</span></li>
+            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Vitalzen Fortificante</strong> para la caída.</span></li>
+            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Multiefecto Regulador</strong> para cuero cabelludo sensible o desequilibrado.</span></li>
+          </ul>
+          <a class="btn btn--primary" href="pages/tienda.html#jaldun">Ver tienda<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mosaic section section--alt" aria-labelledby="mosaic-title">
+      <div class="container mosaic__inner">
+        <div class="mosaic__copy reveal">
+          <span class="eyebrow">Sobre Aura</span>
+          <h2 id="mosaic-title">Que tu pelo, además de bonito, esté <em>sano</em></h2>
+          <p>Centro Aura es el espacio de Paula, peluquera titulada y fundadora, en Las Cabezas de San Juan. Unimos la peluquería de siempre con la tricología y los rituales de spa capilar.</p>
+          <blockquote class="mosaic__quote"><p>Aura, <em>la energía del interior y la que envuelve al cuerpo físico</em>.</p></blockquote>
+        </div>
+        <div class="mosaic__photos reveal">
+          <img class="mosaic__photo mosaic__photo--tall" src="assets/img/servicio-salud.webp" alt="Masaje en el cuero cabelludo con la clienta relajada" width="1000" height="1250" loading="lazy">
+          <img class="mosaic__photo" src="assets/img/destacado-terapias.webp" alt="Masaje suave en la cabeza durante un ritual de spa" width="900" height="1125" loading="lazy">
+          <img class="mosaic__photo" src="assets/img/servicio-peluqueria.webp" alt="Estilista secando el pelo de una clienta con cepillo redondo" width="1000" height="1250" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="gift-banner" aria-labelledby="gift-title">
+      <img class="gift-banner__img" src="assets/img/tarjeta-regalo.webp" alt="" width="1200" height="900" loading="lazy">
+      <div class="gift-banner__veil" aria-hidden="true"></div>
+      <div class="container gift-banner__inner reveal">
+        <span class="eyebrow">Tarjetas regalo</span>
+        <h2 id="gift-title">Regala <em>Aura</em></h2>
+        <p>Una tarjeta para un spa capilar, un tratamiento o el importe que prefieras.</p>
+        <a class="btn btn--light" href="https://wa.me/34610167764" data-wa="Tarjeta regalo" data-wa-kind="producto">Pedir tarjeta regalo<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
+      </div>
+    </section>
+
+    <section class="visit section" aria-labelledby="visit-title">
+      <div class="container visit__inner">
+        <div class="visit__map reveal">
+          <div class="map" data-map-src="https://www.google.com/maps?q=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan&amp;output=embed" data-map-title="Mapa: Centro Aura en C/ Dr. Domingo Gallego, 3, Las Cabezas de San Juan">
+            <div class="map__cover">
+              <img class="lotus" src="assets/icons/loto.svg" alt="" width="64" height="40">
+              <p>Para ver el mapa se conectará con Google Maps y Google podrá recibir tu dirección IP.</p>
+              <button class="btn btn--primary" type="button" data-map-load hidden>Ver el mapa</button>
+              <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            </div>
+          </div>
+        </div>
+        <div class="visit__info reveal">
+          <span class="eyebrow">Visítanos</span>
+          <h2 id="visit-title">Te esperamos en <em>Las Cabezas</em></h2>
+          <ul class="visit__list" role="list">
+            <li class="visit__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><address>C/ Dr. Domingo Gallego, 3<br>41730 Las Cabezas de San Juan, Sevilla</address></li>
+            <li class="visit__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg>
+              <dl class="hours" data-hours>
+                <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
+                <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+                <dt>Domingo</dt><dd>Cerrado</dd>
+              </dl></li>
+            <li class="visit__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><a href="tel:+34610167764" data-phone>+34 610 16 77 64</a></li>
+          </ul>
+          <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand brand--on-anchor" href="index.html" aria-label="Centro Aura, inicio">
+          <span class="brand__name">AURA</span>
+          <span class="brand__rule" aria-hidden="true"></span>
+          <span class="brand__tag">Spa Capilar · Tricología</span>
+        </a>
+        <p class="site-footer__claim">Peluquería y salud capilar en Las Cabezas de San Juan.</p>
+        <a class="btn btn--light" href="https://wa.me/34610167764" data-wa="">Reservar por WhatsApp</a>
+      </div>
+      <div class="site-footer__col">
+        <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg></span><h2 class="site-footer__title">Visítanos</h2></div>
+        <address>C/ Dr. Domingo Gallego, 3<br>41730 Las Cabezas de San Juan<br>Sevilla</address>
+        <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div class="site-footer__col">
+        <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg></span><h2 class="site-footer__title">Horario</h2></div>
+        <dl class="hours" data-hours>
+          <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
+          <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+          <dt>Domingo</dt><dd>Cerrado</dd>
+        </dl>
+      </div>
+      <div class="site-footer__col">
+        <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg></span><h2 class="site-footer__title">Contacto</h2></div>
+        <ul class="site-footer__list" role="list">
+          <li><a class="site-footer__contact" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span><span class="site-footer__hint">Llámanos</span><span data-phone>+34 610 16 77 64</span></span></a></li>
+          <li><a class="site-footer__contact" href="https://wa.me/34610167764" data-wa=""><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg><span><span class="site-footer__hint">Pide cita o pregunta</span><span>WhatsApp</span></span></a></li>
+          <li><a class="site-footer__contact" href="https://www.instagram.com/centro__aura/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-instagram"/></svg><span><span class="site-footer__hint">Síguenos</span><span>Instagram</span></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container site-footer__bottom">
+      <nav class="site-footer__pages" aria-label="Pie">
+        <span class="site-footer__label">Páginas</span>
+        <ul class="site-footer__nav" role="list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="pages/servicios.html">Servicios</a></li>
+          <li><a href="pages/tienda.html">Tienda</a></li>
+          <li><a href="pages/contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__legal"><a href="pages/aviso-legal.html">Aviso legal</a> · <a href="pages/privacidad.html">Privacidad y cookies</a></p>
+      <p class="site-footer__copy">© 2026 Centro Aura</p>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/34610167764" data-wa="" aria-label="Reservar por WhatsApp">
+    <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg>
+    <span class="wa-float__label">WhatsApp</span>
+  </a>
+</body>
+</html>
