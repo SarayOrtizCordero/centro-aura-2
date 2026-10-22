@@ -41,12 +41,12 @@
   /* Tipografía */
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --fs-base: 1.0625rem;
-  --lh-base: 1.65;
+  --fs-base: 1.125rem;
+  --lh-base: 1.6;
   --fs-h1: clamp(2.75rem, 7vw, 5.25rem);
   --fs-h2: clamp(2rem, 4.2vw, 3.1rem);
   --fs-h3: clamp(1.4rem, 2.6vw, 1.75rem);
-  --fs-eyebrow: 0.75rem;
+  --fs-eyebrow: 0.8125rem;
   --ls-eyebrow: 0.14em;
   --lh-h1: 1.05;
   --lh-h2: 1.12;
