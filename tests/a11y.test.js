@@ -73,8 +73,8 @@ test('css: foco visible, objetivos táctiles y scroll-padding', () => {
   assert.ok(rulesOf('.tab').some((b) => /min-height:\s*44px/.test(b)), '.tab min-height 44px');
   assert.ok(rulesOf('.link-arrow').some((b) => /min-height:\s*44px/.test(b)), '.link-arrow min-height 44px');
   assert.ok(
-    rulesOf('.js .nav-toggle').some((b) => /width:\s*48px/.test(b) && /height:\s*48px/.test(b)),
-    '.js .nav-toggle 48x48'
+    rulesOf('.js .nav-toggle').some((b) => /width:\s*56px/.test(b) && /height:\s*56px/.test(b)),
+    '.js .nav-toggle 56x56'
   );
   assert.ok(rulesOf('html').some((b) => /scroll-padding-top/.test(b)));
 });
