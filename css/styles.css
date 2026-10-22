@@ -623,7 +623,7 @@ body.menu-open { overflow: hidden; }
 .category-tiles { display: grid; gap: var(--s-6); }
 .category-tile {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: minmax(0, 120px) 1fr;
   gap: var(--s-4);
   align-items: center;
   padding: var(--s-4);
