@@ -1,0 +1,450 @@
+[
+  {
+    "id": "E1-T1",
+    "title": "Línea base y primer artefacto servido",
+    "epic": "01-fundamentos-y-hero",
+    "dependencies": [],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with 0 failed and 0 skipped, running `tests/data.test.js`, `tests/lib.test.js`, `tests/assets.test.js`, `tests/domain.test.js` and `tests/tooling.test.js`, and with `tests/tooling.test.js` asserting that every `tests/*.test.js` file contains at least one `test(` call so that an empty test file cannot pass.",
+      "WHEN `node tools/smoke.mjs . 4179 ./=200 index.html=200 no-existe=404` runs THE SYSTEM SHALL start `node tools/serve.mjs` on port 4179, receive the statuses 200, 200 and 404, stop the server and exit 0.",
+      "WHEN `npm run build` runs THE SYSTEM SHALL exit 0 and write `dist/index.html`, `dist/404.html`, `dist/robots.txt` and `dist/sitemap.xml`, and SHALL NOT copy any `CREDITOS.md` or `.gitkeep` file into `dist/`.",
+      "WHEN `node tools/smoke.mjs dist 4179 ./=200 no-existe=404 robots.txt=200 sitemap.xml=200` runs THE SYSTEM SHALL serve the built `dist/` folder and exit 0.",
+      "WHEN `node tools/smoke.mjs . 4179 ./=999` runs THE SYSTEM SHALL exit with code 1 and print a line starting with `FAIL /`, and WHEN it receives no route to check it SHALL exit with code 2 and print a line starting with `Uso:`."
+    ],
+    "verify": [
+      "node -e \"process.exit(Number(process.versions.node.split('.')[0]) >= 24 ? 0 : 1)\"",
+      "npm test",
+      "node tools/smoke.mjs . 4179 ./=200 index.html=200 no-existe=404",
+      "npm run build",
+      "test -f dist/index.html && test -f dist/404.html && test -f dist/robots.txt && test -f dist/sitemap.xml",
+      "test ! -e dist/assets/img/CREDITOS.md && test ! -e dist/css/.gitkeep && test ! -e dist/pages/.gitkeep",
+      "node tools/smoke.mjs dist 4179 ./=200 no-existe=404 robots.txt=200 sitemap.xml=200",
+      "rc=0; out=$(node tools/smoke.mjs . 4179 ./=999) || rc=$?; test \"$rc\" -eq 1 && echo \"$out\" | grep -q \"FAIL /\"",
+      "rc=0; out=$(node tools/smoke.mjs . 4179 2>&1) || rc=$?; test \"$rc\" -eq 2 && echo \"$out\" | grep -q \"Uso:\""
+    ],
+    "checkpoint": "step-01-baseline",
+    "files": [
+      "index.html",
+      "404.html"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E1-T2",
+    "title": "Tipografías propias, tokens y CSS base",
+    "epic": "01-fundamentos-y-hero",
+    "dependencies": [
+      "E1-T1"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `npm run fonts` runs with network access THE SYSTEM SHALL exit 0, write `assets/fonts/cormorant-garamond-normal.woff2`, `assets/fonts/cormorant-garamond-italic.woff2` and `assets/fonts/dm-sans-normal.woff2`, and generate `css/fonts.css` with `font-display: swap` in every `@font-face`.",
+      "WHEN `node --test tests/css.test.js` runs THE SYSTEM SHALL exit 0 with every foreground/background pair of the contrast table meeting 4.5 (normal text) or 3 (large text and interface), including the two veil composites computed at their worst case.",
+      "WHEN `node --test tests/css.test.js` runs THE SYSTEM SHALL report no `max-width` inside any `@media` query of `css/styles.css` and only `min-width` values in {600, 760, 900, 1200}.",
+      "WHEN `node --test tests/css.test.js` runs THE SYSTEM SHALL find no hexadecimal color in `css/styles.css` or `css/fonts.css`, `--c-muted` and `--c-gold` never used as `color`, and the word `Jost` in no stylesheet.",
+      "WHEN `node tools/smoke.mjs . 4179 css/tokens.css=200 css/styles.css=200 css/fonts.css=200 assets/fonts/dm-sans-normal.woff2=200` runs THE SYSTEM SHALL exit 0.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with the baseline of step 1 still green."
+    ],
+    "verify": [
+      "test -f assets/fonts/cormorant-garamond-normal.woff2 && test -f assets/fonts/cormorant-garamond-italic.woff2 && test -f assets/fonts/dm-sans-normal.woff2",
+      "test -f css/fonts.css && test -f css/tokens.css && test -f css/styles.css",
+      "node --test tests/css.test.js",
+      "node tools/smoke.mjs . 4179 css/tokens.css=200 css/styles.css=200 css/fonts.css=200 assets/fonts/dm-sans-normal.woff2=200",
+      "npm test"
+    ],
+    "checkpoint": "step-02-tokens-css",
+    "files": [
+      "css/tokens.css",
+      "css/styles.css",
+      "css/fonts.css",
+      "assets/fonts/*.woff2",
+      "tests/css.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E1-T3",
+    "title": "Estructura común, menú, pie y comportamiento",
+    "epic": "01-fundamentos-y-hero",
+    "dependencies": [
+      "E1-T2"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `node --test tests/pages.test.js` runs THE SYSTEM SHALL exit 0 after asserting, for every page `pageFiles()` returns, one `h1`, `lang=\"es\"`, a `title` of 10 to 70 characters and a `meta description` of 50 to 200, `canonical` equal to `og:url` and ending in the page path, an absolute `og:image` that exists on disk, the inline `js` class script before the stylesheets, both font preloads pointing at existing files, the stylesheets in the order `fonts.css`, `tokens.css`, `styles.css`, the scripts in the order `data.js`, `lib.js`, `main.js`, and neither Google Fonts nor `<iframe` in the source, nor any HTML comment other than the BORRADOR note of the two legal pages, and a canonical origin that equals the origin of `sitemap.xml` and of the `Sitemap:` line of `robots.txt` and is captured by the same pattern `tools/set-domain.mjs` uses.",
+      "WHEN `node --test tests/pages.test.js` runs THE SYSTEM SHALL assert for every page that each `<img>` has `alt`, `width` and `height`, that each local WebP's `width` and `height` equal the real file size, that ids are unique, that every `data-price` and `data-duration` key exists in `js/data.js`, that every local `href`, `src` and sprite `use href` resolves to an existing file and symbol (only a link that, resolved from the root, is exactly `pages/servicios.html`, `pages/tienda.html`, `pages/contacto.html`, `pages/aviso-legal.html` or `pages/privacidad.html` and does not exist yet is skipped; any other missing local target, including `pages/pages/aviso-legal.html`, fails; `tests/seo.test.js` and `tests/deploy.test.js` assert that the six pages exist), and that every `a[data-wa]` carries `href=\"https://wa.me/34610167764\"`.",
+      "WHEN `node --test tests/pages.test.js` runs THE SYSTEM SHALL assert for every page one `.topbar` before one `header.site-header`, a `button.nav-toggle` with `aria-expanded=\"false\"` and `aria-controls=\"site-menu\"` before `nav#site-menu`, the four links Inicio, Servicios, Tienda, Contacto with exactly one `aria-current=\"page\"` (none on the two legal pages), a footer whose `h2` titles are Visítanos, Horario, Contacto, the legal links Aviso legal and Privacidad y cookies, one `a.wa-float`, and, on pages under `pages/`, no local reference that starts with `pages/` or `../pages/` (sibling links are bare file names).",
+      "WHEN `node --test tests/shell.test.js` runs THE SYSTEM SHALL exit 0 after asserting that the topbar fallback equals `L–V ` plus the first `data.hours` row's slots with ` – ` replaced by `–` and joined by ` · `, that `js/main.js` contains the contract strings listed in the step and no `max-width`, and that `css/styles.css` contains `scroll-padding-top`, a sticky `.site-header`, a fixed `.js .site-nav`, `body.menu-open` with `overflow: hidden`, and `.nav-toggle` and `.wa-float` set to `display: none` inside `@media (min-width: 900px)`.",
+      "WHEN `node --check js/main.js` runs THE SYSTEM SHALL exit 0, and WHEN `node tools/smoke.mjs . 4179 ./=200 js/main.js=200 assets/icons/sprite.svg=200 css/tokens.css=200` runs THE SYSTEM SHALL exit 0.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with the gates of steps 1 and 2 still green."
+    ],
+    "verify": [
+      "node --test tests/pages.test.js",
+      "node --test tests/shell.test.js",
+      "node --check js/main.js",
+      "node tools/smoke.mjs . 4179 ./=200 js/main.js=200 assets/icons/sprite.svg=200 css/tokens.css=200",
+      "npm test"
+    ],
+    "checkpoint": "step-03-shell",
+    "files": [
+      "index.html",
+      "css/styles.css",
+      "tests/pages.test.js",
+      "tests/shell.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E1-T4",
+    "title": "Portada A — hero con tarjeta flotante y banda de pilares",
+    "epic": "01-fundamentos-y-hero",
+    "dependencies": [
+      "E1-T3"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL exit 0 after asserting that `main` starts with `section.hero` followed by `section.pillars`, that the `h1` reads \"Cuidamos tu cabello desde la raíz\" with `<em>desde la raíz</em>`, and that `img.hero__img` is `hero-salon.webp` at 2000×1333 with `fetchpriority=\"high\"` and a non-empty `alt`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that the hero has the buttons \"Reservar cita\" (`data-wa` with the `wa.me/34610167764` fallback) and \"Ver servicios\" (to `pages/servicios.html`).",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `aside.hero__card` follows `.hero__media` in source order, is not inside it, and holds `dl[data-hours]` and the link \"Ver contacto\" to `pages/contacto.html`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `section.pillars` holds exactly four `li.pillar` titled \"Peluquería titulada\", \"Spa capilar\", \"Tricología con microcámara\" and \"Cosmética natural Jaldún\", with the icons `i-tijeras`, `i-spa`, `i-tricologia`, `i-barro` in that order.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `css/styles.css` gives `.pillars` `background: var(--c-anchor)`, `.hero__card` `background: var(--c-bg)` and `.hero__media` `border-radius: 0 0 var(--r-curve) var(--r-curve)`, and contains no `backdrop-filter`.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0, including `tests/css.test.js` (contrast, no hex, no `max-width`) and `tests/pages.test.js` on the new `index.html`."
+    ],
+    "verify": [
+      "node --test tests/inicio.test.js",
+      "node tools/smoke.mjs . 4179 ./=200 assets/img/hero-salon.webp=200",
+      "npm test"
+    ],
+    "checkpoint": "step-04-inicio-hero-pilares",
+    "files": [
+      "index.html",
+      "css/styles.css",
+      "tests/inicio.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E1-T5",
+    "title": "Portada B — fila de iconos y tarjetas de Spa",
+    "epic": "01-fundamentos-y-hero",
+    "dependencies": [
+      "E1-T4"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL exit 0 after asserting that the sections of `main` are, in order, `hero`, `pillars`, `icon-row` and `service-cards`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `.icon-row` has four `a.icon-row__item` linking, in order, to `pages/servicios.html#spa`, `pages/servicios.html#barros-alisados-antifrizz`, `pages/servicios.html#peluqueria` and `pages/tienda.html`, each with an `h3`, a non-empty `p` of at most 80 characters and a sprite icon.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `.service-cards` holds three `article.service-card` for `spa-esencial`, `spa-equilibrio` and `spa-aura`, each with a 900×1125 `loading=\"lazy\"` photo and its real alt text, a \"Spa\" chip, a `data-duration` chip, a `data-price` price, and exactly one link (`pages/servicios.html#<id>`) in the `h3`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that the fallback text of every `[data-price]` equals `lib.formatPrice` of its `data.js` item and that of every `[data-duration]` equals the item's `duration`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that the link \"Ver todos los servicios\" points to `pages/servicios.html`.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with the gates of steps 1 to 4 still green."
+    ],
+    "verify": [
+      "node --test tests/inicio.test.js",
+      "node tools/smoke.mjs . 4179 ./=200 assets/img/destacado-spa.webp=200 assets/img/destacado-tricologia.webp=200 assets/img/destacado-terapias.webp=200",
+      "npm test"
+    ],
+    "checkpoint": "step-05-inicio-iconos-spa",
+    "files": [
+      "index.html",
+      "css/styles.css",
+      "tests/inicio.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E2-T1",
+    "title": "Portada C — destacado Jaldún y mosaico Sobre Aura",
+    "epic": "02-portada-y-paginas",
+    "dependencies": [
+      "E1-T5"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL exit 0 after asserting that the sections of `main` are, in order, `hero`, `pillars`, `icon-row`, `service-cards`, `spotlight` and `mosaic`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `.spotlight` shows the three `champu-*.webp` photos at 2250×2250 with `loading=\"lazy\"` and their real alt text inside an `.arch` panel, and that `css/styles.css` gives `.spotlight__bottles img` `mix-blend-mode: multiply`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `.spotlight` has a three-item `ul.checklist` whose `strong` labels are \"Equilibrante\", \"Vitalzen Fortificante\" and \"Multiefecto Regulador\", and a button \"Ver tienda\" to `pages/tienda.html#jaldun`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `.mosaic` shows `servicio-salud.webp` (1000×1250), `destacado-terapias.webp` (900×1125) and `servicio-peluqueria.webp` (1000×1250) with their real alt text, and the quote \"la energía del interior y la que envuelve al cuerpo físico\" inside `<em>`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that the `.mosaic` section contains none of \"Hola, soy Paula\", \"retrato\", \"años de experiencia\" or a number followed by \"años\".",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with the gates of steps 1 to 5 still green."
+    ],
+    "verify": [
+      "node --test tests/inicio.test.js",
+      "node tools/smoke.mjs . 4179 ./=200 assets/img/champu-vitalzen.webp=200 assets/img/servicio-salud.webp=200",
+      "npm test"
+    ],
+    "checkpoint": "step-06-inicio-jaldun-mosaico",
+    "files": [
+      "index.html",
+      "css/styles.css",
+      "tests/inicio.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E2-T2",
+    "title": "Portada D — banner regalo, visita con mapa y JSON-LD",
+    "epic": "02-portada-y-paginas",
+    "dependencies": [
+      "E2-T1"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL exit 0 after asserting that the eight sections of `main` are, in order, `hero`, `pillars`, `icon-row`, `service-cards`, `spotlight`, `mosaic`, `gift-banner` and `visit`, and that `.topbar` precedes `header.site-header`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `.gift-banner` has a decorative (`alt=\"\"`) 1200×900 `tarjeta-regalo.webp`, an `aria-hidden` veil painted with `rgb(var(--veil-dark-rgb) / var(--veil-dark-alpha))`, the heading \"Regala Aura\" and the button \"Pedir tarjeta regalo\" with `data-wa=\"Tarjeta regalo\"` and the `wa.me/34610167764` fallback.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that `index.html` contains no `<iframe`, and that `.visit` holds `div.map[data-map-src]` with a `data-map-title`, a hidden `button[data-map-load]` reading \"Ver el mapa\" and a link \"Abrir en Google Maps\" to `https://www.google.com/maps/search/`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that the JSON-LD parses as `HairSalon` with `telephone` equal to `+` plus `data.business.phoneDigits`, `sameAs` equal to `[data.business.instagram]` and `postalCode` `41730`.",
+      "WHEN `node --test tests/inicio.test.js` runs THE SYSTEM SHALL assert that the day|opens|closes triples of the JSON-LD `openingHoursSpecification` equal, as sorted sets, those derived from `data.hours` with times zero-padded to five characters.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with the gates of steps 1 to 6 still green."
+    ],
+    "verify": [
+      "node --test tests/inicio.test.js",
+      "node tools/smoke.mjs . 4179 ./=200 assets/img/tarjeta-regalo.webp=200",
+      "npm test"
+    ],
+    "checkpoint": "step-07-inicio-regalo-visita",
+    "files": [
+      "index.html",
+      "css/styles.css",
+      "tests/inicio.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E2-T3",
+    "title": "Servicios: pestañas, filas-tarjeta y análisis",
+    "epic": "02-portada-y-paginas",
+    "dependencies": [
+      "E1-T3"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `node --test tests/servicios.test.js` runs THE SYSTEM SHALL exit 0 after asserting that every `servicio` item of `js/data.js` has its `li.service-row#<id>`, a `data-price`, a `data-wa` equal to its name, and a `data-duration` only when `data.js` defines a duration.",
+      "WHEN `node --test tests/servicios.test.js` runs THE SYSTEM SHALL assert that the written text of every `data-price` equals `lib.formatPrice` of its item, including the ranges such as `30–40 €`.",
+      "WHEN `node --test tests/servicios.test.js` runs THE SYSTEM SHALL assert that the panel `barros-alisados-antifrizz` shows `p.price-note` with the word \"orientativos\" before its first price, that Corte shows \"Incluye lavado, corte y secado\", and that the three Spa rows list \"Masaje de hombros, cuello, rostro y cabeza\".",
+      "WHEN `node --test tests/servicios.test.js` runs THE SYSTEM SHALL assert a hidden `tablist` with one `tab` per `data.categories` entry controlling the panels `spa`, `barros-alisados-antifrizz` and `peluqueria`, only the first tab selected, and every service inside the panel of its category.",
+      "WHEN `node --test tests/servicios.test.js` runs THE SYSTEM SHALL assert that every `servicios.html#<id>` link on any page resolves to an `id` present in `pages/servicios.html`, that the page has `h1` \"Servicios\", three category photos at 1000×1250, the three `li.step-card` of the scalp analysis and the button \"Escríbeme\" to `contacto.html#formulario`.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0, including `tests/pages.test.js` on the new page and the `css/styles.css` checks of `tests/css.test.js`."
+    ],
+    "verify": [
+      "node --test tests/servicios.test.js",
+      "node tools/smoke.mjs . 4179 pages/servicios.html=200 assets/img/servicio-salud.webp=200",
+      "npm test"
+    ],
+    "checkpoint": "step-08-servicios",
+    "files": [
+      "pages/servicios.html",
+      "css/styles.css",
+      "tests/servicios.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E2-T4",
+    "title": "Tienda: categorías, champús Jaldún y tarjetas regalo",
+    "epic": "02-portada-y-paginas",
+    "dependencies": [
+      "E2-T3"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `node --test tests/tienda.test.js` runs THE SYSTEM SHALL exit 0 after asserting that `section#jaldun` shows the three `champu-*.webp` photos at 2250×2250 with `loading=\"lazy\"` and their real alt text, the first card being `product-card--featured` with an `.arch` visual.",
+      "WHEN `node --test tests/tienda.test.js` runs THE SYSTEM SHALL assert that `section#tarjetas-regalo` shows four gift tiles and that two `a.category-tile` link to `#jaldun` and `#tarjetas-regalo`, with no `id=\"bonos\"` anywhere.",
+      "WHEN `node --test tests/tienda.test.js` runs THE SYSTEM SHALL assert that every non-service item of `js/data.js` has a `data-price` on the page whose text equals `lib.formatPrice` of the item (whitespace normalized).",
+      "WHEN `node --test tests/tienda.test.js` runs THE SYSTEM SHALL assert that `main` contains exactly seven `a[data-wa]` buttons (three \"Lo quiero\", four \"Regalar\"), each with `data-wa-kind=\"producto\"`.",
+      "WHEN `node --test tests/tienda.test.js` runs THE SYSTEM SHALL assert the note \"Recogida en el salón. Te confirmamos disponibilidad por WhatsApp.\" and the `h1` \"Tienda\".",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0, including `tests/pages.test.js` on the new page."
+    ],
+    "verify": [
+      "node --test tests/tienda.test.js",
+      "node tools/smoke.mjs . 4179 pages/tienda.html=200 assets/img/champu-equilibrante.webp=200",
+      "npm test"
+    ],
+    "checkpoint": "step-09-tienda",
+    "files": [
+      "pages/tienda.html",
+      "css/styles.css",
+      "tests/tienda.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E2-T5",
+    "title": "Contacto: tarjetas, mapa y formulario a WhatsApp",
+    "epic": "02-portada-y-paginas",
+    "dependencies": [
+      "E2-T4"
+    ],
+    "priority": "p0",
+    "acceptance": [
+      "WHEN `node --test tests/contacto.test.js` runs THE SYSTEM SHALL exit 0 after asserting four `a.contact-card` links to `tel:+34610167764`, `https://wa.me/34610167764`, the Instagram profile and Google Maps, plus `section#formulario` and the `h1` \"Contacto\".",
+      "WHEN `node --test tests/contacto.test.js` runs THE SYSTEM SHALL assert that `nombre` and `mensaje` each have a `label[for]`, are `required`, point `aria-describedby` at an existing `p.field-error`, and carry a `data-error` message, and that `div#form-summary` has `aria-live=\"polite\"`.",
+      "WHEN `node --test tests/contacto.test.js` runs THE SYSTEM SHALL assert that the select lists, for every `servicio` of `js/data.js`, `item.contact || item.name` as an `<option>`, and ends with the option \"Otro / no lo sé\" with an empty value.",
+      "WHEN `node --test tests/contacto.test.js` runs THE SYSTEM SHALL assert that the page has no `<iframe`, a `div.map[data-map-src]` with `data-map-title`, a hidden `button[data-map-load]` reading \"Ver el mapa\", and `dl[data-hours]`.",
+      "WHEN `node --test tests/contacto.test.js` runs THE SYSTEM SHALL assert that `composeContactMessage` builds \"Hola Paula, soy Lucía. Me interesa: Corte. Hola\" from `{ name: ' Lucía ', service: 'Corte', message: 'Hola ' }`.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0, including `tests/pages.test.js` on the new page."
+    ],
+    "verify": [
+      "node --test tests/contacto.test.js",
+      "node tools/smoke.mjs . 4179 pages/contacto.html=200 assets/img/textura-lino.webp=200",
+      "npm test"
+    ],
+    "checkpoint": "step-10-contacto",
+    "files": [
+      "pages/contacto.html",
+      "css/styles.css",
+      "tests/contacto.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E3-T1",
+    "title": "Páginas legales en borrador y página 404",
+    "epic": "03-legales-calidad-y-publicacion",
+    "dependencies": [
+      "E2-T5"
+    ],
+    "priority": "p1",
+    "acceptance": [
+      "WHEN `node --test tests/legal-404.test.js` runs THE SYSTEM SHALL exit 0 after asserting that the two legal pages have their `h1`, the \"Ley 34/2002\", \"no usa cookies propias\" and \"aepd.es\" texts, at least one `<mark class=\"pendiente\">`, the `BORRADOR` comment and no `<form`.",
+      "WHEN `node --test tests/legal-404.test.js` runs THE SYSTEM SHALL assert that `404.html` has `noindex`, no `canonical`, one `h1`, the `file:` base script, `<base href=\"/\">` before the first `<link ` and `<script src=`, and local references that are all relative to the site root, exist on disk and number more than eight.",
+      "WHEN `node tools/pendientes.mjs` runs THE SYSTEM SHALL exit with code 1 and list the `<mark class=\"pendiente\">` fields of both legal pages and the provisional domain, ending with a line that starts with `Pendiente:`.",
+      "WHEN `node --test tests/legal-404.test.js` runs THE SYSTEM SHALL assert the 404 skip link `onclick` focusing `#contenido`, `<main id=\"contenido\" tabindex=\"-1\">`, the lotus between two `<span>4</span>`, the `h1` \"Te has salido del camino\" and three exits (home, services, WhatsApp).",
+      "WHEN `node --test tests/legal-404.test.js` runs THE SYSTEM SHALL assert that `404.html` has `.topbar`, `header.site-header`, `footer.site-footer`, `a.wa-float`, both font preloads and the three stylesheets.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0, including `tests/pages.test.js` on both legal pages."
+    ],
+    "verify": [
+      "node --test tests/legal-404.test.js",
+      "node tools/smoke.mjs . 4179 pages/aviso-legal.html=200 pages/privacidad.html=200 404.html=200 no-existe=404",
+      "rc=0; out=$(node tools/pendientes.mjs) || rc=$?; test \"$rc\" -eq 1 && echo \"$out\" | grep -q \"Nombre y apellidos o denominación social\" && echo \"$out\" | grep -q \"dominio provisional\" && echo \"$out\" | grep -q \"Pendiente:\"",
+      "npm test"
+    ],
+    "checkpoint": "step-11-legales-404",
+    "files": [
+      "pages/aviso-legal.html",
+      "pages/privacidad.html",
+      "404.html",
+      "css/styles.css",
+      "tests/legal-404.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E3-T2",
+    "title": "SEO, sitemap, robots y cambio de dominio",
+    "epic": "03-legales-calidad-y-publicacion",
+    "dependencies": [
+      "E2-T2",
+      "E3-T1"
+    ],
+    "priority": "p1",
+    "acceptance": [
+      "WHEN `node --test tests/seo.test.js` runs THE SYSTEM SHALL exit 0 after asserting that `pageFiles()` is exactly `index.html`, `pages/aviso-legal.html`, `pages/contacto.html`, `pages/privacidad.html`, `pages/servicios.html` and `pages/tienda.html`, and that every local link to a `pages/*.html` file on any page resolves to an existing file, and that `sitemap.xml` lists exactly those URLs on a single origin without `404`.",
+      "WHEN `node --test tests/seo.test.js` runs THE SYSTEM SHALL assert that the origin of `canonical`, `og:url` and `og:image` on every page, the JSON-LD `url` and `image`, the sitemap and the `Sitemap:` line of `robots.txt` is one and the same `https://` origin that does not contain `TU-DOMINIO`.",
+      "WHEN `node --test tests/seo.test.js` runs THE SYSTEM SHALL assert that the six `title`, `meta description` and `og:title` values are each pairwise distinct and that every page has an `og:description`.",
+      "WHEN `node --test tests/seo.test.js` runs THE SYSTEM SHALL assert that `robots.txt` has `User-agent: *`, no `Disallow: /`, and a `Sitemap:` line, and that only `index.html` carries `application/ld+json`.",
+      "WHEN `node --test tests/seo.test.js` runs THE SYSTEM SHALL run `tools/set-domain.mjs` twice on a temporary copy of the site and find, after each run, exit code 0, no trace of the previous origin and the new origin in every canonical, `og:url`, `og:image`, JSON-LD, sitemap and robots occurrence.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with the gates of steps 1 to 11 still green."
+    ],
+    "verify": [
+      "node --test tests/seo.test.js",
+      "grep -q 'rel=\"canonical\" href=\"https://centro-aura-2.vercel.app/\"' index.html",
+      "node tools/smoke.mjs . 4179 robots.txt=200 sitemap.xml=200 ./=200",
+      "npm test"
+    ],
+    "checkpoint": "step-12-seo-dominio",
+    "files": [
+      "tests/seo.test.js"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E3-T3",
+    "title": "Accesibilidad y reflow: tests y guía de pasada manual",
+    "epic": "03-legales-calidad-y-publicacion",
+    "dependencies": [
+      "E3-T2"
+    ],
+    "priority": "p1",
+    "acceptance": [
+      "WHEN `node --test tests/a11y.test.js` runs THE SYSTEM SHALL exit 0 after asserting, for every page and `404.html`, one `main`, one `header` and one `footer`, labelled `nav` elements, links with an accessible name, `rel` containing `noopener` on every `target=\"_blank\"`, a `type` on every `button`, `aria-hidden=\"true\"` on every `svg` and no positive `tabindex`.",
+      "WHEN `node --test tests/a11y.test.js` runs THE SYSTEM SHALL assert that every `input`, `select` and `textarea` with an `id` has a matching `label[for]` and that no accessibility-overlay vendor name appears in HTML, CSS or JS.",
+      "WHEN `node --test tests/a11y.test.js` runs THE SYSTEM SHALL assert that `css/styles.css` has a 2px `:focus-visible` outline, `.btn` with `min-height: 48px`, `.tab` and `.link-arrow` with `min-height: 44px`, `scroll-padding-top` on `html`, a `prefers-reduced-motion: reduce` block that cancels transitions and the reveal, and no `overflow-x: hidden` on `html` or `body`.",
+      "WHEN `node --test tests/a11y.test.js` runs THE SYSTEM SHALL assert that no `width` or `min-width` declaration in pixels above 320 exists outside a `@media (min-width: …)` block of `css/styles.css`.",
+      "WHEN `node -e \"const t=require('fs').readFileSync('docs/qa-manual.md','utf8'); const h=['Teclado','Zoom 200 %','Reflow a 320 px','Anchos 375, 768 y 1440','Lector de pantalla','Movimiento reducido','Comparación A/B con la clienta','Opcional: axe automatizado']; process.exit(h.every((x)=>t.includes('\\n## '+x+'\\n')) ? 0 : 1)\"` runs THE SYSTEM SHALL exit 0, proving that `docs/qa-manual.md` has the eight second-level headings Teclado, Zoom 200 %, Reflow a 320 px, Anchos 375, 768 y 1440, Lector de pantalla, Movimiento reducido, Comparación A/B con la clienta and Opcional: axe automatizado.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with the gates of steps 1 to 12 still green."
+    ],
+    "verify": [
+      "node --test tests/a11y.test.js",
+      "node -e \"const t=require('fs').readFileSync('docs/qa-manual.md','utf8'); const h=['Teclado','Zoom 200 %','Reflow a 320 px','Anchos 375, 768 y 1440','Lector de pantalla','Movimiento reducido','Comparación A/B con la clienta','Opcional: axe automatizado']; process.exit(h.every((x)=>t.includes('\\n## '+x+'\\n')) ? 0 : 1)\"",
+      "npm test"
+    ],
+    "checkpoint": "step-13-a11y-responsive",
+    "files": [
+      "tests/a11y.test.js",
+      "css/styles.css",
+      "docs/qa-manual.md"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E3-T4",
+    "title": "Distinción respecto a la demo A, README y pendientes",
+    "epic": "03-legales-calidad-y-publicacion",
+    "dependencies": [
+      "E3-T3"
+    ],
+    "priority": "p1",
+    "acceptance": [
+      "WHEN `node --test tests/distincion.test.js` runs THE SYSTEM SHALL exit 0 after asserting that `index.html` contains the classes `topbar`, `hero__card`, `pillars`, `icon-row`, `service-cards`, `spotlight`, `mosaic`, `gift-banner` and `visit`, that none of the layout classes `feature-grid`, `feature-card`, `shop-grid`, `shop-tile` or `split` appears in any HTML page or in `css/styles.css`, that `css/tokens.css` declares `'DM Sans'` as `--font-body`, and that the word `Jost` appears in no stylesheet.",
+      "WHEN `node --test tests/distincion.test.js` runs THE SYSTEM SHALL assert that no HTML page matches the invented-social-proof pattern (reseña, testimonio, ★, opiniones de, clientas felices, alumnas, a number followed by K) or the invented-facts pattern (a number followed by años, años de experiencia, premiad-, galardon-).",
+      "WHEN `node tools/pendientes.mjs` runs THE SYSTEM SHALL list the legal fields still marked `pendiente` and the provisional domain `https://centro-aura-2.vercel.app`, print a final line that starts with `Pendiente:` and exit with code 1.",
+      "WHEN `node -e \"const t=require('fs').readFileSync('README.md','utf8'); const h=['Verla','Cambiar precios, horario o teléfono','Cambiar las fotos','Tipografías','Mapa de Google','Páginas legales','Antes de publicar','Tests','Estructura','Demo A y demo B','Pendiente de la clienta']; process.exit(h.every((x)=>t.includes('\\n## '+x+'\\n')) ? 0 : 1)\"` runs THE SYSTEM SHALL exit 0.",
+      "WHEN `test -f docs/comparativa-ab.md && grep -q 4173 docs/comparativa-ab.md && grep -q 4174 docs/comparativa-ab.md` runs THE SYSTEM SHALL exit 0, proving that the A/B comparison guide exists and names both ports, 4173 for demo B and 4174 for demo A.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with the gates of steps 1 to 13 still green."
+    ],
+    "verify": [
+      "node --test tests/distincion.test.js",
+      "rc=0; out=$(node tools/pendientes.mjs) || rc=$?; test \"$rc\" -eq 1 && echo \"$out\" | grep -q \"Nombre y apellidos o denominación social\" && echo \"$out\" | grep -q \"dominio provisional\" && echo \"$out\" | grep -q \"Pendiente:\"",
+      "node -e \"const t=require('fs').readFileSync('README.md','utf8'); const h=['Verla','Cambiar precios, horario o teléfono','Cambiar las fotos','Tipografías','Mapa de Google','Páginas legales','Antes de publicar','Tests','Estructura','Demo A y demo B','Pendiente de la clienta']; process.exit(h.every((x)=>t.includes('\\n## '+x+'\\n')) ? 0 : 1)\"",
+      "test -f docs/comparativa-ab.md && grep -q 'Demo A' docs/comparativa-ab.md && grep -q 'Demo B' docs/comparativa-ab.md && grep -q 4173 docs/comparativa-ab.md && grep -q 4174 docs/comparativa-ab.md",
+      "npm test"
+    ],
+    "checkpoint": "step-14-distincion-readme",
+    "files": [
+      "tests/distincion.test.js",
+      "README.md",
+      "docs/comparativa-ab.md"
+    ],
+    "status": "done"
+  },
+  {
+    "id": "E3-T5",
+    "title": "Build final a dist/ y comprobación de las siete rutas",
+    "epic": "03-legales-calidad-y-publicacion",
+    "dependencies": [
+      "E3-T4"
+    ],
+    "priority": "p1",
+    "acceptance": [
+      "WHEN `node --test tests/deploy.test.js` runs THE SYSTEM SHALL exit 0 after asserting that `vercel.json` builds with `node tools/build.mjs`, publishes `dist` and sets `framework` to `null`.",
+      "WHEN `node --test tests/deploy.test.js` runs THE SYSTEM SHALL assert that the built folder contains the seven HTML pages, `robots.txt`, `sitemap.xml`, the three stylesheets, the three scripts, the three icon files, the three `.woff2` fonts and every image of `tests/fixtures/images.json`.",
+      "WHEN `node --test tests/deploy.test.js` runs THE SYSTEM SHALL assert that the built folder contains nothing under `tests/`, `tools/`, `docs/`, `blueprints/`, `.claude/`, `.git/` or `node_modules/`, none of `README.md`, `package.json`, `vercel.json`, `.gitignore`, `.gitattributes`, `CLAUDE.md`, `AGENTS.md` or `.workspace-applied`, and no `CREDITOS.md` or `.gitkeep`.",
+      "WHEN `node --test tests/deploy.test.js` runs THE SYSTEM SHALL assert that every local `href`, `src` and sprite `use href` of every published HTML file, and every `url()` of `css/fonts.css`, resolves to a file inside the built folder.",
+      "WHEN `node tools/smoke.mjs dist 4179 ./=200 pages/servicios.html=200 pages/tienda.html=200 pages/contacto.html=200 pages/aviso-legal.html=200 pages/privacidad.html=200 404.html=200 robots.txt=200 sitemap.xml=200 no-existe=404` runs after `npm run build` THE SYSTEM SHALL serve `dist/` and exit 0 with every status as listed.",
+      "WHEN `npm test` runs THE SYSTEM SHALL exit 0 with all the gates of steps 1 to 14 still green."
+    ],
+    "verify": [
+      "npm run build",
+      "node --test tests/deploy.test.js",
+      "node tools/smoke.mjs dist 4179 ./=200 pages/servicios.html=200 pages/tienda.html=200 pages/contacto.html=200 pages/aviso-legal.html=200 pages/privacidad.html=200 404.html=200 robots.txt=200 sitemap.xml=200 no-existe=404",
+      "npm test"
+    ],
+    "checkpoint": "step-15-build-final",
+    "files": [
+      "tests/deploy.test.js"
+    ],
+    "status": "done"
+  }
+]
