@@ -35,7 +35,7 @@ test('main.js: contiene las cadenas del contrato y no usa max-width', () => {
 test('styles.css: reglas de la estructura común', () => {
   assert.ok(css.includes('scroll-padding-top: calc(var(--header-h) + 16px)'));
   assert.match(css, /\.site-header\s*\{[^}]*position:\s*sticky;[^}]*top:\s*0/);
-  assert.match(css, /\.js \.site-nav\s*\{[^}]*position:\s*fixed;[^}]*visibility:\s*hidden/);
+  assert.match(css, /\.js \.site-nav\s*\{[^}]*position:\s*absolute;[^}]*visibility:\s*hidden/);
   assert.match(css, /body\.menu-open\s*\{[^}]*overflow:\s*hidden/);
   assert.match(css, /body\.menu-open \.site-nav\s*\{[^}]*visibility:\s*visible/);
 });

@@ -2,8 +2,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* Móvil: la base rem es 18 px (todo crece un 12,5 %); desde 900 px vuelve a 16 px */
-html { font-size: 112.5%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + 16px); }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + 16px); }
 
 body {
   margin: 0;
@@ -246,20 +245,36 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 500; color: var(--c-clay)
 
 .nav-toggle { display: none; }
 .js .nav-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
   border: 1.5px solid var(--c-border);
   border-radius: var(--r-pill);
   background: transparent;
   color: var(--c-text);
+  cursor: pointer;
 }
-.js .nav-toggle .icon { width: 1.75rem; height: 1.75rem; }
-.icon--close { display: none; }
-.nav-toggle[aria-expanded="true"] .icon--open { display: none; }
-.nav-toggle[aria-expanded="true"] .icon--close { display: block; }
+/* Hamburguesa de tres rayas que se cruzan en una X al abrir (el mismo gesto que la demo A, con el círculo de la B) */
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.nav-toggle__bar { position: relative; }
+.nav-toggle__bar::before,
+.nav-toggle__bar::after { content: ""; position: absolute; left: 0; }
+.nav-toggle__bar::before { top: -7px; }
+.nav-toggle__bar::after { top: 7px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::before { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::after { transform: translateY(-7px) rotate(-45deg); }
 
 .site-nav {
   display: flex;
@@ -297,26 +312,46 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 500; color: var(--c-clay)
 .site-nav__list a[aria-current="page"]::after { transform: scaleX(1); animation: nav-bar 600ms var(--ease) 150ms backwards; }
 @keyframes nav-bar { from { transform: scaleX(0); } }
 
+/* Móvil: panel desplegable bajo la cabecera (la página sigue visible, atenuada por un velo) */
 .js .site-nav {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   z-index: 1;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-8);
-  padding: calc(var(--header-h) + var(--s-6)) var(--s-6) var(--s-8);
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: var(--s-6);
+  max-height: calc(100vh - var(--header-h));
+  max-height: calc(100svh - var(--header-h));
+  overflow-y: auto;
+  padding: var(--s-2) var(--s-4) var(--s-8);
+  border-bottom: 1px solid var(--c-line);
+  border-radius: 0 0 var(--r-card) var(--r-card);
   background: var(--c-bg);
+  box-shadow: var(--shadow-soft);
   visibility: hidden;
   opacity: 0;
-  transition: opacity var(--dur) var(--ease), visibility 0s linear var(--dur);
+  transform: translateY(calc(-1 * var(--s-2)));
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility 0s linear var(--dur);
 }
-body.menu-open .site-nav { visibility: visible; opacity: 1; transition-delay: 0s; }
+body.menu-open .site-nav { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 body.menu-open { overflow: hidden; }
+body.menu-open::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: rgb(var(--veil-dark-rgb) / 0.35);
+}
 .js .brand, .js .nav-toggle { position: relative; z-index: 2; }
-.js .site-nav__list { flex-direction: column; align-items: center; }
-.js .site-nav__list a { font: 500 2rem/1.2 var(--font-display); }
+.js .site-nav__list { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 0; }
+.js .site-nav__list li + li { border-top: 1px solid var(--c-line); }
+.js .site-nav__list a { display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding-block: 0; font: 500 1.5rem/1.2 var(--font-display); }
+.js .site-nav__list a::after { display: none; }
+.js .site-nav__list a[aria-current="page"]::before { content: ""; order: 1; width: 8px; height: 8px; border-radius: 50%; background: var(--c-clay); }
+.js .site-nav .btn { width: 100%; }
 
 .site-footer {
   background: var(--c-anchor);
@@ -807,26 +842,37 @@ main:focus { outline: none; }
 }
 
 @media (min-width: 900px) {
-  html { font-size: 100%; }
   :root { --header-h: 84px; }
   .section { padding-block: var(--s-24); }
   .topbar__inner { justify-content: space-between; }
+  body.menu-open::after { display: none; }
   .js .nav-toggle { display: none; }
   .js .site-nav {
     position: static;
-    inset: auto;
     z-index: auto;
     flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
     width: auto;
+    max-height: none;
+    overflow: visible;
     padding: 0;
+    border: 0;
+    border-radius: 0;
     background: transparent;
+    box-shadow: none;
     visibility: visible;
     opacity: 1;
+    transform: none;
     gap: var(--s-8);
   }
-  .js .site-nav__list { flex-direction: row; gap: var(--s-6); }
+  .js .site-nav__list { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--s-6); }
+  .js .site-nav__list li + li { border-top: 0; }
   .site-nav { width: auto; }
-  .js .site-nav__list a { font: 500 1rem/1 var(--font-body); }
+  .js .site-nav__list a { display: inline-block; min-height: 0; padding-block: var(--s-2); font: 500 1rem/1 var(--font-body); }
+  .js .site-nav__list a::after { display: block; }
+  .js .site-nav__list a[aria-current="page"]::before { display: none; }
+  .js .site-nav .btn { width: auto; }
   .site-footer { padding-bottom: var(--s-8); }
   .site-footer__grid { grid-template-columns: 1.1fr 1.1fr 1fr 1.2fr; gap: var(--s-8) var(--s-8); }
   .site-footer__bottom { grid-template-columns: 1fr auto auto; align-items: center; gap: var(--s-8); }

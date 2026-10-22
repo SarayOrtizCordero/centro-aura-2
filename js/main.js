@@ -52,10 +52,13 @@
       el.href = lib.buildWaUrl(data.business.phoneDigits, message);
       el.target = '_blank';
       el.rel = 'noopener';
+      /* Un lector de pantalla recorre los botones fuera de contexto: añade a cuál se refiere */
+      const label = el.textContent.replace(/\s+/g, ' ').trim();
+      if (el.dataset.wa && label && !el.hasAttribute('aria-label')) el.setAttribute('aria-label', label + ': ' + el.dataset.wa);
     });
   }
 
-  /* Menú móvil a pantalla completa: Esc cierra, el foco queda atrapado en el menú
+  /* Menú móvil desplegable: Esc o un toque fuera lo cierran, el foco queda atrapado en el menú
      y el resto de la página se vuelve inerte mientras está abierto. */
   function initMenu() {
     const toggle = document.querySelector('.nav-toggle');
@@ -75,6 +78,9 @@
     toggle.addEventListener('click', () => setOpen(!isOpen()));
     menu.addEventListener('click', (event) => {
       if (event.target.closest('a') && isOpen()) setOpen(false);
+    });
+    document.addEventListener('click', (event) => {
+      if (isOpen() && !event.target.closest('.site-header')) setOpen(false);
     });
     document.addEventListener('keydown', (event) => {
       if (!isOpen()) return;
