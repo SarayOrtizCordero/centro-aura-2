@@ -74,3 +74,7 @@ test('mensaje a WhatsApp: composeContactMessage', () => {
   const msg = lib.composeContactMessage({ name: ' Lucía ', service: 'Corte', message: 'Hola ' });
   assert.equal(msg, 'Hola Paula, soy Lucía. Me interesa: Corte. Hola');
 });
+
+test('contacto: las cuatro tarjetas van en cuadrícula 2 × 2 en móvil', () => {
+  assert.match(read('css/styles.css'), /\.contact-cards\s*\{[^}]*grid-template-columns:\s*repeat\(2,/);
+});

@@ -47,3 +47,10 @@ test('styles.css: en @media (min-width: 900px) se ocultan .nav-toggle y .wa-floa
   assert.match(body, /\.js \.nav-toggle\s*\{\s*display:\s*none;\s*\}/);
   assert.match(body, /\.wa-float\s*\{\s*display:\s*none;\s*\}/);
 });
+
+test('menú móvil: Servicios y Tienda son pestañas plegables y el panel ocupa todo el ancho', () => {
+  assert.match(css, /\.js \.site-nav__list \.has-sub > \.subnav\s*\{[^}]*display:\s*none/);
+  assert.match(css, /\.js \.site-nav__list \.has-sub\.is-open > \.subnav\s*\{\s*display:\s*block/);
+  assert.match(css, /\.js \.site-nav\s*\{[^}]*left:\s*calc\(-1 \* var\(--s-4\)\)/);
+  assert.match(css, /\.js \.sub-toggle\s*\{[^}]*width:\s*56px/);
+});

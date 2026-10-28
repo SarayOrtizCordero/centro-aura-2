@@ -128,7 +128,7 @@ test('enlaces entrantes: todo servicios.html#<id> apunta a un id existente', () 
 
 test('css: servicios en cuadrícula (2 en móvil, 3 en tablet, lista en PC) y fotos centradas', () => {
   assert.match(css, /\.service-rows\s*\{[^}]*grid-template-columns:\s*repeat\(2,/);
-  assert.match(css, /main\[data-view="list"\] \.service-rows\s*\{\s*grid-template-columns:\s*1fr;/);
+  assert.match(css, /\[data-view-block\]\[data-view="list"\] \.service-rows\s*\{\s*grid-template-columns:\s*1fr;/);
   assert.match(css, /\.category__photo\s*\{[^}]*margin-inline:\s*auto/);
 });
 
@@ -151,5 +151,61 @@ test('selector Lista / Cuadrícula: icono por botón, uno en cada bloque, oculto
   }
   assert.ok(html.indexOf('view-bar') > html.indexOf('class="category__head"'), 'el selector va junto a los elementos, no al principio');
   const main = read('js/main.js');
-  for (const s of ['initViewToggle', 'data-view', 'dataset.view', 'localStorage', "|| 'list'"]) assert.ok(main.includes(s), 'falta ' + s);
+  assert.equal((html.match(/data-view-block/g) || []).length, 3, 'cada categoría tiene su propia vista');
+  for (const s of ['initViewToggle', 'data-view-block', 'dataset.view', 'localStorage', "|| 'list'"]) assert.ok(main.includes(s), 'falta ' + s);
+});
+
+test('cada servicio de Spa: nombre primero y la duración debajo', () => {
+  for (const id of ['spa-esencial', 'spa-equilibrio', 'spa-aura']) {
+    const row = rowOf(id);
+    assert.ok(row.indexOf('<h3>') < row.indexOf('data-duration'), id);
+  }
+});
+
+test('pestañas de servicios: tres en una línea en móvil', () => {
+  assert.match(css, /\.tabs\.chips\s*\{[^}]*grid-template-columns:\s*repeat\(3,/);
+});
+
+test('cuadrícula móvil: cada spa tiene su botón "Ver qué incluye", que abre una ventana emergente', () => {
+  for (const id of ['spa-esencial', 'spa-equilibrio', 'spa-aura']) {
+    const btn = rowOf(id).match(/<button class="service-row__more"[^>]*>[^<]*<\/button>/)[0];
+    assert.equal(attr(btn, 'aria-haspopup'), 'dialog', id);
+    assert.ok(btn.includes('>Ver qué incluye<'), id);
+  }
+  const main = read('js/main.js');
+  for (const s of ['initServiceMore', "createElement('dialog')", 'showModal', 'service-dialog__x', 'service-dialog__close', 'event.target === dialog']) assert.ok(main.includes(s), 'falta ' + s);
+  assert.match(css, /\.service-dialog::backdrop\s*\{/);
+  assert.ok(!css.includes('service-detail') && !css.includes('is-expanded'), 'ya no hay panel en la página');
+});
+
+test('lista de servicios: el precio y el botón de reservar van en una fila propia, debajo del texto', () => {
+  assert.match(css, /\[data-view-block\]\[data-view="list"\] \.service-row\s*\{[^}]*flex-direction:\s*column/);
+  assert.match(css, /\[data-view-block\]\[data-view="list"\] \.service-row__side\s*\{[^}]*flex-direction:\s*row[^}]*justify-content:\s*space-between/);
+});
+
+test('cuadrícula de servicios: precio y botón al fondo, separados del texto por una línea', () => {
+  assert.match(css, /\.service-row__side\s*\{[^}]*padding-top:[^}]*border-top:\s*1px solid var\(--c-line\)/);
+});
+
+test('"Ver qué incluye" se ve como un subtítulo (acento, mayúsculas pequeñas), no con color de filete', () => {
+  const rule = css.match(/\.js \.service-row__more\s*\{[^}]*\}/)[0];
+  assert.match(rule, /color:\s*var\(--c-clay\)/);
+  assert.match(rule, /text-transform:\s*uppercase/);
+  assert.ok(!/--c-line|--c-muted|--c-gold/.test(rule), 'el texto no puede usar colores decorativos');
+});
+
+test('resúmenes breves: solo con textos de la clienta (o el propio nombre del servicio) y visibles también en cuadrícula', () => {
+  const esperado = {
+    'diagnostico': 'Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.',
+    'tratamiento-fibra': 'Tres opciones según lo que necesite tu pelo: reparación, hidratación o nutrición.',
+    'reparacion-nutricion-hidratacion': 'Tres opciones según lo que necesite tu pelo.',
+    'lavado-peinado': 'Incluye lavado y peinado.',
+    'barro-raiz': 'Coloración natural solo en la raíz.',
+    'barro-completo': 'Coloración natural en todo el cabello.',
+    'antifrizz-corto': 'Se ajusta a tu melena y a lo que necesite.',
+    'antifrizz-medio-largo': 'Se ajusta a tu melena y a lo que necesite.',
+  };
+  for (const [id, text] of Object.entries(esperado)) {
+    assert.ok(rowOf(id).includes('<p class="service-row__note">' + text + '</p>'), id);
+  }
 });

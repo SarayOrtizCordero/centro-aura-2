@@ -111,7 +111,7 @@
           <button class="tab" type="button" role="tab" id="tab-peluqueria" aria-controls="peluqueria" aria-selected="false" tabindex="-1" data-category="peluqueria">Peluquería</button>
         </div>
 
-        <div class="category" id="salud-capilar" role="tabpanel" aria-labelledby="tab-salud">
+        <div class="category" id="salud-capilar" role="tabpanel" aria-labelledby="tab-salud" data-view-block>
           <div class="category__head">
             <div>
               <h2>Salud capilar</h2>
@@ -130,6 +130,7 @@
           <li class="service-row card" id="diagnostico">
             <div class="service-row__main">
               <h3>Diagnóstico</h3>
+              <p class="service-row__note">Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="diagnostico">30–50 €</span>
@@ -148,6 +149,7 @@
           <li class="service-row card" id="tratamiento-fibra">
             <div class="service-row__main">
               <h3>Tratamiento para fibra capilar</h3>
+              <p class="service-row__note">Tres opciones según lo que necesite tu pelo: reparación, hidratación o nutrición.</p>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="tratamiento-fibra">30–50 €</span>
@@ -157,7 +159,7 @@
         </ul>
         </div>
 
-        <div class="category" id="spa" role="tabpanel" aria-labelledby="tab-spa">
+        <div class="category" id="spa" role="tabpanel" aria-labelledby="tab-spa" data-view-block>
           <div class="category__head">
             <div>
               <h2>Spa</h2>
@@ -174,10 +176,11 @@
         <ul class="service-rows" role="list">
           <li class="service-row card" id="spa-esencial">
             <div class="service-row__main">
-              <div class="chips"><span class="chip" data-duration="spa-esencial">50 min aprox.</span></div>
               <h3>Spa esencial</h3>
+              <div class="chips"><span class="chip" data-duration="spa-esencial">50 min</span></div>
               <p>Un momento para desconectar y disfrutar de un ritual de bienestar.</p>
               <ul class="includes" role="list"><li>Lavado capilar</li><li>Masaje de hombros, cuello, rostro y cabeza</li><li>Secado final</li></ul>
+              <button class="service-row__more" type="button" aria-haspopup="dialog">Ver qué incluye</button>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="spa-esencial">40 €</span>
@@ -186,10 +189,11 @@
           </li>
           <li class="service-row card" id="spa-equilibrio">
             <div class="service-row__main">
-              <div class="chips"><span class="chip" data-duration="spa-equilibrio">1 h</span></div>
               <h3>Spa equilibrio</h3>
+              <div class="chips"><span class="chip" data-duration="spa-equilibrio">1 h</span></div>
               <p>Una experiencia que combina relajación y cuidado.</p>
               <ul class="includes" role="list"><li>Análisis del cuero cabelludo con microcámara</li><li>Tratamiento adaptado a tus necesidades</li><li>Masaje de hombros, cuello, rostro y cabeza</li><li>Lavado y secado final</li></ul>
+              <button class="service-row__more" type="button" aria-haspopup="dialog">Ver qué incluye</button>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="spa-equilibrio">50 €</span>
@@ -198,10 +202,11 @@
           </li>
           <li class="service-row card" id="spa-aura">
             <div class="service-row__main">
-              <div class="chips"><span class="chip" data-duration="spa-aura">1 h 15 min</span></div>
               <h3>Spa aura</h3>
+              <div class="chips"><span class="chip" data-duration="spa-aura">1 h 15 min</span></div>
               <p>El más completo.</p>
               <ul class="includes" role="list"><li>Análisis del cuero cabelludo</li><li>Tratamiento personalizado</li><li>Masaje de hombros, cuello, rostro y cabeza</li><li>Masaje de manos y pies</li><li>Lavado y secado</li></ul>
+              <button class="service-row__more" type="button" aria-haspopup="dialog">Ver qué incluye</button>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="spa-aura">70 €</span>
@@ -211,7 +216,7 @@
         </ul>
         </div>
 
-        <div class="category" id="peluqueria" role="tabpanel" aria-labelledby="tab-peluqueria">
+        <div class="category" id="peluqueria" role="tabpanel" aria-labelledby="tab-peluqueria" data-view-block>
           <div class="category__head">
             <div>
               <h2>Peluquería</h2>
@@ -241,6 +246,7 @@
           <li class="service-row card" id="lavado-peinado">
             <div class="service-row__main">
               <h3>Lavado y peinado</h3>
+              <p class="service-row__note">Incluye lavado y peinado.</p>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="lavado-peinado">13 €</span>
@@ -262,6 +268,7 @@
           <li class="service-row card" id="barro-raiz">
             <div class="service-row__main">
               <h3>Barro en raíz</h3>
+              <p class="service-row__note">Coloración natural solo en la raíz.</p>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="barro-raiz">30–40 €</span>
@@ -271,6 +278,7 @@
           <li class="service-row card" id="barro-completo">
             <div class="service-row__main">
               <h3>Barro completo</h3>
+              <p class="service-row__note">Coloración natural en todo el cabello.</p>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="barro-completo">50–70 €</span>
@@ -290,6 +298,7 @@
           <li class="service-row card" id="antifrizz-corto">
             <div class="service-row__main">
               <h3>Antifrizz en pelo corto</h3>
+              <p class="service-row__note">Se ajusta a tu melena y a lo que necesite.</p>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="antifrizz-corto">45–50 €</span>
@@ -299,6 +308,7 @@
           <li class="service-row card" id="antifrizz-medio-largo">
             <div class="service-row__main">
               <h3>Antifrizz en pelo medio o largo</h3>
+              <p class="service-row__note">Se ajusta a tu melena y a lo que necesite.</p>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="antifrizz-medio-largo">50–60 €</span>
@@ -308,6 +318,7 @@
           <li class="service-row card" id="reparacion-nutricion-hidratacion">
             <div class="service-row__main">
               <h3>Reparación, nutrición e hidratación</h3>
+              <p class="service-row__note">Tres opciones según lo que necesite tu pelo.</p>
             </div>
             <div class="service-row__side">
               <span class="price" data-price="reparacion-nutricion-hidratacion">30–50 €</span>

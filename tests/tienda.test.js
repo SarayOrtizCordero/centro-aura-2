@@ -92,12 +92,26 @@ test('selector Lista / Cuadrícula junto a los champús y a las tarjetas regalo,
   }
   const champus = html.indexOf('id="jaldun-champus"');
   assert.ok(html.indexOf('class="view-bar"') > champus - 40, 'el primer selector va en la fila de Champús');
-  assert.match(css, /main\[data-view="list"\] \.gift-grid\s*\{[^}]*grid-template-columns:\s*1fr/);
-  assert.match(css, /main\[data-view="grid"\] \.product-grid\s*\{[^}]*repeat\(3,/);
+  assert.match(css, /\[data-view-block\]\[data-view="list"\] \.gift-grid\s*\{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /\[data-view-block\]\[data-view="grid"\] \.product-grid\s*\{[^}]*repeat\(3,/);
 });
 
 test('menú: la subcategoría lleva un puntito delante (sin raya) y las categorías se separan', () => {
   assert.match(css, /\.subnav__sub a::before\s*\{[^}]*border-radius:\s*50%/);
   assert.ok(!/\.subnav__sub\s*\{[^}]*border-left/.test(css), 'sin raya vertical');
   assert.match(css, /\.subnav li \+ li\s*\{[^}]*border-top:\s*1px solid/);
+});
+
+test('los champús y las tarjetas regalo tienen cada uno su propia vista', () => {
+  assert.match(html, /<section class="section section--alt" id="jaldun"[^>]*data-view-block>/);
+  assert.match(html, /<section class="section" id="tarjetas-regalo"[^>]*data-view-block>/);
+  const jaldun = html.match(/<section class="section section--alt" id="jaldun"[\s\S]*?<\/section>/)[0];
+  const regalo = html.match(/<section class="section" id="tarjetas-regalo"[\s\S]*?<\/section>/)[0];
+  assert.equal((jaldun.match(/class="view-bar"/g) || []).length, 1);
+  assert.equal((regalo.match(/class="view-bar"/g) || []).length, 1);
+});
+
+test('botones de la tienda: "Lo quiero" más pequeño y "Regalar" separado del texto', () => {
+  assert.match(css, /\.product-card__body \.btn--primary\s*\{[^}]*min-height:\s*44px/);
+  assert.match(css, /\.gift-tile__body \.btn\s*\{[^}]*margin-top:\s*var\(--s-3\)/);
 });

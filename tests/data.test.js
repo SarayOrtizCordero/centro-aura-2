@@ -65,7 +65,7 @@ test('precios de la carta (lista dada por Paula)', () => {
 });
 
 test('duraciones del Spa (confirmadas por Paula)', () => {
-  assert.equal(data.items['spa-esencial'].duration, '50 min aprox.');
+  assert.equal(data.items['spa-esencial'].duration, '50 min');
   assert.equal(data.items['spa-equilibrio'].duration, '1 h');
   assert.equal(data.items['spa-aura'].duration, '1 h 15 min');
 });

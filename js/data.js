@@ -42,7 +42,7 @@
       'tratamiento-fibra': { type: 'servicio', category: 'salud', name: 'Tratamiento para fibra capilar',     price: 30, priceMax: 50, approx: true },
 
       // Spa
-      'spa-esencial':   { type: 'servicio', category: 'spa', name: 'Spa esencial',   duration: '50 min aprox.', price: 40, from: false },
+      'spa-esencial':   { type: 'servicio', category: 'spa', name: 'Spa esencial',   duration: '50 min', price: 40, from: false },
       'spa-equilibrio': { type: 'servicio', category: 'spa', name: 'Spa equilibrio', duration: '1 h',           price: 50, from: false },
       'spa-aura':       { type: 'servicio', category: 'spa', name: 'Spa aura',       duration: '1 h 15 min',    price: 70, from: false },
 
