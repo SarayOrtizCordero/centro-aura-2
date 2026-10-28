@@ -28,6 +28,8 @@
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="8" y1="6" x2="21" y2="6"/> <line x1="8" y1="12" x2="21" y2="12"/> <line x1="8" y1="18" x2="21" y2="18"/> <line x1="3" y1="6" x2="3.01" y2="6"/> <line x1="3" y1="12" x2="3.01" y2="12"/> <line x1="3" y1="18" x2="3.01" y2="18"/> </symbol>
+    <symbol id="i-cuadricula" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <rect x="3" y="3" width="7" height="7" rx="1"/> <rect x="14" y="3" width="7" height="7" rx="1"/> <rect x="3" y="14" width="7" height="7" rx="1"/> <rect x="14" y="14" width="7" height="7" rx="1"/> </symbol>
     <symbol id="i-spa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3c3.5 4.5 5.5 7.5 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 10.5 8.5 7.5 12 3z"/> <path d="M12 20v-8"/> <path d="M12 15l2.5-2.5"/> </symbol>
     <symbol id="i-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 9h12l-1 10a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 9z"/> <path d="M5 9h14"/> <path d="M8.5 6h7"/> <path d="M9 13c1 1 2 1 3 0s2-1 3 0"/> </symbol>
     <symbol id="i-alisado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 9c3-3 6 3 9 0s6 3 9 0"/> <path d="M3 15h18"/> <path d="M3 19h18"/> </symbol>
@@ -49,7 +51,7 @@
   <div class="topbar">
     <div class="container topbar__inner">
       <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Las Cabezas de San Juan</p>
-      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 9:30–14:00 · 17:00–20:30</span></p>
+      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 10:00–13:00 · 15:00–20:00</span></p>
       <a class="topbar__item topbar__phone" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span data-phone>+34 610 16 77 64</span></a>
     </div>
   </div>
@@ -58,15 +60,31 @@
     <div class="container site-header__inner">
       <a class="brand" href="index.html" aria-label="Centro Aura, inicio">
         <span class="brand__name">AURA</span>
-        <span class="brand__rule" aria-hidden="true"></span>
-        <span class="brand__tag">Spa Capilar · Tricología</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú"><span class="nav-toggle__bar"></span></button>
       <nav class="site-nav" id="site-menu" aria-label="Principal">
         <ul class="site-nav__list">
           <li><a href="index.html">Inicio</a></li>
-          <li><a href="pages/servicios.html">Servicios</a></li>
-          <li><a href="pages/tienda.html">Tienda</a></li>
+          <li class="has-sub">
+            <a href="pages/servicios.html">Servicios</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Mostrar el submenú de Servicios"></button>
+            <ul class="subnav" aria-label="Categorías de servicios">
+              <li><a href="pages/servicios.html#salud-capilar">Salud capilar</a></li>
+              <li><a href="pages/servicios.html#spa">Spa</a></li>
+              <li><a href="pages/servicios.html#peluqueria">Peluquería</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="pages/tienda.html">Tienda</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Mostrar el submenú de Tienda"></button>
+            <ul class="subnav" aria-label="Categorías de la tienda">
+              <li>
+                <a href="pages/tienda.html#jaldun">Jaldún</a>
+                <ul class="subnav__sub" aria-label="Productos Jaldún">
+                  <li><a href="pages/tienda.html#jaldun-champus">Champús</a></li>
+                </ul>
+              </li>
+              <li><a href="pages/tienda.html#tarjetas-regalo">Tarjetas regalo</a></li>
+            </ul>
+          </li>
           <li><a href="pages/contacto.html">Contacto</a></li>
         </ul>
         <a class="btn btn--primary site-nav__cta" href="https://wa.me/34610167764" data-wa="">Reservar<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
@@ -107,8 +125,8 @@
       <div class="site-footer__col">
         <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg></span><h2 class="site-footer__title">Horario</h2></div>
         <dl class="hours" data-hours>
-          <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
-          <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+          <dt>Lunes – Viernes</dt><dd>10:00 – 13:00 · 15:00 – 20:00</dd>
+          <dt>Sábado</dt><dd>8:00 – 13:00<small class="hours__note">Se abre dos sábados al mes</small></dd>
           <dt>Domingo</dt><dd>Cerrado</dd>
         </dl>
       </div>

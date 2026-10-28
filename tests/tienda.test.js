@@ -39,15 +39,21 @@ test('secciones y mosaico de categorías', () => {
   assert.ok(!html.includes('id="bonos"') && !html.includes('href="#bonos"'));
 });
 
-test('ficha destacada: la primera, en arco; las otras no', () => {
-  const cards = main.match(/<li class="product-card[^"]*"[\s\S]*?<\/li>/g);
+test('marca → subcategoría: Jaldún > Champús, con tres fichas iguales (h4)', () => {
+  const section = html.match(/<section class="section section--alt" id="jaldun"[\s\S]*?<\/section>/)[0];
+  assert.match(section, /<h3 class="subcategory" id="jaldun-champus">Champús<\/h3>/);
+  const cards = section.match(/<li class="product-card[^"]*"[\s\S]*?<\/li>/g);
   assert.equal(cards.length, 3);
-  assert.ok(cards[0].includes('product-card--featured'));
-  assert.ok(/class="product-card__visual arch"/.test(cards[0]));
-  for (const c of cards.slice(1)) {
+  for (const c of cards) {
     assert.ok(!c.includes('product-card--featured'));
-    assert.ok(!/product-card__visual arch/.test(c));
+    assert.match(c, /<h4>Champú [^<]+<\/h4>/);
   }
+  assert.ok(!css.includes('.product-card--featured'), 'sin ficha destacada: en PC son tres iguales');
+});
+
+test('cuadrículas: fichas en tres columnas y tarjetas regalo 2 × 2', () => {
+  assert.match(css, /\.gift-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,/);
+  assert.match(css, /\.product-grid\s*\{\s*grid-template-columns:\s*repeat\(3,/);
 });
 
 test('precios: todo ítem que no es servicio tiene su data-price igual a formatPrice', () => {
@@ -72,6 +78,26 @@ test('nota, cabecera y CSS', () => {
   assert.ok(main.includes('Recogida en el salón. Te confirmamos disponibilidad por WhatsApp.'));
   assert.match(main, /<h1>Tienda<\/h1>/);
   assert.ok(main.includes('textura-lino.webp') && main.includes('class="page-hero__veil"'));
-  assert.ok(css.includes('.product-card--featured'));
   assert.ok(css.includes('mix-blend-mode: multiply'));
+});
+
+test('selector Lista / Cuadrícula junto a los champús y a las tarjetas regalo, con iconos', () => {
+  const bars = html.match(/<div class="view-bar"[^>]*>[\s\S]*?<\/div>\s*<\/div>/g);
+  assert.equal(bars.length, 2);
+  for (const bar of bars) {
+    assert.ok(/\shidden\b/.test(bar.match(/<div class="view-bar"[^>]*>/)[0]));
+    assert.equal(attr(bar.match(/<div class="view-bar"[^>]*>/)[0], 'data-view-default'), 'list');
+    assert.ok(bar.includes('#i-lista') && bar.includes('#i-cuadricula'));
+    assert.ok(!/Ver como|>Lista<|>Cuadrícula</.test(bar));
+  }
+  const champus = html.indexOf('id="jaldun-champus"');
+  assert.ok(html.indexOf('class="view-bar"') > champus - 40, 'el primer selector va en la fila de Champús');
+  assert.match(css, /main\[data-view="list"\] \.gift-grid\s*\{[^}]*grid-template-columns:\s*1fr/);
+  assert.match(css, /main\[data-view="grid"\] \.product-grid\s*\{[^}]*repeat\(3,/);
+});
+
+test('menú: la subcategoría lleva un puntito delante (sin raya) y las categorías se separan', () => {
+  assert.match(css, /\.subnav__sub a::before\s*\{[^}]*border-radius:\s*50%/);
+  assert.ok(!/\.subnav__sub\s*\{[^}]*border-left/.test(css), 'sin raya vertical');
+  assert.match(css, /\.subnav li \+ li\s*\{[^}]*border-top:\s*1px solid/);
 });

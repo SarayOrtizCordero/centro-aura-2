@@ -45,9 +45,9 @@
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 36.9853, "longitude": -5.9395 },
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:30", "closes": "14:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "17:00", "closes": "20:30" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "14:00" }
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "10:00", "closes": "13:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "15:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "13:00" }
     ],
     "sameAs": ["https://www.instagram.com/centro__aura/"]
   }
@@ -55,6 +55,8 @@
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="8" y1="6" x2="21" y2="6"/> <line x1="8" y1="12" x2="21" y2="12"/> <line x1="8" y1="18" x2="21" y2="18"/> <line x1="3" y1="6" x2="3.01" y2="6"/> <line x1="3" y1="12" x2="3.01" y2="12"/> <line x1="3" y1="18" x2="3.01" y2="18"/> </symbol>
+    <symbol id="i-cuadricula" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <rect x="3" y="3" width="7" height="7" rx="1"/> <rect x="14" y="3" width="7" height="7" rx="1"/> <rect x="3" y="14" width="7" height="7" rx="1"/> <rect x="14" y="14" width="7" height="7" rx="1"/> </symbol>
     <symbol id="i-spa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3c3.5 4.5 5.5 7.5 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 10.5 8.5 7.5 12 3z"/> <path d="M12 20v-8"/> <path d="M12 15l2.5-2.5"/> </symbol>
     <symbol id="i-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 9h12l-1 10a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 9z"/> <path d="M5 9h14"/> <path d="M8.5 6h7"/> <path d="M9 13c1 1 2 1 3 0s2-1 3 0"/> </symbol>
     <symbol id="i-alisado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 9c3-3 6 3 9 0s6 3 9 0"/> <path d="M3 15h18"/> <path d="M3 19h18"/> </symbol>
@@ -76,7 +78,7 @@
   <div class="topbar">
     <div class="container topbar__inner">
       <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Las Cabezas de San Juan</p>
-      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 9:30–14:00 · 17:00–20:30</span></p>
+      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 10:00–13:00 · 15:00–20:00</span></p>
       <a class="topbar__item topbar__phone" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span data-phone>+34 610 16 77 64</span></a>
     </div>
   </div>
@@ -85,15 +87,31 @@
     <div class="container site-header__inner">
       <a class="brand" href="index.html" aria-label="Centro Aura, inicio">
         <span class="brand__name">AURA</span>
-        <span class="brand__rule" aria-hidden="true"></span>
-        <span class="brand__tag">Spa Capilar · Tricología</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú"><span class="nav-toggle__bar"></span></button>
       <nav class="site-nav" id="site-menu" aria-label="Principal">
         <ul class="site-nav__list">
           <li><a href="index.html" aria-current="page">Inicio</a></li>
-          <li><a href="pages/servicios.html">Servicios</a></li>
-          <li><a href="pages/tienda.html">Tienda</a></li>
+          <li class="has-sub">
+            <a href="pages/servicios.html">Servicios</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Mostrar el submenú de Servicios"></button>
+            <ul class="subnav" aria-label="Categorías de servicios">
+              <li><a href="pages/servicios.html#salud-capilar">Salud capilar</a></li>
+              <li><a href="pages/servicios.html#spa">Spa</a></li>
+              <li><a href="pages/servicios.html#peluqueria">Peluquería</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="pages/tienda.html">Tienda</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Mostrar el submenú de Tienda"></button>
+            <ul class="subnav" aria-label="Categorías de la tienda">
+              <li>
+                <a href="pages/tienda.html#jaldun">Jaldún</a>
+                <ul class="subnav__sub" aria-label="Productos Jaldún">
+                  <li><a href="pages/tienda.html#jaldun-champus">Champús</a></li>
+                </ul>
+              </li>
+              <li><a href="pages/tienda.html#tarjetas-regalo">Tarjetas regalo</a></li>
+            </ul>
+          </li>
           <li><a href="pages/contacto.html">Contacto</a></li>
         </ul>
         <a class="btn btn--primary site-nav__cta" href="https://wa.me/34610167764" data-wa="">Reservar<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
@@ -105,7 +123,7 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <span class="eyebrow">Spa capilar · Tricología</span>
+          <span class="eyebrow eyebrow--plain">Spa Capilar · Tricología</span>
           <h1 class="hero__title" id="hero-title">Cuidamos tu cabello <em>desde la raíz</em></h1>
           <div class="actions">
             <a class="btn btn--primary" href="https://wa.me/34610167764" data-wa="">Reservar cita<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
@@ -118,8 +136,8 @@
         <aside class="hero__card" aria-labelledby="hero-card-title">
           <h2 class="hero__card-title" id="hero-card-title">Horario</h2>
           <dl class="hours" data-hours>
-            <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
-            <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+            <dt>Lunes – Viernes</dt><dd>10:00 – 13:00 · 15:00 – 20:00</dd>
+            <dt>Sábado</dt><dd>8:00 – 13:00<small class="hours__note">Se abre dos sábados al mes</small></dd>
             <dt>Domingo</dt><dd>Cerrado</dd>
           </dl>
           <a class="link-arrow" href="pages/contacto.html">Ver contacto</a>
@@ -162,17 +180,17 @@
           <h2 id="icon-row-title">Elige por dónde <em>empezar</em></h2>
         </div>
         <ul class="icon-row__list" role="list">
+          <li class="reveal"><a class="icon-row__item" href="pages/servicios.html#salud-capilar">
+            <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-tricologia"/></svg></span>
+            <h3>Salud capilar</h3><p>Diagnóstico, oxigenaciones y tratamientos para la fibra capilar.</p>
+          </a></li>
           <li class="reveal"><a class="icon-row__item" href="pages/servicios.html#spa">
             <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-spa"/></svg></span>
             <h3>Spa</h3><p>Tres rituales, de menos a más completo.</p>
           </a></li>
-          <li class="reveal"><a class="icon-row__item" href="pages/servicios.html#barros-alisados-antifrizz">
-            <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-barro"/></svg></span>
-            <h3>Barros, alisados y antifrizz</h3><p>Tratamientos para la fibra capilar.</p>
-          </a></li>
           <li class="reveal"><a class="icon-row__item" href="pages/servicios.html#peluqueria">
             <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-tijeras"/></svg></span>
-            <h3>Peluquería</h3><p>Cortes y peinados con el mismo mimo que todo lo demás.</p>
+            <h3>Peluquería</h3><p>Cortes, peinados, barros, alisado y antifrizz.</p>
           </a></li>
           <li class="reveal"><a class="icon-row__item" href="pages/tienda.html">
             <span class="icon-row__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#i-regalo"/></svg></span>
@@ -205,7 +223,7 @@
             <article class="service-card card">
               <div class="service-card__media"><img src="assets/img/destacado-tricologia.webp" alt="Primer plano del cabello, como se ve con la microcámara en el análisis" width="900" height="1125" loading="lazy"></div>
               <div class="service-card__body">
-                <div class="chips"><span class="chip">Spa</span><span class="chip" data-duration="spa-equilibrio">1 h 10 min aprox.</span></div>
+                <div class="chips"><span class="chip">Spa</span><span class="chip" data-duration="spa-equilibrio">1 h</span></div>
                 <h3><a href="pages/servicios.html#spa-equilibrio">Spa equilibrio</a></h3>
                 <p>Una experiencia que combina relajación y cuidado.</p>
                 <div class="service-card__foot"><span class="price" data-price="spa-equilibrio">50 €</span><span class="link-arrow" aria-hidden="true">Ver detalle</span></div>
@@ -216,7 +234,7 @@
             <article class="service-card card">
               <div class="service-card__media"><img src="assets/img/destacado-terapias.webp" alt="Masaje suave en la cabeza durante un ritual de spa" width="900" height="1125" loading="lazy"></div>
               <div class="service-card__body">
-                <div class="chips"><span class="chip">Spa</span><span class="chip" data-duration="spa-aura">1 h 30 min</span></div>
+                <div class="chips"><span class="chip">Spa</span><span class="chip" data-duration="spa-aura">1 h 15 min</span></div>
                 <h3><a href="pages/servicios.html#spa-aura">Spa aura</a></h3>
                 <p>El más completo.</p>
                 <div class="service-card__foot"><span class="price" data-price="spa-aura">70 €</span><span class="link-arrow" aria-hidden="true">Ver detalle</span></div>
@@ -240,11 +258,11 @@
         <div class="spotlight__copy reveal">
           <span class="eyebrow">Cosmética natural</span>
           <h2 id="spotlight-title">Champús <em>Jaldún</em> para cada cuero cabelludo</h2>
-          <p>Fitoterapia capilar que devuelve al cuero cabelludo su equilibrio natural. Si no sabes cuál es el tuyo, pregúntame.</p>
+          <p>Fitoterapia capilar que ayuda a mantener el equilibrio natural del cuero cabelludo. Si no sabes cuál es el tuyo, pregúntame.</p>
           <ul class="checklist" role="list">
-            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Equilibrante</strong> para caspa y exceso de grasa.</span></li>
-            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Vitalzen Fortificante</strong> para la caída.</span></li>
-            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Multiefecto Regulador</strong> para cuero cabelludo sensible o desequilibrado.</span></li>
+            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Equilibrante</strong>: cuidado del cuero cabelludo con caspa o exceso de grasa.</span></li>
+            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Vitalzen Fortificante</strong>: cuidado del cabello con tendencia a la caída.</span></li>
+            <li><span class="checklist__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span><strong>Multiefecto Regulador</strong>: cuidado del cuero cabelludo sensible o desequilibrado.</span></li>
           </ul>
           <a class="btn btn--primary" href="pages/tienda.html#jaldun">Ver tienda<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
         </div>
@@ -297,8 +315,8 @@
             <li class="visit__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><address>C/ Dr. Domingo Gallego, 3<br>41730 Las Cabezas de San Juan, Sevilla</address></li>
             <li class="visit__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg>
               <dl class="hours" data-hours>
-                <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
-                <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+                <dt>Lunes – Viernes</dt><dd>10:00 – 13:00 · 15:00 – 20:00</dd>
+                <dt>Sábado</dt><dd>8:00 – 13:00<small class="hours__note">Se abre dos sábados al mes</small></dd>
                 <dt>Domingo</dt><dd>Cerrado</dd>
               </dl></li>
             <li class="visit__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><a href="tel:+34610167764" data-phone>+34 610 16 77 64</a></li>
@@ -328,8 +346,8 @@
       <div class="site-footer__col">
         <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg></span><h2 class="site-footer__title">Horario</h2></div>
         <dl class="hours" data-hours>
-          <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
-          <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+          <dt>Lunes – Viernes</dt><dd>10:00 – 13:00 · 15:00 – 20:00</dd>
+          <dt>Sábado</dt><dd>8:00 – 13:00<small class="hours__note">Se abre dos sábados al mes</small></dd>
           <dt>Domingo</dt><dd>Cerrado</dd>
         </dl>
       </div>

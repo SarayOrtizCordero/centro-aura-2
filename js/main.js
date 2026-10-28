@@ -35,11 +35,17 @@
       el.textContent = hoursSummary();
     });
     $$('[data-hours]').forEach((dl) => {
-      dl.replaceChildren(...lib.hoursToRows(data.hours).flatMap((row) => {
+      dl.replaceChildren(...lib.hoursToRows(data.hours).flatMap((row, i) => {
         const dt = document.createElement('dt');
         const dd = document.createElement('dd');
         dt.textContent = row.days;
         dd.textContent = row.text;
+        if (data.hours[i].note) {
+          const note = document.createElement('small');
+          note.className = 'hours__note';
+          note.textContent = data.hours[i].note;
+          dd.append(note);
+        }
         return [dt, dd];
       }));
     });
@@ -106,6 +112,75 @@
     });
   }
 
+  /* Submenús del menú principal (Servicios, Tienda): en escritorio se abren con el botón,
+     con el ratón o con el teclado; en móvil y tablet el menú los muestra desplegados. */
+  function initSubmenus() {
+    const items = $$('.site-nav__list .has-sub');
+    if (!items.length) return;
+    const setOpen = (item, open) => {
+      item.classList.toggle('is-open', open);
+      item.querySelector('.sub-toggle').setAttribute('aria-expanded', String(open));
+    };
+    items.forEach((item) => {
+      const toggle = item.querySelector('.sub-toggle');
+      toggle.addEventListener('click', () => {
+        const open = !item.classList.contains('is-open');
+        items.forEach((other) => setOpen(other, false));
+        setOpen(item, open);
+      });
+    });
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.has-sub')) items.forEach((item) => setOpen(item, false));
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      const open = items.find((item) => item.classList.contains('is-open'));
+      if (!open) return;
+      setOpen(open, false);
+      if (open.contains(document.activeElement)) open.querySelector('.sub-toggle').focus();
+    });
+  }
+
+  /* Selector Lista / Cuadrícula (Servicios y Tienda). Hay uno junto a cada bloque de productos y
+     todos van sincronizados. La vista se guarda en <main data-view="…">; empieza en lista y la
+     elección del visitante se recuerda en este navegador. Sin JavaScript los selectores quedan
+     ocultos y se ve la cuadrícula. */
+  function initViewToggle() {
+    const bars = $$('.view-bar');
+    const main = document.querySelector('main');
+    if (!bars.length || !main) return;
+    const buttons = bars.flatMap((bar) => $$('[data-view]', bar));
+    const key = 'aura-vista-' + bars[0].dataset.viewScope;
+    const read = () => {
+      try {
+        const value = window.localStorage.getItem(key);
+        return value === 'grid' || value === 'list' ? value : null;
+      } catch {
+        return null;
+      }
+    };
+    const save = (view) => {
+      try {
+        window.localStorage.setItem(key, view);
+      } catch {
+        /* sin almacenamiento: la elección vale solo para esta visita */
+      }
+    };
+    const apply = (view) => {
+      main.dataset.view = view;
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
+    };
+
+    apply(read() || 'list');
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        apply(button.dataset.view);
+        save(button.dataset.view);
+      });
+    });
+    bars.forEach((bar) => { bar.hidden = false; });
+  }
+
   /* Aparición suave al hacer scroll (desactivada si se pide reducir movimiento) */
   function initReveal() {
     const items = $$('.reveal');
@@ -123,8 +198,8 @@
   }
 
   /* Pestañas de Servicios: sin JS se ven las tres categorías apiladas.
-     "#<id>" abre la pestaña que contiene ese id: el id de un panel (spa,
-     barros-alisados-antifrizz, peluqueria) o el de un servicio (spa-esencial…). */
+     "#<id>" abre la pestaña que contiene ese id: el id de un panel (salud-capilar,
+     spa, peluqueria) o el de un servicio (spa-esencial…). */
   function initTabs() {
     const tablist = document.querySelector('[role="tablist"]');
     if (!tablist) return;
@@ -242,6 +317,8 @@
   wireWhatsApp();
   initMaps();
   initMenu();
+  initSubmenus();
+  initViewToggle();
   initTabs();
   initContactForm();
   initReveal();

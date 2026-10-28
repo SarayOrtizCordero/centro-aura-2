@@ -36,7 +36,7 @@ test('hero: título, eyebrow, imagen y botones', () => {
   const h1 = hero.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)[1];
   assert.equal(text(h1), 'Cuidamos tu cabello desde la raíz');
   assert.ok(h1.includes('<em>desde la raíz</em>'));
-  assert.ok(hero.includes('<span class="eyebrow">Spa capilar · Tricología</span>'));
+  assert.ok(hero.includes('<span class="eyebrow eyebrow--plain">Spa Capilar · Tricología</span>'));
   const img = hero.match(/<img class="hero__img"[^>]*>/)[0];
   assert.ok(attr(img, 'src').endsWith('hero-salon.webp'));
   assert.equal(attr(img, 'width'), '2000');
@@ -58,7 +58,7 @@ test('hero: la tarjeta va después de la foto y fuera de ella', () => {
   assert.ok(mediaStart > -1 && cardStart > mediaEnd, 'aside.hero__card debe seguir a .hero__media');
   const card = hero.slice(cardStart, hero.indexOf('</aside>', cardStart));
   assert.ok(/<dl class="hours" data-hours>/.test(card));
-  const rows = [...card.matchAll(/<dt>([^<]*)<\/dt><dd>([^<]*)<\/dd>/g)];
+  const rows = [...card.matchAll(/<dt>([^<]*)<\/dt><dd>([^<]*)(?:<small class="hours__note">[^<]*<\/small>)?<\/dd>/g)];
   assert.equal(rows.length, 3);
   const contacto = card.match(/<a [^>]*>Ver contacto<\/a>/)[0];
   assert.equal(attr(contacto, 'href'), 'pages/contacto.html');
@@ -101,8 +101,8 @@ test('icon-row: título y cuatro enlaces en orden', () => {
   assert.deepEqual(
     items.map((a) => attr(a, 'href')),
     [
+      'pages/servicios.html#salud-capilar',
       'pages/servicios.html#spa',
-      'pages/servicios.html#barros-alisados-antifrizz',
       'pages/servicios.html#peluqueria',
       'pages/tienda.html',
     ]

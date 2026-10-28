@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Servicios · Spa, barros, alisados y peluquería | Centro Aura</title>
-  <meta name="description" content="Spa esencial, equilibrio y aura, barros, alisados, antifrizz, tratamientos de la fibra capilar, cortes y peinados en Centro Aura, Las Cabezas de San Juan.">
+  <title>Servicios · Salud capilar, spa y peluquería | Centro Aura</title>
+  <meta name="description" content="Salud capilar, spa esencial, equilibrio y aura, cortes, peinados, barros, alisado y antifrizz en Centro Aura, Las Cabezas de San Juan.">
   <link rel="canonical" href="https://centro-aura-2.vercel.app/pages/servicios.html">
   <meta name="theme-color" content="#FFFDF7">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="Centro Aura">
   <meta property="og:title" content="Servicios · Centro Aura">
-  <meta property="og:description" content="Spa capilar, barros, alisados y peluquería en Las Cabezas de San Juan.">
+  <meta property="og:description" content="Salud capilar, spa y peluquería en Las Cabezas de San Juan.">
   <meta property="og:url" content="https://centro-aura-2.vercel.app/pages/servicios.html">
   <meta property="og:image" content="https://centro-aura-2.vercel.app/assets/img/hero-salon.webp">
   <meta name="twitter:card" content="summary_large_image">
@@ -28,6 +28,8 @@
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="8" y1="6" x2="21" y2="6"/> <line x1="8" y1="12" x2="21" y2="12"/> <line x1="8" y1="18" x2="21" y2="18"/> <line x1="3" y1="6" x2="3.01" y2="6"/> <line x1="3" y1="12" x2="3.01" y2="12"/> <line x1="3" y1="18" x2="3.01" y2="18"/> </symbol>
+    <symbol id="i-cuadricula" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <rect x="3" y="3" width="7" height="7" rx="1"/> <rect x="14" y="3" width="7" height="7" rx="1"/> <rect x="3" y="14" width="7" height="7" rx="1"/> <rect x="14" y="14" width="7" height="7" rx="1"/> </symbol>
     <symbol id="i-spa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3c3.5 4.5 5.5 7.5 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 10.5 8.5 7.5 12 3z"/> <path d="M12 20v-8"/> <path d="M12 15l2.5-2.5"/> </symbol>
     <symbol id="i-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 9h12l-1 10a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 9z"/> <path d="M5 9h14"/> <path d="M8.5 6h7"/> <path d="M9 13c1 1 2 1 3 0s2-1 3 0"/> </symbol>
     <symbol id="i-alisado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 9c3-3 6 3 9 0s6 3 9 0"/> <path d="M3 15h18"/> <path d="M3 19h18"/> </symbol>
@@ -49,7 +51,7 @@
   <div class="topbar">
     <div class="container topbar__inner">
       <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Las Cabezas de San Juan</p>
-      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 9:30–14:00 · 17:00–20:30</span></p>
+      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 10:00–13:00 · 15:00–20:00</span></p>
       <a class="topbar__item topbar__phone" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span data-phone>+34 610 16 77 64</span></a>
     </div>
   </div>
@@ -58,15 +60,31 @@
     <div class="container site-header__inner">
       <a class="brand" href="../index.html" aria-label="Centro Aura, inicio">
         <span class="brand__name">AURA</span>
-        <span class="brand__rule" aria-hidden="true"></span>
-        <span class="brand__tag">Spa Capilar · Tricología</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú"><span class="nav-toggle__bar"></span></button>
       <nav class="site-nav" id="site-menu" aria-label="Principal">
         <ul class="site-nav__list">
           <li><a href="../index.html">Inicio</a></li>
-          <li><a href="servicios.html" aria-current="page">Servicios</a></li>
-          <li><a href="tienda.html">Tienda</a></li>
+          <li class="has-sub">
+            <a href="servicios.html" aria-current="page">Servicios</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Mostrar el submenú de Servicios"></button>
+            <ul class="subnav" aria-label="Categorías de servicios">
+              <li><a href="servicios.html#salud-capilar">Salud capilar</a></li>
+              <li><a href="servicios.html#spa">Spa</a></li>
+              <li><a href="servicios.html#peluqueria">Peluquería</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="tienda.html">Tienda</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Mostrar el submenú de Tienda"></button>
+            <ul class="subnav" aria-label="Categorías de la tienda">
+              <li>
+                <a href="tienda.html#jaldun">Jaldún</a>
+                <ul class="subnav__sub" aria-label="Productos Jaldún">
+                  <li><a href="tienda.html#jaldun-champus">Champús</a></li>
+                </ul>
+              </li>
+              <li><a href="tienda.html#tarjetas-regalo">Tarjetas regalo</a></li>
+            </ul>
+          </li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
         <a class="btn btn--primary site-nav__cta" href="https://wa.me/34610167764" data-wa="">Reservar<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
@@ -81,16 +99,62 @@
       <div class="container page-hero__inner">
         <img class="lotus" src="../assets/icons/loto.svg" alt="" width="64" height="40">
         <h1>Servicios</h1>
-        <p>Spa, barros, alisados y peluquería. Todo empieza por escucharte y mirar tu cuero cabelludo.</p>
+        <p>Salud capilar, spa y peluquería. Todo empieza por escucharte y mirar tu cuero cabelludo.</p>
       </div>
     </section>
 
     <section class="section" aria-label="Carta de servicios">
       <div class="container">
         <div class="tabs chips" role="tablist" aria-label="Categorías de servicios" hidden>
-          <button class="tab" type="button" role="tab" id="tab-spa" aria-controls="spa" aria-selected="true" data-category="spa">Spa</button>
-          <button class="tab" type="button" role="tab" id="tab-tratamientos" aria-controls="barros-alisados-antifrizz" aria-selected="false" tabindex="-1" data-category="tratamientos">Barros, alisados y antifrizz</button>
+          <button class="tab" type="button" role="tab" id="tab-salud" aria-controls="salud-capilar" aria-selected="true" data-category="salud">Salud capilar</button>
+          <button class="tab" type="button" role="tab" id="tab-spa" aria-controls="spa" aria-selected="false" tabindex="-1" data-category="spa">Spa</button>
           <button class="tab" type="button" role="tab" id="tab-peluqueria" aria-controls="peluqueria" aria-selected="false" tabindex="-1" data-category="peluqueria">Peluquería</button>
+        </div>
+
+        <div class="category" id="salud-capilar" role="tabpanel" aria-labelledby="tab-salud">
+          <div class="category__head">
+            <div>
+              <h2>Salud capilar</h2>
+              <p class="lead">Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p>
+              <p class="price-note">El precio de cada tratamiento va de <strong>30 a 50 €</strong>, según cuál se haga.</p>
+            </div>
+            <img class="category__photo" src="../assets/img/destacado-tricologia.webp" alt="Primer plano del cabello, como se ve con la microcámara en el análisis" width="900" height="1125" loading="lazy">
+          </div>
+        <div class="view-bar" data-view-scope="servicios" data-view-default="list" hidden>
+          <div class="view-toggle" role="group" aria-label="Forma de ver los elementos">
+            <button class="view-toggle__btn" type="button" data-view="list" aria-pressed="true" aria-label="Ver en lista" title="Lista"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lista"/></svg></button>
+            <button class="view-toggle__btn" type="button" data-view="grid" aria-pressed="false" aria-label="Ver en cuadrícula" title="Cuadrícula"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cuadricula"/></svg></button>
+          </div>
+        </div>
+        <ul class="service-rows" role="list">
+          <li class="service-row card" id="diagnostico">
+            <div class="service-row__main">
+              <h3>Diagnóstico</h3>
+            </div>
+            <div class="service-row__side">
+              <span class="price" data-price="diagnostico">30–50 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Diagnóstico">Reservar</a>
+            </div>
+          </li>
+          <li class="service-row card" id="oxigenaciones">
+            <div class="service-row__main">
+              <h3>Oxigenaciones para cuero cabelludo</h3>
+            </div>
+            <div class="service-row__side">
+              <span class="price" data-price="oxigenaciones">30–50 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Oxigenaciones para cuero cabelludo">Reservar</a>
+            </div>
+          </li>
+          <li class="service-row card" id="tratamiento-fibra">
+            <div class="service-row__main">
+              <h3>Tratamiento para fibra capilar</h3>
+            </div>
+            <div class="service-row__side">
+              <span class="price" data-price="tratamiento-fibra">30–50 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tratamiento para fibra capilar">Reservar</a>
+            </div>
+          </li>
+        </ul>
         </div>
 
         <div class="category" id="spa" role="tabpanel" aria-labelledby="tab-spa">
@@ -101,6 +165,12 @@
             </div>
             <img class="category__photo" src="../assets/img/servicio-salud.webp" alt="Masaje en el cuero cabelludo con la clienta relajada" width="1000" height="1250" loading="lazy">
           </div>
+        <div class="view-bar" data-view-scope="servicios" data-view-default="list" hidden>
+          <div class="view-toggle" role="group" aria-label="Forma de ver los elementos">
+            <button class="view-toggle__btn" type="button" data-view="list" aria-pressed="true" aria-label="Ver en lista" title="Lista"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lista"/></svg></button>
+            <button class="view-toggle__btn" type="button" data-view="grid" aria-pressed="false" aria-label="Ver en cuadrícula" title="Cuadrícula"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cuadricula"/></svg></button>
+          </div>
+        </div>
         <ul class="service-rows" role="list">
           <li class="service-row card" id="spa-esencial">
             <div class="service-row__main">
@@ -116,7 +186,7 @@
           </li>
           <li class="service-row card" id="spa-equilibrio">
             <div class="service-row__main">
-              <div class="chips"><span class="chip" data-duration="spa-equilibrio">1 h 10 min aprox.</span></div>
+              <div class="chips"><span class="chip" data-duration="spa-equilibrio">1 h</span></div>
               <h3>Spa equilibrio</h3>
               <p>Una experiencia que combina relajación y cuidado.</p>
               <ul class="includes" role="list"><li>Análisis del cuero cabelludo con microcámara</li><li>Tratamiento adaptado a tus necesidades</li><li>Masaje de hombros, cuello, rostro y cabeza</li><li>Lavado y secado final</li></ul>
@@ -128,7 +198,7 @@
           </li>
           <li class="service-row card" id="spa-aura">
             <div class="service-row__main">
-              <div class="chips"><span class="chip" data-duration="spa-aura">1 h 30 min</span></div>
+              <div class="chips"><span class="chip" data-duration="spa-aura">1 h 15 min</span></div>
               <h3>Spa aura</h3>
               <p>El más completo.</p>
               <ul class="includes" role="list"><li>Análisis del cuero cabelludo</li><li>Tratamiento personalizado</li><li>Masaje de hombros, cuello, rostro y cabeza</li><li>Masaje de manos y pies</li><li>Lavado y secado</li></ul>
@@ -141,16 +211,53 @@
         </ul>
         </div>
 
-        <div class="category" id="barros-alisados-antifrizz" role="tabpanel" aria-labelledby="tab-tratamientos">
+        <div class="category" id="peluqueria" role="tabpanel" aria-labelledby="tab-peluqueria">
           <div class="category__head">
             <div>
-              <h2>Barros, alisados y antifrizz</h2>
-              <p class="lead">Tratamientos para la fibra capilar, según lo que necesite tu pelo.</p>
-              <p class="price-note">Los precios de este apartado son <strong>orientativos</strong>: varían según los productos que se gasten, el largo y la densidad del pelo.</p>
+              <h2>Peluquería</h2>
+              <p class="lead">Cortes, peinados, barros, alisado y antifrizz, con el mismo mimo que todo lo demás.</p>
+              <p class="price-note">Los precios con rango son <strong>orientativos</strong>: varían según los productos que se gasten, el largo y la densidad del pelo.</p>
             </div>
-            <img class="category__photo" src="../assets/img/servicio-tratamientos.webp" alt="Melena larga, lisa y brillante vista de espaldas" width="1000" height="1250" loading="lazy">
+            <img class="category__photo" src="../assets/img/servicio-peluqueria.webp" alt="Estilista secando el pelo de una clienta con cepillo redondo" width="1000" height="1250" loading="lazy">
           </div>
-          <p class="service-group">Barros</p>
+          <div class="view-bar" data-view-scope="servicios" data-view-default="list" hidden>
+            <div class="view-toggle" role="group" aria-label="Forma de ver los elementos">
+              <button class="view-toggle__btn" type="button" data-view="list" aria-pressed="true" aria-label="Ver en lista" title="Lista"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lista"/></svg></button>
+              <button class="view-toggle__btn" type="button" data-view="grid" aria-pressed="false" aria-label="Ver en cuadrícula" title="Cuadrícula"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cuadricula"/></svg></button>
+            </div>
+          </div>
+          <p class="service-group">Corte y peinado</p>
+        <ul class="service-rows" role="list">
+          <li class="service-row card" id="corte">
+            <div class="service-row__main">
+              <h3>Corte</h3>
+              <p class="service-row__note">Incluye lavado, corte y secado</p>
+            </div>
+            <div class="service-row__side">
+              <span class="price" data-price="corte">15 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Corte">Reservar</a>
+            </div>
+          </li>
+          <li class="service-row card" id="lavado-peinado">
+            <div class="service-row__main">
+              <h3>Lavado y peinado</h3>
+            </div>
+            <div class="service-row__side">
+              <span class="price" data-price="lavado-peinado">13 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Lavado y peinado">Reservar</a>
+            </div>
+          </li>
+          <li class="service-row card" id="corte-peinado">
+            <div class="service-row__main">
+              <h3>Corte y peinado</h3>
+            </div>
+            <div class="service-row__side">
+              <span class="price" data-price="corte-peinado">25 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Corte y peinado">Reservar</a>
+            </div>
+          </li>
+        </ul>
+          <p class="service-group">Barros, alisado y tratamientos</p>
         <ul class="service-rows" role="list">
           <li class="service-row card" id="barro-raiz">
             <div class="service-row__main">
@@ -170,48 +277,16 @@
               <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Barro completo">Reservar</a>
             </div>
           </li>
-        </ul>
-          <p class="service-group">Alisados</p>
-        <ul class="service-rows" role="list">
-          <li class="service-row card" id="alisado-corto">
+          <li class="service-row card" id="alisado">
             <div class="service-row__main">
-              <h3>Alisado en pelo corto</h3>
+              <h3>Alisado</h3>
+              <p class="service-row__note">El precio final lo valora Paula en el centro.</p>
             </div>
             <div class="service-row__side">
-              <span class="price" data-price="alisado-corto">100–140 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Alisado en pelo corto">Reservar</a>
+              <span class="price" data-price="alisado">desde 100 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Alisado">Reservar</a>
             </div>
           </li>
-          <li class="service-row card" id="alisado-media-melena">
-            <div class="service-row__main">
-              <h3>Alisado en media melena</h3>
-            </div>
-            <div class="service-row__side">
-              <span class="price" data-price="alisado-media-melena">140–180 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Alisado en media melena">Reservar</a>
-            </div>
-          </li>
-          <li class="service-row card" id="alisado-largo">
-            <div class="service-row__main">
-              <h3>Alisado en pelo largo</h3>
-            </div>
-            <div class="service-row__side">
-              <span class="price" data-price="alisado-largo">180–230 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Alisado en pelo largo">Reservar</a>
-            </div>
-          </li>
-          <li class="service-row card" id="alisado-muy-largo">
-            <div class="service-row__main">
-              <h3>Alisado en pelo muy largo</h3>
-            </div>
-            <div class="service-row__side">
-              <span class="price" data-price="alisado-muy-largo">230–270 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Alisado en pelo muy largo">Reservar</a>
-            </div>
-          </li>
-        </ul>
-          <p class="service-group">Antifrizz</p>
-        <ul class="service-rows" role="list">
           <li class="service-row card" id="antifrizz-corto">
             <div class="service-row__main">
               <h3>Antifrizz en pelo corto</h3>
@@ -230,58 +305,13 @@
               <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Antifrizz en pelo medio o largo">Reservar</a>
             </div>
           </li>
-        </ul>
-          <p class="service-group">Fibra capilar</p>
-        <ul class="service-rows" role="list">
-          <li class="service-row card" id="tratamiento-fibra">
+          <li class="service-row card" id="reparacion-nutricion-hidratacion">
             <div class="service-row__main">
-              <h3>Tratamiento de la fibra capilar</h3>
-              <p>Tres opciones según lo que necesite tu pelo.</p>
-              <ul class="includes" role="list"><li>Reparación</li><li>Hidratación</li><li>Nutrición</li></ul>
+              <h3>Reparación, nutrición e hidratación</h3>
             </div>
             <div class="service-row__side">
-              <span class="price" data-price="tratamiento-fibra">30–50 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tratamiento de la fibra capilar">Reservar</a>
-            </div>
-          </li>
-        </ul>
-        </div>
-
-        <div class="category" id="peluqueria" role="tabpanel" aria-labelledby="tab-peluqueria">
-          <div class="category__head">
-            <div>
-              <h2>Peluquería</h2>
-              <p class="lead">Cortes y peinados con el mismo mimo que todo lo demás.</p>
-            </div>
-            <img class="category__photo" src="../assets/img/servicio-peluqueria.webp" alt="Estilista secando el pelo de una clienta con cepillo redondo" width="1000" height="1250" loading="lazy">
-          </div>
-        <ul class="service-rows" role="list">
-          <li class="service-row card" id="lavado-peinado">
-            <div class="service-row__main">
-              <h3>Lavado y peinado</h3>
-            </div>
-            <div class="service-row__side">
-              <span class="price" data-price="lavado-peinado">13 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Lavado y peinado">Reservar</a>
-            </div>
-          </li>
-          <li class="service-row card" id="corte">
-            <div class="service-row__main">
-              <h3>Corte</h3>
-              <p class="service-row__note">Incluye lavado, corte y secado</p>
-            </div>
-            <div class="service-row__side">
-              <span class="price" data-price="corte">15 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Corte">Reservar</a>
-            </div>
-          </li>
-          <li class="service-row card" id="corte-peinado">
-            <div class="service-row__main">
-              <h3>Corte y peinado</h3>
-            </div>
-            <div class="service-row__side">
-              <span class="price" data-price="corte-peinado">22 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Corte y peinado">Reservar</a>
+              <span class="price" data-price="reparacion-nutricion-hidratacion">30–50 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Reparación, nutrición e hidratación">Reservar</a>
             </div>
           </li>
         </ul>
@@ -298,7 +328,7 @@
         <ol class="steps-grid" role="list">
           <li class="step-card card reveal"><span class="step-card__num" aria-hidden="true">1</span><h3>Diagnóstico con microcámara</h3><p>En el Spa equilibrio y el Spa aura vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p></li>
           <li class="step-card card reveal"><span class="step-card__num" aria-hidden="true">2</span><h3>Plan personalizado</h3><p>Elegimos el tratamiento en cabina y los productos para casa según lo que necesita tu piel.</p></li>
-          <li class="step-card card reveal"><span class="step-card__num" aria-hidden="true">3</span><h3>Seguimiento</h3><p>Revisamos cómo evoluciona y ajustamos el plan hasta ver resultados.</p></li>
+          <li class="step-card card reveal"><span class="step-card__num" aria-hidden="true">3</span><h3>Seguimiento</h3><p>Revisamos cómo evoluciona y ajustamos el plan según lo que necesite tu cuero cabelludo.</p></li>
         </ol>
       </div>
     </section>
@@ -331,8 +361,8 @@
       <div class="site-footer__col">
         <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg></span><h2 class="site-footer__title">Horario</h2></div>
         <dl class="hours" data-hours>
-          <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
-          <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+          <dt>Lunes – Viernes</dt><dd>10:00 – 13:00 · 15:00 – 20:00</dd>
+          <dt>Sábado</dt><dd>8:00 – 13:00<small class="hours__note">Se abre dos sábados al mes</small></dd>
           <dt>Domingo</dt><dd>Cerrado</dd>
         </dl>
       </div>

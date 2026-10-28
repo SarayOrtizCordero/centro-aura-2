@@ -28,6 +28,8 @@
 </head>
 <body>
   <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <line x1="8" y1="6" x2="21" y2="6"/> <line x1="8" y1="12" x2="21" y2="12"/> <line x1="8" y1="18" x2="21" y2="18"/> <line x1="3" y1="6" x2="3.01" y2="6"/> <line x1="3" y1="12" x2="3.01" y2="12"/> <line x1="3" y1="18" x2="3.01" y2="18"/> </symbol>
+    <symbol id="i-cuadricula" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <rect x="3" y="3" width="7" height="7" rx="1"/> <rect x="14" y="3" width="7" height="7" rx="1"/> <rect x="3" y="14" width="7" height="7" rx="1"/> <rect x="14" y="14" width="7" height="7" rx="1"/> </symbol>
     <symbol id="i-spa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M12 3c3.5 4.5 5.5 7.5 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 10.5 8.5 7.5 12 3z"/> <path d="M12 20v-8"/> <path d="M12 15l2.5-2.5"/> </symbol>
     <symbol id="i-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 9h12l-1 10a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8L6 9z"/> <path d="M5 9h14"/> <path d="M8.5 6h7"/> <path d="M9 13c1 1 2 1 3 0s2-1 3 0"/> </symbol>
     <symbol id="i-alisado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M3 9c3-3 6 3 9 0s6 3 9 0"/> <path d="M3 15h18"/> <path d="M3 19h18"/> </symbol>
@@ -49,7 +51,7 @@
   <div class="topbar">
     <div class="container topbar__inner">
       <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Las Cabezas de San Juan</p>
-      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 9:30–14:00 · 17:00–20:30</span></p>
+      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 10:00–13:00 · 15:00–20:00</span></p>
       <a class="topbar__item topbar__phone" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span data-phone>+34 610 16 77 64</span></a>
     </div>
   </div>
@@ -58,15 +60,31 @@
     <div class="container site-header__inner">
       <a class="brand" href="../index.html" aria-label="Centro Aura, inicio">
         <span class="brand__name">AURA</span>
-        <span class="brand__rule" aria-hidden="true"></span>
-        <span class="brand__tag">Spa Capilar · Tricología</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú"><span class="nav-toggle__bar"></span></button>
       <nav class="site-nav" id="site-menu" aria-label="Principal">
         <ul class="site-nav__list">
           <li><a href="../index.html">Inicio</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="tienda.html" aria-current="page">Tienda</a></li>
+          <li class="has-sub">
+            <a href="servicios.html">Servicios</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Mostrar el submenú de Servicios"></button>
+            <ul class="subnav" aria-label="Categorías de servicios">
+              <li><a href="servicios.html#salud-capilar">Salud capilar</a></li>
+              <li><a href="servicios.html#spa">Spa</a></li>
+              <li><a href="servicios.html#peluqueria">Peluquería</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="tienda.html" aria-current="page">Tienda</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Mostrar el submenú de Tienda"></button>
+            <ul class="subnav" aria-label="Categorías de la tienda">
+              <li>
+                <a href="tienda.html#jaldun">Jaldún</a>
+                <ul class="subnav__sub" aria-label="Productos Jaldún">
+                  <li><a href="tienda.html#jaldun-champus">Champús</a></li>
+                </ul>
+              </li>
+              <li><a href="tienda.html#tarjetas-regalo">Tarjetas regalo</a></li>
+            </ul>
+          </li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
         <a class="btn btn--primary site-nav__cta" href="https://wa.me/34610167764" data-wa="">Reservar<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
@@ -91,11 +109,11 @@
 
     <section class="section" aria-labelledby="categorias-title">
       <div class="container">
-        <h2 class="visually-hidden" id="categorias-title">Secciones de la tienda</h2>
+        <h2 class="visually-hidden" id="categorias-title">Marcas y categorías de la tienda</h2>
         <div class="category-tiles">
           <a class="category-tile card" href="#jaldun">
             <img src="../assets/img/champu-vitalzen.webp" alt="" width="2250" height="2250" loading="lazy">
-            <div><h3>Champús Jaldún</h3><p>Fitoterapia capilar para cada tipo de cuero cabelludo.</p><span class="link-arrow" aria-hidden="true">Ver champús</span></div>
+            <div><h3>Jaldún</h3><p>Fitoterapia capilar para cada tipo de cuero cabelludo.</p><span class="link-arrow" aria-hidden="true">Ver Jaldún</span></div>
           </a>
           <a class="category-tile card" href="#tarjetas-regalo">
             <img src="../assets/img/tarjeta-regalo.webp" alt="" width="1200" height="900" loading="lazy">
@@ -109,15 +127,24 @@
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Cosmética natural</span>
-          <h2 id="jaldun-title">Champús <em>Jaldún</em></h2>
-          <p>Fitoterapia capilar que devuelve al cuero cabelludo su equilibrio natural. Si no sabes cuál es el tuyo, pregúntame.</p>
+          <h2 id="jaldun-title">Marca <em>Jaldún</em></h2>
+          <p>Fitoterapia capilar que ayuda a mantener el equilibrio natural del cuero cabelludo. Si no sabes cuál es el tuyo, pregúntame.</p>
+        </div>
+        <div class="subcategory-bar">
+          <h3 class="subcategory" id="jaldun-champus">Champús</h3>
+          <div class="view-bar" data-view-scope="tienda" data-view-default="list" hidden>
+            <div class="view-toggle" role="group" aria-label="Forma de ver los elementos">
+              <button class="view-toggle__btn" type="button" data-view="list" aria-pressed="true" aria-label="Ver en lista" title="Lista"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lista"/></svg></button>
+              <button class="view-toggle__btn" type="button" data-view="grid" aria-pressed="false" aria-label="Ver en cuadrícula" title="Cuadrícula"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cuadricula"/></svg></button>
+            </div>
+          </div>
         </div>
         <ul class="product-grid" role="list">
-        <li class="product-card product-card--featured card reveal">
-          <div class="product-card__visual arch"><img src="../assets/img/champu-equilibrante.webp" alt="Frasco del champú Equilibrante de Jaldún" width="2250" height="2250" loading="lazy"></div>
+        <li class="product-card card reveal">
+          <div class="product-card__visual"><img src="../assets/img/champu-equilibrante.webp" alt="Frasco del champú Equilibrante de Jaldún" width="2250" height="2250" loading="lazy"></div>
           <div class="product-card__body">
-            <h3>Champú Equilibrante</h3>
-            <p>Para caspa y exceso de grasa. Equilibra el cuero cabelludo con árbol de té, sauce y aloe vera.</p>
+            <h4>Champú Equilibrante</h4>
+            <p>Cuidado del cuero cabelludo con caspa o exceso de grasa. Ayuda a equilibrarlo con árbol de té, sauce y aloe vera.</p>
             <span class="price" data-price="jaldun-equilibrante">22 €</span>
             <a class="btn btn--primary" href="https://wa.me/34610167764" data-wa="Champú Equilibrante Jaldún" data-wa-kind="producto">Lo quiero<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
           </div>
@@ -125,8 +152,8 @@
         <li class="product-card card reveal">
           <div class="product-card__visual"><img src="../assets/img/champu-vitalzen.webp" alt="Frasco del champú Vitalzen Fortificante de Jaldún" width="2250" height="2250" loading="lazy"></div>
           <div class="product-card__body">
-            <h3>Champú Vitalzen Fortificante</h3>
-            <p>Para la caída. Estimula la microcirculación y fortalece el cabello desde la raíz.</p>
+            <h4>Champú Vitalzen Fortificante</h4>
+            <p>Cuidado del cabello con tendencia a la caída. Ayuda a fortalecerlo desde la raíz.</p>
             <span class="price" data-price="jaldun-vitalzen">24 €</span>
             <a class="btn btn--primary" href="https://wa.me/34610167764" data-wa="Champú Vitalzen Fortificante Jaldún" data-wa-kind="producto">Lo quiero<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
           </div>
@@ -134,8 +161,8 @@
         <li class="product-card card reveal">
           <div class="product-card__visual"><img src="../assets/img/champu-multiefecto.webp" alt="Frasco del champú Multiefecto Regulador de Jaldún" width="2250" height="2250" loading="lazy"></div>
           <div class="product-card__body">
-            <h3>Champú Multiefecto Regulador</h3>
-            <p>Para cuero cabelludo sensible o desequilibrado. Con limón y aguacate: calma, regula e hidrata.</p>
+            <h4>Champú Multiefecto Regulador</h4>
+            <p>Cuidado del cuero cabelludo sensible o desequilibrado. Con limón y aguacate: ayuda a calmar, regular e hidratar.</p>
             <span class="price" data-price="jaldun-multiefecto">22 €</span>
             <a class="btn btn--primary" href="https://wa.me/34610167764" data-wa="Champú Multiefecto Regulador Jaldún" data-wa-kind="producto">Lo quiero<span class="btn__icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span></a>
           </div>
@@ -150,6 +177,12 @@
           <span class="eyebrow">Un detalle con sentido</span>
           <h2 id="regalo-title">Tarjetas regalo</h2>
           <p>Elige un importe o regala un servicio concreto. La preparamos a mano y la recoges en el salón.</p>
+        </div>
+        <div class="view-bar" data-view-scope="tienda" data-view-default="list" hidden>
+          <div class="view-toggle" role="group" aria-label="Forma de ver los elementos">
+            <button class="view-toggle__btn" type="button" data-view="list" aria-pressed="true" aria-label="Ver en lista" title="Lista"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lista"/></svg></button>
+            <button class="view-toggle__btn" type="button" data-view="grid" aria-pressed="false" aria-label="Ver en cuadrícula" title="Cuadrícula"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cuadricula"/></svg></button>
+          </div>
         </div>
         <ul class="gift-grid" role="list">
         <li class="gift-tile card reveal">
@@ -212,8 +245,8 @@
       <div class="site-footer__col">
         <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg></span><h2 class="site-footer__title">Horario</h2></div>
         <dl class="hours" data-hours>
-          <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
-          <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+          <dt>Lunes – Viernes</dt><dd>10:00 – 13:00 · 15:00 – 20:00</dd>
+          <dt>Sábado</dt><dd>8:00 – 13:00<small class="hours__note">Se abre dos sábados al mes</small></dd>
           <dt>Domingo</dt><dd>Cerrado</dd>
         </dl>
       </div>
