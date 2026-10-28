@@ -51,7 +51,7 @@ test('selector: una opción por servicio de data.js y "Otro / no lo sé" al fina
     labels.add(label);
     assert.ok(select.includes(`<option>${label}</option>`), 'falta la opción ' + label);
   }
-  assert.equal(labels.size, 10);
+  assert.equal(labels.size, 13);
   const last = options[options.length - 1];
   assert.equal(last.label, 'Otro / no lo sé');
   assert.equal(attr(last.attrs.replace(/^/, ' '), 'value'), '');

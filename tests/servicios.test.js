@@ -48,11 +48,12 @@ test('respaldo == datos: texto de cada data-price', () => {
 });
 
 test('textos: aviso orientativo, Corte y rituales de Spa', () => {
-  const panel = panelOf('barros-alisados-antifrizz');
+  const panel = panelOf('peluqueria');
   const note = panel.match(/<p class="price-note">[\s\S]*?<\/p>/)[0];
   assert.ok(note.includes('<strong>orientativos</strong>'));
   assert.ok(note.includes('productos que se gasten'));
   assert.ok(panel.indexOf('price-note') < panel.indexOf('data-price'));
+  assert.ok(panelOf('salud-capilar').includes('<strong>30 a 50 €</strong>'));
   assert.match(html, /<h3>Corte<\/h3>\s*<p class="service-row__note">Incluye lavado, corte y secado<\/p>/);
   for (const id of ['spa-esencial', 'spa-equilibrio', 'spa-aura']) {
     const inc = rowOf(id).match(/<ul class="includes"[\s\S]*?<\/ul>/);
@@ -66,7 +67,7 @@ test('pestañas y paneles', () => {
   assert.ok(attr(tablist, 'aria-label'));
   const tabs = html.match(/<button class="tab"[^>]*>/g);
   assert.equal(tabs.length, data.categories.length);
-  const panels = { spa: 'spa', tratamientos: 'barros-alisados-antifrizz', peluqueria: 'peluqueria' };
+  const panels = { salud: 'salud-capilar', spa: 'spa', peluqueria: 'peluqueria' };
   data.categories.forEach((cat, i) => {
     const tab = tabs[i];
     assert.equal(attr(tab, 'role'), 'tab');
@@ -96,14 +97,13 @@ test('cabecera, fotos de categoría, análisis y llamada final', () => {
   assert.deepEqual(
     photos.map((p) => attr(p, 'alt')),
     [
+      'Primer plano del cabello, como se ve con la microcámara en el análisis',
       'Masaje en el cuero cabelludo con la clienta relajada',
-      'Melena larga, lisa y brillante vista de espaldas',
       'Estilista secando el pelo de una clienta con cepillo redondo',
     ]
   );
-  for (const p of photos) {
-    assert.deepEqual([attr(p, 'width'), attr(p, 'height'), attr(p, 'loading')], ['1000', '1250', 'lazy']);
-  }
+  const sizes = photos.map((p) => [attr(p, 'width'), attr(p, 'height'), attr(p, 'loading')]);
+  assert.deepEqual(sizes, [['900', '1125', 'lazy'], ['1000', '1250', 'lazy'], ['1000', '1250', 'lazy']]);
   assert.match(html, /<h2 id="consulta-title">¿Cómo es el análisis del cuero cabelludo\?<\/h2>/);
   const steps = html.match(/<li class="step-card card reveal">[\s\S]*?<\/li>/g);
   assert.deepEqual(
@@ -126,6 +126,30 @@ test('enlaces entrantes: todo servicios.html#<id> apunta a un id existente', () 
   assert.ok(seen > 0);
 });
 
+test('css: servicios en cuadrícula (2 en móvil, 3 en tablet, lista en PC) y fotos centradas', () => {
+  assert.match(css, /\.service-rows\s*\{[^}]*grid-template-columns:\s*repeat\(2,/);
+  assert.match(css, /main\[data-view="list"\] \.service-rows\s*\{\s*grid-template-columns:\s*1fr;/);
+  assert.match(css, /\.category__photo\s*\{[^}]*margin-inline:\s*auto/);
+});
+
 test('css: velo claro de la cabecera de página', () => {
   assert.match(css, /\.page-hero__veil\s*\{[^}]*rgb\(var\(--veil-light-rgb\) \/ var\(--veil-light-alpha\)\)/);
+});
+
+test('selector Lista / Cuadrícula: icono por botón, uno en cada bloque, oculto sin JS y lista por defecto', () => {
+  const bars = html.match(/<div class="view-bar"[^>]*>[\s\S]*?<\/div>\s*<\/div>/g);
+  assert.equal(bars.length, 3, 'uno por categoría');
+  for (const bar of bars) {
+    assert.ok(/\shidden\b/.test(bar.match(/<div class="view-bar"[^>]*>/)[0]));
+    assert.equal(attr(bar.match(/<div class="view-bar"[^>]*>/)[0], 'data-view-default'), 'list');
+    const buttons = bar.match(/<button[^>]*>[\s\S]*?<\/button>/g);
+    assert.deepEqual(buttons.map((b) => attr(b, 'data-view')), ['list', 'grid']);
+    assert.deepEqual(buttons.map((b) => attr(b, 'aria-pressed')), ['true', 'false']);
+    assert.deepEqual(buttons.map((b) => attr(b, 'aria-label')), ['Ver en lista', 'Ver en cuadrícula']);
+    assert.ok(bar.includes('#i-lista') && bar.includes('#i-cuadricula'));
+    assert.ok(!/Ver como|>Lista<|>Cuadrícula</.test(bar), 'solo iconos, sin texto visible');
+  }
+  assert.ok(html.indexOf('view-bar') > html.indexOf('class="category__head"'), 'el selector va junto a los elementos, no al principio');
+  const main = read('js/main.js');
+  for (const s of ['initViewToggle', 'data-view', 'dataset.view', 'localStorage', "|| 'list'"]) assert.ok(main.includes(s), 'falta ' + s);
 });

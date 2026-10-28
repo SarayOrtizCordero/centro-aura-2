@@ -147,10 +147,17 @@ for (const rel of pageFiles()) {
     assert.equal(attr(btn, 'aria-controls'), 'site-menu');
     const navHtml = html.slice(nav, html.indexOf('</nav>', nav));
     assert.match(navHtml, /aria-label="Principal"/);
-    const links = [...navHtml.matchAll(/<li><a ([^>]*)>([^<]*)<\/a><\/li>/g)];
-    assert.deepEqual(links.map((m) => m[2]), ['Inicio', 'Servicios', 'Tienda', 'Contacto']);
+    const links = [...navHtml.matchAll(/<a ([^>]*)>([^<]*)<\/a>/g)].filter((m) => !/class="btn/.test(m[1]));
+    assert.deepEqual(
+      links.map((m) => m[2]),
+      ['Inicio', 'Servicios', 'Salud capilar', 'Spa', 'Peluquería', 'Tienda', 'Jaldún', 'Champús', 'Tarjetas regalo', 'Contacto']
+    );
     const current = links.filter((m) => /aria-current="page"/.test(m[1]));
     assert.equal(current.length, isLegal ? 0 : 1);
+    assert.equal((navHtml.match(/class="sub-toggle" type="button" aria-expanded="false"/g) || []).length, 2);
+    const brand = html.match(/<header class="site-header">[\s\S]*?<\/a>/)[0];
+    assert.ok(brand.includes('<span class="brand__name">AURA</span>'));
+    assert.ok(!brand.includes('brand__tag'), 'la cabecera lleva solo AURA');
     const footer = html.slice(html.indexOf('<footer class="site-footer"'));
     assert.deepEqual(
       [...footer.matchAll(/<h2 class="site-footer__title">([^<]*)<\/h2>/g)].map((m) => m[1]),

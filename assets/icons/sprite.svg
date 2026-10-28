@@ -1,5 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-  <!-- Una sola familia de iconos: 24x24, trazo 1.5, currentColor. Uso: <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-spa"/></svg> -->
+  <!-- Una sola familia de iconos: 24x24, trazo 1.5, currentColor. Uso: <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-spa"/>  <symbol id="i-lista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="8" y1="6" x2="21" y2="6"/>
+    <line x1="8" y1="12" x2="21" y2="12"/>
+    <line x1="8" y1="18" x2="21" y2="18"/>
+    <line x1="3" y1="6" x2="3.01" y2="6"/>
+    <line x1="3" y1="12" x2="3.01" y2="12"/>
+    <line x1="3" y1="18" x2="3.01" y2="18"/>
+  </symbol>
+  <symbol id="i-cuadricula" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="7" height="7" rx="1"/>
+    <rect x="14" y="3" width="7" height="7" rx="1"/>
+    <rect x="3" y="14" width="7" height="7" rx="1"/>
+    <rect x="14" y="14" width="7" height="7" rx="1"/>
+  </symbol>
+</svg> -->
   <symbol id="i-spa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 3c3.5 4.5 5.5 7.5 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 10.5 8.5 7.5 12 3z"/>
     <path d="M12 20v-8"/>
