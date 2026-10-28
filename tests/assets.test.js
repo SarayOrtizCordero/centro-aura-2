@@ -8,7 +8,7 @@ const images = require('./fixtures/images.json');
 // Los iconos del sprite: el HTML los usa con <use href="…/sprite.svg#i-<nombre>">
 const ICONS = [
   'spa', 'barro', 'alisado', 'tijeras', 'tricologia', 'regalo', 'reloj', 'pin',
-  'telefono', 'whatsapp', 'instagram', 'flecha', 'check', 'menu', 'cerrar', 'lista', 'cuadricula'
+  'telefono', 'whatsapp', 'instagram', 'flecha', 'check', 'menu', 'cerrar', 'lista', 'cuadricula', 'filtro'
 ];
 
 for (const img of images) {

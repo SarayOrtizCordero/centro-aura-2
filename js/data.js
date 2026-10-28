@@ -63,6 +63,14 @@
       'jaldun-equilibrante': { type: 'producto', name: 'Champú Equilibrante Jaldún', price: 22 },
       'jaldun-vitalzen':     { type: 'producto', name: 'Champú Vitalzen Fortificante Jaldún', price: 24 },
       'jaldun-multiefecto':  { type: 'producto', name: 'Champú Multiefecto Regulador Jaldún', price: 22 },
+      // Sin precio todavía: la web muestra "Consultar" y el botón abre WhatsApp
+      'jaldun-tonico-equilibrante': { type: 'producto', name: 'Tónico Equilibrante Jaldún' },
+      'jaldun-tonico-actianagen': { type: 'producto', name: 'Tónico Actianagen Jaldún' },
+      'jaldun-nutrianagen': { type: 'producto', name: 'Nutrianagen Jaldún' },
+      'jaldun-ajobiotic': { type: 'producto', name: 'Ajobiotic Jaldún' },
+      'jaldun-aceite-bioregenerador': { type: 'producto', name: 'Aceite Bioregenerador Jaldún' },
+      'jaldun-emulsion-c3q': { type: 'producto', name: 'Emulsión Equilibrante C3Q Jaldún' },
+      'jaldun-factor-crecimiento': { type: 'producto', name: 'Factor de Crecimiento Capilar Jaldún' },
 
       // Tarjetas regalo
       'regalo-25': { type: 'regalo', name: 'Tarjeta regalo de 25 €', price: 25 },

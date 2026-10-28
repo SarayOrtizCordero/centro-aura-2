@@ -202,6 +202,7 @@ test('resúmenes breves: solo con textos de la clienta (o el propio nombre del s
     'lavado-peinado': 'Incluye lavado y peinado.',
     'barro-raiz': 'Coloración natural solo en la raíz.',
     'barro-completo': 'Coloración natural en todo el cabello.',
+    'oxigenaciones': 'Tratamiento para el cuero cabelludo que busca mejorar su salud.',
     'antifrizz-corto': 'Se ajusta a tu melena y a lo que necesite.',
     'antifrizz-medio-largo': 'Se ajusta a tu melena y a lo que necesite.',
   };

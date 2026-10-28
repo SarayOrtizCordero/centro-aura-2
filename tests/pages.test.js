@@ -150,7 +150,7 @@ for (const rel of pageFiles()) {
     const links = [...navHtml.matchAll(/<a ([^>]*)>([^<]*)<\/a>/g)].filter((m) => !/class="btn/.test(m[1]));
     assert.deepEqual(
       links.map((m) => m[2]),
-      ['Inicio', 'Servicios', 'Salud capilar', 'Spa', 'Peluquería', 'Tienda', 'Jaldún', 'Champús', 'Tarjetas regalo', 'Contacto']
+      ['Inicio', 'Servicios', 'Salud capilar', 'Spa', 'Peluquería', 'Tienda', 'Jaldún', 'Brasil Cacau', 'Tarjetas regalo', 'Contacto']
     );
     const current = links.filter((m) => /aria-current="page"/.test(m[1]));
     assert.equal(current.length, isLegal ? 0 : 1);

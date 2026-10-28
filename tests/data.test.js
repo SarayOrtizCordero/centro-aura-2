@@ -11,11 +11,12 @@ test('contacto del negocio', () => {
   assert.match(data.business.address, /Domingo Gallego, 3/);
 });
 
-test('todos los items tienen tipo, nombre y precio numérico', () => {
+test('todos los items tienen tipo y nombre; con precio numérico salvo los productos sin precio ("Consultar")', () => {
   for (const [id, item] of Object.entries(data.items)) {
     assert.ok(TYPES.includes(item.type), `${id}: tipo inválido`);
     assert.ok(item.name && item.name.length > 2, `${id}: falta nombre`);
-    assert.equal(typeof item.price, 'number', `${id}: precio no numérico`);
+    if (item.price === undefined) assert.equal(item.type, 'producto', `${id}: solo un producto puede ir sin precio`);
+    else assert.equal(typeof item.price, 'number', `${id}: precio no numérico`);
   }
 });
 
@@ -70,7 +71,7 @@ test('duraciones del Spa (confirmadas por Paula)', () => {
   assert.equal(data.items['spa-aura'].duration, '1 h 15 min');
 });
 
-test('el catálogo tiene los 21 items esperados', () => {
+test('el catálogo tiene los 28 items esperados', () => {
   const expectedIds = [
     'diagnostico', 'oxigenaciones', 'tratamiento-fibra',
     'spa-esencial', 'spa-equilibrio', 'spa-aura',
@@ -78,11 +79,13 @@ test('el catálogo tiene los 21 items esperados', () => {
     'antifrizz-corto', 'antifrizz-medio-largo', 'reparacion-nutricion-hidratacion',
     'lavado-peinado', 'corte', 'corte-peinado',
     'jaldun-equilibrante', 'jaldun-vitalzen', 'jaldun-multiefecto',
+    'jaldun-tonico-equilibrante', 'jaldun-tonico-actianagen', 'jaldun-nutrianagen', 'jaldun-ajobiotic',
+    'jaldun-aceite-bioregenerador', 'jaldun-emulsion-c3q', 'jaldun-factor-crecimiento',
     'regalo-25', 'regalo-50', 'regalo-75'
   ];
   assert.deepEqual(Object.keys(data.items).sort(), expectedIds.sort());
   for (const [id, item] of Object.entries(data.items)) {
-    assert.ok(typeof item.price === 'number' && item.price > 0, `${id}: precio no es un número positivo`);
+    if (item.price !== undefined) assert.ok(typeof item.price === 'number' && item.price > 0, `${id}: precio no es un número positivo`);
   }
 });
 
