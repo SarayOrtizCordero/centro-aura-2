@@ -220,6 +220,53 @@
     });
   }
 
+  /* Filtro de productos de la tienda: el botón "Filtrar" abre un panel con Todos / Champús / Tónicos /
+     Otros. Al elegir una opción se ocultan con "hidden" las fichas que no coinciden con su tipo
+     (data-type), se cierra el panel y se avisa del resultado a los lectores de pantalla. El panel
+     también se cierra con Esc o tocando fuera. Sin JavaScript no hay filtro y se ven todos. */
+  function initProductFilter() {
+    const bar = document.querySelector('.filter-bar');
+    if (!bar) return;
+    const grid = bar.closest('[data-view-block]').querySelector('.product-grid');
+    const items = $$('[data-type]', grid);
+    const toggle = bar.querySelector('.filter-btn');
+    const value = bar.querySelector('.filter-btn__value');
+    const panel = bar.querySelector('.filter-panel');
+    const buttons = $$('[data-filter]', panel);
+    const status = bar.querySelector('[role="status"]');
+
+    const setOpen = (open) => {
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    const apply = (filter) => {
+      items.forEach((item) => { item.hidden = filter !== 'all' && item.dataset.type !== filter; });
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
+      const label = buttons.find((button) => button.dataset.filter === filter).textContent;
+      value.textContent = filter === 'all' ? '' : '· ' + label;
+      const shown = items.filter((item) => !item.hidden).length;
+      status.textContent = shown + (shown === 1 ? ' producto' : ' productos');
+    };
+
+    toggle.addEventListener('click', () => setOpen(panel.hidden));
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        apply(button.dataset.filter);
+        setOpen(false);
+        toggle.focus();
+      });
+    });
+    document.addEventListener('click', (event) => {
+      if (!panel.hidden && !event.target.closest('.filter-bar')) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || panel.hidden) return;
+      setOpen(false);
+      toggle.focus();
+    });
+    bar.hidden = false;
+  }
+
   /* Aparición suave al hacer scroll (desactivada si se pide reducir movimiento) */
   function initReveal() {
     const items = $$('.reveal');
@@ -359,6 +406,7 @@
   initSubmenus();
   initViewToggle();
   initServiceMore();
+  initProductFilter();
   initTabs();
   initContactForm();
   initReveal();
