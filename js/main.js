@@ -141,44 +141,83 @@
     });
   }
 
-  /* Selector Lista / Cuadrícula (Servicios y Tienda). Hay uno junto a cada bloque de productos y
-     todos van sincronizados. La vista se guarda en <main data-view="…">; empieza en lista y la
-     elección del visitante se recuerda en este navegador. Sin JavaScript los selectores quedan
-     ocultos y se ve la cuadrícula. */
+  /* Selector Lista / Cuadrícula (Servicios y Tienda). Cada bloque de elementos ([data-view-block]:
+     una categoría de servicios, los champús, las tarjetas regalo) tiene su propia vista, que se
+     guarda en el atributo data-view del bloque. Empieza en lista y la elección del visitante se
+     recuerda en este navegador. Sin JavaScript los selectores quedan ocultos y se ve la cuadrícula. */
   function initViewToggle() {
-    const bars = $$('.view-bar');
-    const main = document.querySelector('main');
-    if (!bars.length || !main) return;
-    const buttons = bars.flatMap((bar) => $$('[data-view]', bar));
-    const key = 'aura-vista-' + bars[0].dataset.viewScope;
-    const read = () => {
-      try {
-        const value = window.localStorage.getItem(key);
-        return value === 'grid' || value === 'list' ? value : null;
-      } catch {
-        return null;
-      }
-    };
-    const save = (view) => {
-      try {
-        window.localStorage.setItem(key, view);
-      } catch {
-        /* sin almacenamiento: la elección vale solo para esta visita */
-      }
-    };
-    const apply = (view) => {
-      main.dataset.view = view;
-      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
-    };
+    $$('[data-view-block]').forEach((block) => {
+      const buttons = $$('.view-bar [data-view]', block);
+      if (!buttons.length) return;
+      const key = 'aura-vista-' + block.id;
+      const read = () => {
+        try {
+          const value = window.localStorage.getItem(key);
+          return value === 'grid' || value === 'list' ? value : null;
+        } catch {
+          return null;
+        }
+      };
+      const save = (view) => {
+        try {
+          window.localStorage.setItem(key, view);
+        } catch {
+          /* sin almacenamiento: la elección vale solo para esta visita */
+        }
+      };
+      const apply = (view) => {
+        block.dataset.view = view;
+        buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
+      };
 
-    apply(read() || 'list');
+      apply(read() || 'list');
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          apply(button.dataset.view);
+          save(button.dataset.view);
+        });
+      });
+      $$('.view-bar', block).forEach((bar) => { bar.hidden = false; });
+    });
+  }
+
+  /* Cuadrícula de servicios en móvil: las tarjetas muestran solo lo esencial y "Ver qué incluye"
+     abre una ventana emergente (<dialog>) con la duración, la descripción y la lista. Se cierra con
+     la X, con el botón "Cerrar", tocando fuera o con Esc. */
+  function initServiceMore() {
+    const buttons = $$('.service-row__more');
+    if (!buttons.length) return;
+
+    const dialog = document.createElement('dialog');
+    dialog.className = 'service-dialog';
+    dialog.setAttribute('aria-labelledby', 'service-dialog-title');
+    dialog.innerHTML = '<div class="service-dialog__inner">'
+      + '<div class="service-dialog__head"><h2 class="service-dialog__title" id="service-dialog-title"></h2>'
+      + '<button class="service-dialog__x" type="button" aria-label="Cerrar"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cerrar"/></svg></button></div>'
+      + '<div class="service-dialog__body"></div>'
+      + '<button class="btn btn--outline service-dialog__close" type="button">Cerrar</button>'
+      + '</div>';
+    document.body.append(dialog);
+    const title = dialog.querySelector('.service-dialog__title');
+    const body = dialog.querySelector('.service-dialog__body');
+    dialog.querySelectorAll('.service-dialog__x, .service-dialog__close').forEach((el) => {
+      el.addEventListener('click', () => dialog.close());
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
     buttons.forEach((button) => {
+      const row = button.closest('.service-row');
       button.addEventListener('click', () => {
-        apply(button.dataset.view);
-        save(button.dataset.view);
+        title.textContent = row.querySelector('h3').textContent;
+        body.replaceChildren(...['.chips', 'p:not(.service-row__note)', '.includes']
+          .map((selector) => row.querySelector(selector))
+          .filter(Boolean)
+          .map((source) => source.cloneNode(true)));
+        dialog.showModal();
       });
     });
-    bars.forEach((bar) => { bar.hidden = false; });
   }
 
   /* Aparición suave al hacer scroll (desactivada si se pide reducir movimiento) */
@@ -319,6 +358,7 @@
   initMenu();
   initSubmenus();
   initViewToggle();
+  initServiceMore();
   initTabs();
   initContactForm();
   initReveal();
