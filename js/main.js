@@ -62,6 +62,11 @@
       const label = el.textContent.replace(/\s+/g, ' ').trim();
       if (el.dataset.wa && label && !el.hasAttribute('aria-label')) el.setAttribute('aria-label', label + ': ' + el.dataset.wa);
     });
+    /* Avisa de que el enlace abre otra pestaña (WhatsApp, Maps, Instagram) */
+    $$('a[target="_blank"]').forEach((el) => {
+      const name = el.getAttribute('aria-label') || el.textContent.replace(/\s+/g, ' ').trim();
+      if (name) el.setAttribute('aria-label', name + ' (se abre en una pestaña nueva)');
+    });
   }
 
   /* Menú móvil desplegable: Esc o un toque fuera lo cierran, el foco queda atrapado en el menú
@@ -75,7 +80,6 @@
     const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
     const setOpen = (open) => {
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
       document.body.classList.toggle('menu-open', open);
       outside.forEach((el) => { el.inert = open; });
       if (open) menu.querySelector('a').focus();
@@ -128,6 +132,9 @@
         items.forEach((other) => setOpen(other, false));
         setOpen(item, open);
       });
+      item.addEventListener('focusout', (event) => {
+        if (event.relatedTarget && !item.contains(event.relatedTarget)) setOpen(item, false);
+      });
     });
     document.addEventListener('click', (event) => {
       if (!event.target.closest('.has-sub')) items.forEach((item) => setOpen(item, false));
@@ -143,7 +150,7 @@
 
   /* Selector Lista / Cuadrícula (Servicios y Tienda). Cada bloque de elementos ([data-view-block]:
      una categoría de servicios, los champús, las tarjetas regalo) tiene su propia vista, que se
-     guarda en el atributo data-view del bloque. Empieza en lista y la elección del visitante se
+     guarda en el atributo data-view del bloque. Empieza en lista (o en la vista que pida data-view-default) y la elección del visitante se
      recuerda en este navegador. Sin JavaScript los selectores quedan ocultos y se ve la cuadrícula. */
   function initViewToggle() {
     $$('[data-view-block]').forEach((block) => {
@@ -170,7 +177,10 @@
         buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
       };
 
-      apply(read() || 'list');
+      /* La vista de partida de cada bloque se pide en data-view-default de su selector (las fichas de producto empiezan en cuadrícula: foto arriba) */
+      const bar = block.querySelector('.view-bar');
+      const fallback = bar && bar.dataset.viewDefault === 'grid' ? 'grid' : null;
+      apply(read() || fallback || 'list');
       buttons.forEach((button) => {
         button.addEventListener('click', () => {
           apply(button.dataset.view);

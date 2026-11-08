@@ -6,7 +6,8 @@
   const NBSP = ' ';
 
   function formatEuros(amount) {
-    return amount + NBSP + '€';
+    const text = typeof amount === 'number' && !Number.isInteger(amount) ? amount.toFixed(2).replace('.', ',') : amount;
+    return text + NBSP + '€';
   }
 
   function formatPrice(item) {

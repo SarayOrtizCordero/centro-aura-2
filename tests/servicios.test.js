@@ -210,3 +210,4 @@ test('resúmenes breves: solo con textos de la clienta (o el propio nombre del s
     assert.ok(rowOf(id).includes('<p class="service-row__note">' + text + '</p>'), id);
   }
 });
+

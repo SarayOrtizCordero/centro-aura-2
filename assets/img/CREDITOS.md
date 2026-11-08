@@ -16,3 +16,9 @@ Son provisionales: se sustituirán por fotos reales de Centro Aura manteniendo e
 ## Fotos de producto
 
 `champu-equilibrante.webp`, `champu-vitalzen.webp` (Vitalzen) y `champu-multiefecto.webp`: fotos de los champús Jaldún, aportadas por la clienta (que recibe los productos de la marca).
+
+`tonico-actianagen.webp` y `tonico-equilibrante.webp`: fotos de los tónicos Jaldún, aportadas por la clienta.
+
+`brazilian-post-alisado.webp`, `brazilian-healing.webp`, `brazilian-alisado.webp`, `brazilian-hidratacion.webp`, `brazilian-reparacion.webp`, `brazilian-aceite-coco.webp` y `brazilian-healing-foam.webp`: fotos de los productos Brazilian Hairtech, aportadas por la clienta, con el fondo quitado y centradas en un cuadrado blanco.
+
+`nutrianagen.webp`, `aceite-bioregenerador.webp`, `emulsion-c3q.webp`, `acondicionador-spray.webp`, `factor-crecimiento.webp`, `oxigenador.webp`, `oxigenador-marino.webp`: fotos de producto de Jaldún, aportadas por la clienta.
