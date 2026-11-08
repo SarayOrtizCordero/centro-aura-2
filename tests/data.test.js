@@ -39,7 +39,7 @@ test('los tres Spa tienen duración; el resto no inventa una', () => {
 
 test('precios en rango: máximo mayor que mínimo y marcados como orientativos', () => {
   const rangos = Object.entries(data.items).filter(([, i]) => i.priceMax !== undefined);
-  assert.equal(rangos.length, 8);
+  assert.equal(rangos.length, 10);
   for (const [id, item] of rangos) {
     assert.ok(item.priceMax > item.price, `${id}: priceMax debe ser mayor que price`);
     assert.equal(item.approx, true, `${id}: un rango es orientativo`);
@@ -71,7 +71,7 @@ test('duraciones del Spa (confirmadas por Paula)', () => {
   assert.equal(data.items['spa-aura'].duration, '1 h 15 min');
 });
 
-test('el catálogo tiene los 28 items esperados', () => {
+test('el catálogo tiene los 37 items esperados', () => {
   const expectedIds = [
     'diagnostico', 'oxigenaciones', 'tratamiento-fibra',
     'spa-esencial', 'spa-equilibrio', 'spa-aura',
@@ -79,8 +79,11 @@ test('el catálogo tiene los 28 items esperados', () => {
     'antifrizz-corto', 'antifrizz-medio-largo', 'reparacion-nutricion-hidratacion',
     'lavado-peinado', 'corte', 'corte-peinado',
     'jaldun-equilibrante', 'jaldun-vitalzen', 'jaldun-multiefecto',
-    'jaldun-tonico-equilibrante', 'jaldun-tonico-actianagen', 'jaldun-nutrianagen', 'jaldun-ajobiotic',
-    'jaldun-aceite-bioregenerador', 'jaldun-emulsion-c3q', 'jaldun-factor-crecimiento',
+    'jaldun-tonico-equilibrante', 'jaldun-tonico-actianagen',
+    'jaldun-nutrianagen', 'jaldun-aceite-bioregenerador', 'jaldun-emulsion-c3q', 'jaldun-acondicionador-spray',
+    'jaldun-factor-crecimiento', 'jaldun-oxigenador', 'jaldun-oxigenador-marino',
+    'brazilian-post-alisado', 'brazilian-healing', 'brazilian-alisado', 'brazilian-hidratacion',
+    'brazilian-reparacion', 'brazilian-aceite-coco', 'brazilian-healing-foam',
     'regalo-25', 'regalo-50', 'regalo-75'
   ];
   assert.deepEqual(Object.keys(data.items).sort(), expectedIds.sort());

@@ -60,17 +60,28 @@
       'reparacion-nutricion-hidratacion': { type: 'servicio', category: 'peluqueria', name: 'Reparación, nutrición e hidratación', price: 30, priceMax: 50, approx: true },
 
       // Productos Jaldún
-      'jaldun-equilibrante': { type: 'producto', name: 'Champú Equilibrante Jaldún', price: 22 },
-      'jaldun-vitalzen':     { type: 'producto', name: 'Champú Vitalzen Fortificante Jaldún', price: 24 },
-      'jaldun-multiefecto':  { type: 'producto', name: 'Champú Multiefecto Regulador Jaldún', price: 22 },
-      // Sin precio todavía: la web muestra "Consultar" y el botón abre WhatsApp
-      'jaldun-tonico-equilibrante': { type: 'producto', name: 'Tónico Equilibrante Jaldún' },
-      'jaldun-tonico-actianagen': { type: 'producto', name: 'Tónico Actianagen Jaldún' },
-      'jaldun-nutrianagen': { type: 'producto', name: 'Nutrianagen Jaldún' },
-      'jaldun-ajobiotic': { type: 'producto', name: 'Ajobiotic Jaldún' },
-      'jaldun-aceite-bioregenerador': { type: 'producto', name: 'Aceite Bioregenerador Jaldún' },
-      'jaldun-emulsion-c3q': { type: 'producto', name: 'Emulsión Equilibrante C3Q Jaldún' },
-      'jaldun-factor-crecimiento': { type: 'producto', name: 'Factor de Crecimiento Capilar Jaldún' },
+      'jaldun-equilibrante': { type: 'producto', name: 'Champú Equilibrante Jaldún', price: 31.5 },
+      'jaldun-vitalzen':     { type: 'producto', name: 'Champú Vitalzen Fortificante Jaldún', price: 31.5 },
+      'jaldun-multiefecto':  { type: 'producto', name: 'Champú Multiefecto Regulador Jaldún', price: 31.5 },
+      'jaldun-tonico-equilibrante': { type: 'producto', name: 'Tónico Equilibrante Jaldún', price: 40 },
+      // El precio del Actianagen se adapta a cada cliente según su tratamiento
+      'jaldun-tonico-actianagen': { type: 'producto', name: 'Tónico Actianagen Jaldún', price: 59, approx: true },
+      'jaldun-nutrianagen': { type: 'producto', name: 'Nutrianagen Jaldún', price: 37 },
+      'jaldun-aceite-bioregenerador': { type: 'producto', name: 'Aceite Bioregenerador Jaldún', price: 26 },
+      'jaldun-emulsion-c3q': { type: 'producto', name: 'Emulsión Equilibrante C3Q Jaldún', price: 27 },
+      'jaldun-acondicionador-spray': { type: 'producto', name: 'Acondicionador Spray Equilibrante Jaldún', price: 20 },
+      'jaldun-factor-crecimiento': { type: 'producto', name: 'Factor de Crecimiento Capilar Jaldún', price: 70 },
+      'jaldun-oxigenador': { type: 'producto', name: 'Oxigenador Jaldún', price: 43 },
+      'jaldun-oxigenador-marino': { type: 'producto', name: 'Oxigenador Marino Jaldún', price: 43 },
+
+      // Productos Brazilian Hairtech (Paula aplica alisado, hidratación y reconstrucción en el centro)
+      'brazilian-post-alisado':  { type: 'producto', name: 'Post alisado Copa Cabana Brazilian Hairtech', price: 55 },
+      'brazilian-healing':       { type: 'producto', name: 'Tratamiento Healing (champú y mascarilla) Brazilian Hairtech', price: 55 },
+      'brazilian-alisado':       { type: 'producto', name: 'Alisado Brazilian Hairtech', price: 100, from: true },
+      'brazilian-hidratacion':   { type: 'producto', name: 'Tratamiento intensivo de hidratación y nutrición Brazilian Hairtech', price: 30, priceMax: 50, approx: true },
+      'brazilian-reparacion':    { type: 'producto', name: 'Tratamiento intensivo de reparación y reconstrucción Brazilian Hairtech', price: 30, priceMax: 50, approx: true },
+      'brazilian-aceite-coco':   { type: 'producto', name: 'Aceite de coco Brazilian Hairtech', price: 38 },
+      'brazilian-healing-foam':  { type: 'producto', name: 'Healing foam Brazilian Hairtech', price: 38 },
 
       // Tarjetas regalo
       'regalo-25': { type: 'regalo', name: 'Tarjeta regalo de 25 €', price: 25 },

@@ -115,19 +115,21 @@ test('icon-row: título y cuatro enlaces en orden', () => {
   }
 });
 
-test('service-cards: tres tarjetas de Spa con foto, chips, precio y un solo enlace', () => {
+test('service-cards: tres tarjetas de Spa con panel de marca, chips, precio y un solo enlace', () => {
   const sec = sectionOf('service-cards');
   const cards = [...sec.matchAll(/<article class="service-card card">[\s\S]*?<\/article>/g)].map((m) => m[0]);
   assert.equal(cards.length, 3);
   const ids = ['spa-esencial', 'spa-equilibrio', 'spa-aura'];
   cards.forEach((card, i) => {
     const id = ids[i];
-    const img = card.match(/<img\b[^>]*>/)[0];
-    assert.match(attr(img, 'src'), /^assets\/img\/.+\.webp$/);
-    assert.ok(attr(img, 'alt').trim().length > 0);
-    assert.equal(attr(img, 'width'), '900');
-    assert.equal(attr(img, 'height'), '1125');
-    assert.equal(attr(img, 'loading'), 'lazy');
+    // en lugar de foto de stock, panel de marca decorativo: loto + AURA
+    const media = card.match(/<div class="service-card__media service-card__media--brand"[^>]*>[\s\S]*?<\/div>/)[0];
+    assert.ok(/aria-hidden="true"/.test(media));
+    const img = media.match(/<img\b[^>]*>/)[0];
+    assert.equal(attr(img, 'src'), 'assets/icons/loto.svg');
+    assert.equal(attr(img, 'alt'), '');
+    assert.deepEqual([attr(img, 'width'), attr(img, 'height'), attr(img, 'loading')], ['64', '40', 'lazy']);
+    assert.ok(media.includes('>AURA<'));
     assert.ok(card.includes('<span class="chip">Spa</span>'));
     assert.ok(card.includes(`data-duration="${id}"`));
     assert.ok(card.includes(`data-price="${id}"`));
