@@ -399,12 +399,25 @@
       if (!button) return;
       button.hidden = false;
       button.addEventListener('click', () => {
+        if (map.dataset.loading) return;
+        /* Google tarda unos segundos: la portada se queda con el aviso "Cargando…" hasta que el mapa
+           está listo, en vez de dejar un recuadro vacío */
+        map.dataset.loading = 'true';
+        map.setAttribute('aria-busy', 'true');
+        button.disabled = true;
+        button.textContent = 'Cargando el mapa…';
         const frame = document.createElement('iframe');
+        frame.className = 'map__frame';
         frame.src = map.dataset.mapSrc;
         frame.title = map.dataset.mapTitle;
         frame.referrerPolicy = 'no-referrer-when-downgrade';
-        map.replaceChildren(frame);
-        frame.focus();
+        frame.addEventListener('load', () => {
+          frame.classList.remove('map__frame');
+          map.replaceChildren(frame);
+          map.removeAttribute('aria-busy');
+          frame.focus();
+        }, { once: true });
+        map.append(frame);
       });
     });
   }

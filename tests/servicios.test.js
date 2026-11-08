@@ -97,9 +97,9 @@ test('cabecera, fotos de categoría, análisis y llamada final', () => {
   assert.deepEqual(
     photos.map((p) => attr(p, 'alt')),
     [
-      'Primer plano del cabello, como se ve con la microcámara en el análisis',
-      'Masaje en el cuero cabelludo con la clienta relajada',
-      'Estilista secando el pelo de una clienta con cepillo redondo',
+      'Aceites, cremas y un peine de madera junto a un mechón de pelo largo',
+      'Peine de masaje de madera junto a un aceite capilar, un cepillo y lavanda',
+      'Secado del cabello con cepillo redondo y secador',
     ]
   );
   const sizes = photos.map((p) => [attr(p, 'width'), attr(p, 'height'), attr(p, 'loading')]);
