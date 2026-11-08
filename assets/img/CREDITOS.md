@@ -5,13 +5,11 @@ Son provisionales: se sustituirán por fotos reales de Centro Aura manteniendo e
 
 - `hero-salon.webp` — https://images.unsplash.com/photo-1706629503650-cade709d15e3
 - `destacado-spa.webp` — https://images.unsplash.com/photo-1757066033634-bbbf874ce525
-- `destacado-tricologia.webp` — https://images.unsplash.com/photo-1666374554058-bc483cbb9695
-- `destacado-terapias.webp` — https://images.unsplash.com/photo-1706795034830-de41aee06afa
 - `tarjeta-regalo.webp` — https://images.unsplash.com/photo-1687617788315-cf8bfd1592c3
 - `textura-lino.webp` — https://images.unsplash.com/photo-1705951320394-eda5d939d0ac
-- `servicio-salud.webp` — https://images.unsplash.com/photo-1757066033606-b9552acb2dd0
 - `servicio-tratamientos.webp` — https://images.unsplash.com/photo-1573807195700-9e9db54988f6
-- `servicio-peluqueria.webp` — https://images.unsplash.com/photo-1580618672591-eb180b1a973f
+
+`destacado-tricologia.webp`, `destacado-terapias.webp`, `servicio-salud.webp` y `servicio-peluqueria.webp`: fotos provisionales encontradas y aportadas por la clienta (origen sin confirmar), recortadas a formato vertical 4:5. Sustituyen a las fotos de stock; se cambiarán por fotos reales de Centro Aura manteniendo el nombre.
 
 ## Fotos de producto
 
