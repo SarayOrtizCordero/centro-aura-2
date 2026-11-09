@@ -49,18 +49,11 @@
   </svg>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Las Cabezas de San Juan</p>
-      <p class="topbar__item"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span data-hours-summary>L–V 10:00–13:00 · 15:00–20:00</span></p>
-      <a class="topbar__item topbar__phone" href="tel:+34610167764"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-telefono"/></svg><span data-phone>+34 610 16 77 64</span></a>
-    </div>
-  </div>
-
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="../index.html" aria-label="Centro Aura, inicio">
         <span class="brand__name">AURA</span>
+        <span class="brand__tag">Spa Capilar · Tricología</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menú"><span class="nav-toggle__bar"></span></button>
       <nav class="site-nav" id="site-menu" aria-label="Principal">
@@ -112,10 +105,9 @@
           <div class="category__head">
             <div>
               <h2>Salud capilar</h2>
-              <p class="lead">Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p>
-              <p class="price-note">El precio de cada tratamiento va de <strong>30 a 50 €</strong>, según cuál se haga.</p>
+              <p class="lead">Vemos tu cuero cabelludo ampliado en pantalla y adaptamos el tratamiento de manera individual según necesidades.</p>
             </div>
-            <img class="category__photo" src="../assets/img/destacado-tricologia.webp" alt="Aceites, cremas y un peine de madera junto a un mechón de pelo largo" width="900" height="1125" loading="lazy">
+            <img class="category__photo" src="../assets/img/destacado-tricologia.webp" alt="Aceites, cremas y un peine de madera junto a un mechón de cabello largo" width="900" height="1125" loading="lazy">
           </div>
         <div class="view-bar" data-view-scope="servicios" data-view-default="list" hidden>
           <div class="view-toggle" role="group" aria-label="Forma de ver los elementos">
@@ -130,7 +122,7 @@
               <p class="service-row__note">Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p>
             </div>
             <div class="service-row__side">
-              <span class="price" data-price="diagnostico">30–50 €</span>
+              <span class="price" data-price="diagnostico">10 €</span>
               <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Diagnóstico">Reservar</a>
             </div>
           </li>
@@ -140,21 +132,19 @@
               <p class="service-row__note">Tratamiento para el cuero cabelludo que busca mejorar su salud.</p>
             </div>
             <div class="service-row__side">
-              <span class="price" data-price="oxigenaciones">30–50 €</span>
+              <span class="price-sub">Según cabello y necesidades</span>
               <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Oxigenaciones para cuero cabelludo">Reservar</a>
             </div>
           </li>
-          <li class="service-row card" id="tratamiento-fibra">
-            <div class="service-row__main">
-              <h3>Tratamiento para fibra capilar</h3>
-              <p class="service-row__note">Tres opciones según lo que necesite tu pelo: reparación, hidratación o nutrición.</p>
-            </div>
-            <div class="service-row__side">
-              <span class="price" data-price="tratamiento-fibra">30–50 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tratamiento para fibra capilar">Reservar</a>
-            </div>
-          </li>
         </ul>
+          <div class="steps-panel">
+            <div class="steps-panel__head"><span class="eyebrow">Paso a paso</span><h3 class="steps-panel__title">¿Cómo es el análisis del cuero cabelludo?</h3></div>
+            <ol class="steps-grid" role="list">
+              <li class="step-card card"><span class="step-card__num" aria-hidden="true">1</span><h4>Diagnóstico con microcámara</h4><p>Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p></li>
+              <li class="step-card card"><span class="step-card__num" aria-hidden="true">2</span><h4>Plan personalizado</h4><p>Elegimos el tratamiento en cabina y los productos para casa según lo que necesita tu piel.</p></li>
+              <li class="step-card card"><span class="step-card__num" aria-hidden="true">3</span><h4>Seguimiento</h4><p>Revisamos cómo evoluciona y ajustamos el plan según lo que necesite tu cuero cabelludo.</p></li>
+            </ol>
+          </div>
         </div>
 
         <div class="category" id="spa" role="tabpanel" aria-labelledby="tab-spa" tabindex="0" data-view-block>
@@ -177,7 +167,7 @@
               <h3>Spa esencial</h3>
               <div class="chips"><span class="chip" data-duration="spa-esencial">50 min</span></div>
               <p>Un momento para desconectar y disfrutar de un ritual de bienestar.</p>
-              <ul class="includes" role="list"><li>Lavado capilar</li><li>Masaje de hombros, cuello, rostro y cabeza</li><li>Secado final</li></ul>
+              <ul class="includes" role="list"><li>Higiene capilar</li><li>Masaje de hombros, cuello, rostro y cabeza</li><li>Secado final</li></ul>
               <button class="service-row__more" type="button" aria-haspopup="dialog">Ver qué incluye</button>
             </div>
             <div class="service-row__side">
@@ -219,7 +209,7 @@
             <div>
               <h2>Peluquería</h2>
               <p class="lead">Cortes, peinados, barros, alisado y antifrizz, con el mismo mimo que todo lo demás.</p>
-              <p class="price-note">Los precios con rango son <strong>orientativos</strong>: varían según los productos que se gasten, el largo y la densidad del pelo.</p>
+              <p class="price-note">Los precios con rango son <strong>orientativos</strong>: varían según los productos que se gasten, el largo y la densidad del cabello.</p>
             </div>
             <img class="category__photo" src="../assets/img/servicio-peluqueria.webp" alt="Secado del cabello con cepillo redondo y secador" width="1000" height="1250" loading="lazy">
           </div>
@@ -289,56 +279,53 @@
               <p class="service-row__note">El precio final lo valora Paula en el centro.</p>
             </div>
             <div class="service-row__side">
-              <span class="price" data-price="alisado">desde 100 €</span>
+              <span class="price" data-price="alisado">desde 100 €</span>
               <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Alisado">Reservar</a>
             </div>
           </li>
-          <li class="service-row card" id="antifrizz-corto">
+          <li class="service-row card" id="antifrizz">
             <div class="service-row__main">
-              <h3>Antifrizz en pelo corto</h3>
-              <p class="service-row__note">Se ajusta a tu melena y a lo que necesite.</p>
+              <h3>Antifrizz</h3>
+              <p class="service-row__note">Elimina el encrespamiento, sella la cutícula del cabello consiguiendo un acabado suave y brillante por más tiempo, facilitando así el peinado diario.</p>
+              <small class="price-hint">El precio varía según la cantidad y el largo del cabello.</small>
             </div>
             <div class="service-row__side">
-              <span class="price" data-price="antifrizz-corto">45–50 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Antifrizz en pelo corto">Reservar</a>
+              <span class="price" data-price="antifrizz">45–60 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Antifrizz">Reservar</a>
             </div>
           </li>
-          <li class="service-row card" id="antifrizz-medio-largo">
+          <li class="service-row card" id="tratamiento-fibra">
             <div class="service-row__main">
-              <h3>Antifrizz en pelo medio o largo</h3>
-              <p class="service-row__note">Se ajusta a tu melena y a lo que necesite.</p>
+              <h3>Tratamiento para fibra capilar</h3>
+              <p class="service-row__note">Tres opciones según lo que necesite tu cabello: reparación, hidratación o nutrición.</p>
             </div>
             <div class="service-row__side">
-              <span class="price" data-price="antifrizz-medio-largo">50–60 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Antifrizz en pelo medio o largo">Reservar</a>
+              <span class="price" data-price="tratamiento-fibra">30–50 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tratamiento para fibra capilar">Reservar</a>
             </div>
           </li>
-          <li class="service-row card" id="reparacion-nutricion-hidratacion">
+          <li class="service-row card" id="intensivo-hidratacion">
             <div class="service-row__main">
-              <h3>Reparación, nutrición e hidratación</h3>
-              <p class="service-row__note">Tres opciones según lo que necesite tu pelo.</p>
+              <h3>Tratamiento intensivo de hidratación y nutrición</h3>
+              <p class="service-row__note">Tratamiento intensivo que se aplica en el centro para hidratar y nutrir el cabello, con la ampolla Healing de aminoácidos, aceite de lino y vitamina E. El precio varía según las cantidades.</p>
             </div>
             <div class="service-row__side">
-              <span class="price" data-price="reparacion-nutricion-hidratacion">30–50 €</span>
-              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Reparación, nutrición e hidratación">Reservar</a>
+              <span class="price" data-price="intensivo-hidratacion">30–50 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tratamiento intensivo de hidratación y nutrición">Reservar</a>
+            </div>
+          </li>
+          <li class="service-row card" id="intensivo-reparacion">
+            <div class="service-row__main">
+              <h3>Tratamiento intensivo de reparación y reconstrucción</h3>
+              <p class="service-row__note">Tratamiento intensivo que se aplica en el centro para reparar y reconstruir la fibra capilar, con queratina hidrolizada, aceite de semilla de uva y péptidos. El precio varía según las cantidades.</p>
+            </div>
+            <div class="service-row__side">
+              <span class="price" data-price="intensivo-reparacion">30–50 €</span>
+              <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tratamiento intensivo de reparación y reconstrucción">Reservar</a>
             </div>
           </li>
         </ul>
         </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" aria-labelledby="consulta-title">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Paso a paso</span>
-          <h2 id="consulta-title">¿Cómo es el análisis del cuero cabelludo?</h2>
-        </div>
-        <ol class="steps-grid" role="list">
-          <li class="step-card card reveal"><span class="step-card__num" aria-hidden="true">1</span><h3>Diagnóstico con microcámara</h3><p>En el Spa equilibrio y el Spa aura vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p></li>
-          <li class="step-card card reveal"><span class="step-card__num" aria-hidden="true">2</span><h3>Plan personalizado</h3><p>Elegimos el tratamiento en cabina y los productos para casa según lo que necesita tu piel.</p></li>
-          <li class="step-card card reveal"><span class="step-card__num" aria-hidden="true">3</span><h3>Seguimiento</h3><p>Revisamos cómo evoluciona y ajustamos el plan según lo que necesite tu cuero cabelludo.</p></li>
-        </ol>
       </div>
     </section>
 
@@ -370,7 +357,7 @@
       <div class="site-footer__col">
         <div class="site-footer__head"><span class="site-footer__ico" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg></span><h2 class="site-footer__title">Horario</h2></div>
         <dl class="hours" data-hours>
-          <dt>Lunes – Viernes</dt><dd>10:00 – 13:00 · 15:00 – 20:00</dd>
+          <dt>Lunes – Viernes</dt><dd>10:00 – 14:00 · 16:00 – 20:00</dd>
           <dt>Sábado</dt><dd>8:00 – 13:00<small class="hours__note">Se abre dos sábados al mes</small></dd>
           <dt>Domingo</dt><dd>Cerrado</dd>
         </dl>

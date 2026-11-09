@@ -24,7 +24,7 @@
     },
 
     hours: [
-      { days: 'Lunes – Viernes', schemaDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], slots: ['10:00 – 13:00', '15:00 – 20:00'] },
+      { days: 'Lunes – Viernes', schemaDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], slots: ['10:00 – 14:00', '16:00 – 20:00'] },
       { days: 'Sábado', schemaDays: ['Saturday'], slots: ['8:00 – 13:00'], note: 'Se abre dos sábados al mes' },
       { days: 'Domingo', schemaDays: ['Sunday'], slots: [] }
     ],
@@ -36,10 +36,8 @@
     ],
 
     items: {
-      // Salud capilar: el precio de cada tratamiento va de 30 a 50 € según cuál se haga.
-      'diagnostico':       { type: 'servicio', category: 'salud', name: 'Diagnóstico',                       price: 30, priceMax: 50, approx: true },
-      'oxigenaciones':     { type: 'servicio', category: 'salud', name: 'Oxigenaciones para cuero cabelludo', price: 30, priceMax: 50, approx: true },
-      'tratamiento-fibra': { type: 'servicio', category: 'salud', name: 'Tratamiento para fibra capilar',     price: 30, priceMax: 50, approx: true },
+      // Salud capilar: el diagnóstico cuesta 10 €; las oxigenaciones van según el cabello y las necesidades (sin precio fijo).
+      'diagnostico':       { type: 'servicio', category: 'salud', name: 'Diagnóstico', price: 10, from: false },
 
       // Spa
       'spa-esencial':   { type: 'servicio', category: 'spa', name: 'Spa esencial',   duration: '50 min', price: 40, from: false },
@@ -55,9 +53,10 @@
       'barro-raiz':     { type: 'servicio', category: 'peluqueria', name: 'Barro en raíz',    contact: 'Barros', price: 30, priceMax: 40, approx: true },
       'barro-completo': { type: 'servicio', category: 'peluqueria', name: 'Barro completo',   contact: 'Barros', price: 50, priceMax: 70, approx: true },
       'alisado':        { type: 'servicio', category: 'peluqueria', name: 'Alisado',          price: 100, from: true },
-      'antifrizz-corto':       { type: 'servicio', category: 'peluqueria', name: 'Antifrizz en pelo corto',         contact: 'Antifrizz', price: 45, priceMax: 50, approx: true },
-      'antifrizz-medio-largo': { type: 'servicio', category: 'peluqueria', name: 'Antifrizz en pelo medio o largo', contact: 'Antifrizz', price: 50, priceMax: 60, approx: true },
-      'reparacion-nutricion-hidratacion': { type: 'servicio', category: 'peluqueria', name: 'Reparación, nutrición e hidratación', price: 30, priceMax: 50, approx: true },
+      'antifrizz': { type: 'servicio', category: 'peluqueria', name: 'Antifrizz', contact: 'Antifrizz', price: 45, priceMax: 60, approx: true },
+      'intensivo-hidratacion': { type: 'servicio', category: 'peluqueria', name: 'Tratamiento intensivo de hidratación y nutrición', contact: 'Tratamiento intensivo de hidratación y nutrición', price: 30, priceMax: 50, approx: true },
+      'intensivo-reparacion': { type: 'servicio', category: 'peluqueria', name: 'Tratamiento intensivo de reparación y reconstrucción', contact: 'Tratamiento intensivo de reparación y reconstrucción', price: 30, priceMax: 50, approx: true },
+      'tratamiento-fibra': { type: 'servicio', category: 'peluqueria', name: 'Tratamiento para fibra capilar', price: 30, priceMax: 50, approx: true },
 
       // Productos Jaldún
       'jaldun-equilibrante': { type: 'producto', name: 'Champú Equilibrante Jaldún', price: 31.5 },
@@ -74,19 +73,16 @@
       'jaldun-oxigenador': { type: 'producto', name: 'Oxigenador Jaldún', price: 43 },
       'jaldun-oxigenador-marino': { type: 'producto', name: 'Oxigenador Marino Jaldún', price: 43 },
 
-      // Productos Brazilian Hairtech (Paula aplica alisado, hidratación y reconstrucción en el centro)
+      // Productos Brazilian Hairtech
       'brazilian-post-alisado':  { type: 'producto', name: 'Post alisado Copa Cabana Brazilian Hairtech', price: 55 },
       'brazilian-healing':       { type: 'producto', name: 'Tratamiento Healing (champú y mascarilla) Brazilian Hairtech', price: 55 },
-      'brazilian-alisado':       { type: 'producto', name: 'Alisado Brazilian Hairtech', price: 100, from: true },
-      'brazilian-hidratacion':   { type: 'producto', name: 'Tratamiento intensivo de hidratación y nutrición Brazilian Hairtech', price: 30, priceMax: 50, approx: true },
-      'brazilian-reparacion':    { type: 'producto', name: 'Tratamiento intensivo de reparación y reconstrucción Brazilian Hairtech', price: 30, priceMax: 50, approx: true },
       'brazilian-aceite-coco':   { type: 'producto', name: 'Aceite de coco Brazilian Hairtech', price: 38 },
       'brazilian-healing-foam':  { type: 'producto', name: 'Healing foam Brazilian Hairtech', price: 38 },
 
       // Tarjetas regalo
-      'regalo-25': { type: 'regalo', name: 'Tarjeta regalo de 25 €', price: 25 },
-      'regalo-50': { type: 'regalo', name: 'Tarjeta regalo de 50 €', price: 50 },
-      'regalo-75': { type: 'regalo', name: 'Tarjeta regalo de 75 €', price: 75 }
+      'regalo-spa-esencial':   { type: 'regalo', name: 'Tarjeta regalo Spa esencial',   price: 40 },
+      'regalo-spa-equilibrio': { type: 'regalo', name: 'Tarjeta regalo Spa equilibrio', price: 50 },
+      'regalo-spa-aura':       { type: 'regalo', name: 'Tarjeta regalo Spa aura',       price: 70 }
     }
   };
 

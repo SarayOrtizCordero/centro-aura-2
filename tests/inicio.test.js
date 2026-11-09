@@ -36,7 +36,7 @@ test('hero: título, eyebrow, imagen y botones', () => {
   const h1 = hero.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)[1];
   assert.equal(text(h1), 'Cuidamos tu cabello desde la raíz');
   assert.ok(h1.includes('<em>desde la raíz</em>'));
-  assert.ok(hero.includes('<span class="eyebrow eyebrow--plain">Spa Capilar · Tricología</span>'));
+  assert.ok(!hero.includes('Spa Capilar · Tricología'), 'la etiqueta pasa a la cabecera, bajo AURA');
   const img = hero.match(/<img class="hero__img"[^>]*>/)[0];
   assert.ok(attr(img, 'src').endsWith('hero-salon.webp'));
   assert.equal(attr(img, 'width'), '2000');
@@ -202,12 +202,11 @@ test('mosaic: tres fotos, cita y sin biografía inventada', () => {
   assert.ok(!/\d\s*años/.test(sec));
 });
 
-test('main: las ocho secciones en orden y la topbar precede a la cabecera', () => {
+test('main: las ocho secciones en orden y sin barra superior', () => {
   assert.deepEqual(sections, [
     'hero', 'pillars', 'icon-row', 'service-cards', 'spotlight', 'mosaic', 'gift-banner', 'visit',
   ]);
-  assert.ok(html.indexOf('class="topbar"') > -1);
-  assert.ok(html.indexOf('class="topbar"') < html.indexOf('<header class="site-header"'));
+  assert.ok(!html.includes('class="topbar"'), 'la barra superior se ha quitado');
 });
 
 test('gift-banner: foto decorativa, velo, título y botón de WhatsApp', () => {

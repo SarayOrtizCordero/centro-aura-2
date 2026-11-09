@@ -135,10 +135,8 @@ for (const rel of pageFiles()) {
   });
 
   test(`${rel}: estructura común`, () => {
-    const topbar = html.indexOf('class="topbar"');
-    const header = html.indexOf('<header class="site-header"');
-    assert.ok(topbar > -1 && header > topbar, 'topbar antes de la cabecera');
-    assert.equal((html.match(/class="topbar"/g) || []).length, 1);
+    assert.ok(!html.includes('class="topbar"'), 'sin barra superior');
+    assert.ok(html.includes('<header class="site-header"'));
     const toggle = html.indexOf('<button class="nav-toggle"');
     const nav = html.indexOf('<nav class="site-nav" id="site-menu"');
     assert.ok(toggle > -1 && nav > toggle, 'nav-toggle antes de nav#site-menu');
@@ -157,7 +155,8 @@ for (const rel of pageFiles()) {
     assert.equal((navHtml.match(/class="sub-toggle" type="button" aria-expanded="false"/g) || []).length, 2);
     const brand = html.match(/<header class="site-header">[\s\S]*?<\/a>/)[0];
     assert.ok(brand.includes('<span class="brand__name">AURA</span>'));
-    assert.ok(!brand.includes('brand__tag'), 'la cabecera lleva solo AURA');
+    assert.ok(brand.includes('<span class="brand__tag">Spa Capilar · Tricología</span>'), 'la etiqueta va bajo AURA');
+    assert.ok(brand.indexOf('brand__name') < brand.indexOf('brand__tag'));
     const footer = html.slice(html.indexOf('<footer class="site-footer"'));
     assert.deepEqual(
       [...footer.matchAll(/<h2 class="site-footer__title">([^<]*)<\/h2>/g)].map((m) => m[1]),

@@ -16,7 +16,7 @@ const classTokens = (html) => {
 
 test('la portada usa los componentes propios de la demo B', () => {
   const used = classTokens(home);
-  for (const cls of ['topbar', 'hero__card', 'pillars', 'icon-row', 'service-cards', 'spotlight', 'mosaic', 'gift-banner', 'visit']) {
+  for (const cls of ['hero__card', 'pillars', 'icon-row', 'service-cards', 'spotlight', 'mosaic', 'gift-banner', 'visit']) {
     assert.ok(used.has(cls), 'falta la clase ' + cls);
   }
 });

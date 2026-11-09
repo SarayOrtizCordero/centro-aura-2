@@ -6,14 +6,6 @@ const data = require('../js/data.js');
 const css = read('css/styles.css');
 const main = read('js/main.js');
 
-test('topbar: el texto de respaldo del horario sale de data.js', () => {
-  const html = read('index.html');
-  const m = html.match(/<span data-hours-summary>([^<]*)<\/span>/);
-  assert.ok(m, 'falta [data-hours-summary]');
-  const expected = 'L–V ' + data.hours[0].slots.map((s) => s.replace(/ – /g, '–')).join(' · ');
-  assert.equal(m[1], expected);
-});
-
 test('main.js: contiene las cadenas del contrato y no usa max-width', () => {
   const strings = [
     "'[data-hours-summary]'",
