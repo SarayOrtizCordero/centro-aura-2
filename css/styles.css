@@ -1250,3 +1250,10 @@ main:focus { outline: none; }
   .gift-grid { gap: var(--s-8); }
 }
 .gift-tile__value { font-size: 1.5rem; line-height: 1.15; text-align: center; padding-inline: var(--s-2); }
+
+/* Cabecera · espacio en blanco alrededor de la marca y del menú */
+.site-header__inner { padding-block: var(--s-4); }
+.brand__tag { margin-top: var(--s-2); }
+@media (min-width: 900px) {
+  .site-header__inner { padding-block: var(--s-6); }
+}
