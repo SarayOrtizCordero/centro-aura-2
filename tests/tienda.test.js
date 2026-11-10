@@ -97,30 +97,24 @@ test('productos de Jaldún: solo con lo que ha dicho la clienta y con su precio'
   assert.ok(!html.includes('jaldun-ajobiotic') && !data.items['jaldun-ajobiotic'], 'Ajobiotic: retirado, no hay foto ni datos');
 });
 
-test('Brazilian Hairtech: siete fichas iguales a las de Jaldún, con foto de producto, precio de la clienta y selector de vista, sin filtro', () => {
+test('Brazilian Hairtech: cuatro fichas iguales a las de Jaldún, con foto de producto, precio de la clienta y selector de vista, sin filtro', () => {
   const sec = html.match(/<section class="section" id="brazilian-hairtech"[\s\S]*?<\/section>/)[0];
   assert.ok(/<section class="section" id="brazilian-hairtech"[^>]*data-view-block>/.test(sec));
-  assert.match(sec, /<h2 id="brazilian-hairtech-title">Marca Brazilian <em>Hairtech<\/em><\/h2>/);
+  assert.match(sec, /<h2 id="brazilian-hairtech-title">Brazilian <em>Hairtech<\/em><\/h2>/);
   assert.ok(!html.includes('Brasil Cacau') && !html.includes('brasil-cacau'), 'ya no queda Brasil Cacau');
   assert.equal((sec.match(/class="view-bar"/g) || []).length, 1);
   assert.ok(!sec.includes('filter-bar'));
   const cards = sec.match(/<li class="product-card[^"]*"[\s\S]*?<\/li>/g);
-  assert.equal(cards.length, 7);
+  assert.equal(cards.length, 4);
   const textos = {
       "brazilian-post-alisado": "Champú y acondicionador con nuez de Brasil y manteca de cupuaçu. Ayudan a prolongar el efecto del alisado y mantienen el cabello suave, hidratado y sin frizz.",
       "brazilian-healing": "Champú con pantenol y aceite de almendras, y mascarilla con macadamia y aceite de semilla de uva. Nutren e hidratan el cabello y ayudan a reparar la fibra para más brillo y suavidad.",
-      "brazilian-alisado": "Tratamiento de alisado Copacabana Tanino Amino, con queratina, aminoácidos y taninos, que se aplica en el centro. Reduce el frizz y conserva el movimiento natural. El precio varía según el producto que se gaste.",
-      "brazilian-hidratacion": "Tratamiento intensivo que se aplica en el centro para hidratar y nutrir el cabello, con la ampolla Healing de aminoácidos, aceite de lino y vitamina E. El precio varía según las cantidades.",
-      "brazilian-reparacion": "Tratamiento intensivo que se aplica en el centro para reparar y reconstruir la fibra capilar, con queratina hidrolizada, aceite de semilla de uva y péptidos. El precio varía según las cantidades.",
       "brazilian-aceite-coco": "Nutre el cabello, aporta brillo y suavidad, y ayuda a controlar el frizz. Con ácido hialurónico y protección térmica.",
       "brazilian-healing-foam": "Espuma sin aclarado con ácido hialurónico y pantenol. Aporta suavidad e hidratación y ayuda a reparar y proteger el cabello del calor y de agresiones externas."
   };
   const esperado = {
     'brazilian-post-alisado': ['post-alisado', '55'],
     'brazilian-healing': ['healing', '55'],
-    'brazilian-alisado': ['alisado', 'desde 100'],
-    'brazilian-hidratacion': ['hidratacion', '30–50'],
-    'brazilian-reparacion': ['reparacion', '30–50'],
     'brazilian-aceite-coco': ['aceite-coco', '38'],
     'brazilian-healing-foam': ['healing-foam', '38'],
   };
@@ -153,13 +147,13 @@ test('precios: todo ítem que no es servicio tiene su data-price igual a formatP
   }
 });
 
-test('botones: veintitrés enlaces de WhatsApp de producto (19 Lo quiero, 4 Regalar)', () => {
+test('botones: diecinueve enlaces de WhatsApp de producto (16 Lo quiero, 3 Regalar)', () => {
   const links = main.match(/<a\b[^>]*\sdata-wa="[^"]*"[^>]*>[\s\S]*?<\/a>/g);
-  assert.equal(links.length, 23);
+  assert.equal(links.length, 19);
   for (const a of links) assert.equal(attr(a.match(/<a\b[^>]*>/)[0], 'data-wa-kind'), 'producto');
   const labels = links.map((a) => a.replace(/<[^>]+>/g, '').trim());
-  assert.equal(labels.filter((l) => l === 'Lo quiero').length, 19);
-  assert.equal(labels.filter((l) => l === 'Regalar').length, 4);
+  assert.equal(labels.filter((l) => l === 'Lo quiero').length, 16);
+  assert.equal(labels.filter((l) => l === 'Regalar').length, 3);
 });
 
 test('nota, cabecera y CSS', () => {

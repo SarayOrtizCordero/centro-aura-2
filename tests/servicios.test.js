@@ -53,7 +53,8 @@ test('textos: aviso orientativo, Corte y rituales de Spa', () => {
   assert.ok(note.includes('<strong>orientativos</strong>'));
   assert.ok(note.includes('productos que se gasten'));
   assert.ok(panel.indexOf('price-note') < panel.indexOf('data-price'));
-  assert.ok(panelOf('salud-capilar').includes('<strong>30 a 50 €</strong>'));
+  assert.ok(!panelOf('salud-capilar').includes('price-note'), 'salud capilar ya no lleva nota de precio');
+  assert.ok(/data-price="diagnostico">10/.test(rowOf('diagnostico')));
   assert.match(html, /<h3>Corte<\/h3>\s*<p class="service-row__note">Incluye lavado, corte y secado<\/p>/);
   for (const id of ['spa-esencial', 'spa-equilibrio', 'spa-aura']) {
     const inc = rowOf(id).match(/<ul class="includes"[\s\S]*?<\/ul>/);
@@ -97,17 +98,19 @@ test('cabecera, fotos de categoría, análisis y llamada final', () => {
   assert.deepEqual(
     photos.map((p) => attr(p, 'alt')),
     [
-      'Aceites, cremas y un peine de madera junto a un mechón de pelo largo',
+      'Aceites, cremas y un peine de madera junto a un mechón de cabello largo',
       'Peine de masaje de madera junto a un aceite capilar, un cepillo y lavanda',
       'Secado del cabello con cepillo redondo y secador',
     ]
   );
   const sizes = photos.map((p) => [attr(p, 'width'), attr(p, 'height'), attr(p, 'loading')]);
   assert.deepEqual(sizes, [['900', '1125', 'lazy'], ['1000', '1250', 'lazy'], ['1000', '1250', 'lazy']]);
-  assert.match(html, /<h2 id="consulta-title">¿Cómo es el análisis del cuero cabelludo\?<\/h2>/);
-  const steps = html.match(/<li class="step-card card reveal">[\s\S]*?<\/li>/g);
+  assert.ok(html.includes('<span class="eyebrow">Paso a paso</span>') && html.includes('¿Cómo es el análisis del cuero cabelludo?'));
+  assert.ok(panelOf('salud-capilar').includes('steps-grid'), 'el paso a paso solo va en salud capilar');
+  assert.equal((html.match(/steps-grid/g) || []).length, 1);
+  const steps = html.match(/<li class="step-card card">[\s\S]*?<\/li>/g);
   assert.deepEqual(
-    steps.map((s) => text(s.match(/<h3>([\s\S]*?)<\/h3>/)[1])),
+    steps.map((s) => text(s.match(/<h4>([\s\S]*?)<\/h4>/)[1])),
     ['Diagnóstico con microcámara', 'Plan personalizado', 'Seguimiento']
   );
   const cta = html.match(/<a [^>]*>Escríbeme/)[0];
@@ -197,14 +200,12 @@ test('"Ver qué incluye" se ve como un subtítulo (acento, mayúsculas pequeñas
 test('resúmenes breves: solo con textos de la clienta (o el propio nombre del servicio) y visibles también en cuadrícula', () => {
   const esperado = {
     'diagnostico': 'Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.',
-    'tratamiento-fibra': 'Tres opciones según lo que necesite tu pelo: reparación, hidratación o nutrición.',
-    'reparacion-nutricion-hidratacion': 'Tres opciones según lo que necesite tu pelo.',
+    'tratamiento-fibra': 'Tres opciones según lo que necesite tu cabello: reparación, hidratación o nutrición.',
     'lavado-peinado': 'Incluye lavado y peinado.',
     'barro-raiz': 'Coloración natural solo en la raíz.',
     'barro-completo': 'Coloración natural en todo el cabello.',
     'oxigenaciones': 'Tratamiento para el cuero cabelludo que busca mejorar su salud.',
-    'antifrizz-corto': 'Se ajusta a tu melena y a lo que necesite.',
-    'antifrizz-medio-largo': 'Se ajusta a tu melena y a lo que necesite.',
+    'antifrizz': 'Elimina el encrespamiento, sella la cutícula del cabello consiguiendo un acabado suave y brillante por más tiempo, facilitando así el peinado diario.',
   };
   for (const [id, text] of Object.entries(esperado)) {
     assert.ok(rowOf(id).includes('<p class="service-row__note">' + text + '</p>'), id);

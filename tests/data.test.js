@@ -24,7 +24,7 @@ test('los servicios tienen categoría válida y duración', () => {
   const cats = data.categories.map((c) => c.id);
   assert.deepEqual(cats, ['salud', 'spa', 'peluqueria']);
   const servicios = Object.entries(data.items).filter(([, i]) => i.type === 'servicio');
-  assert.equal(servicios.length, 15);
+  assert.equal(servicios.length, 14);
   for (const [id, item] of servicios) {
     assert.ok(cats.includes(item.category), `${id}: categoría inválida`);
   }
@@ -39,7 +39,7 @@ test('los tres Spa tienen duración; el resto no inventa una', () => {
 
 test('precios en rango: máximo mayor que mínimo y marcados como orientativos', () => {
   const rangos = Object.entries(data.items).filter(([, i]) => i.priceMax !== undefined);
-  assert.equal(rangos.length, 10);
+  assert.equal(rangos.length, 6);
   for (const [id, item] of rangos) {
     assert.ok(item.priceMax > item.price, `${id}: priceMax debe ser mayor que price`);
     assert.equal(item.approx, true, `${id}: un rango es orientativo`);
@@ -49,12 +49,11 @@ test('precios en rango: máximo mayor que mínimo y marcados como orientativos',
 
 test('precios de la carta (lista dada por Paula)', () => {
   const esperado = {
-    'diagnostico': [30, 50], 'oxigenaciones': [30, 50], 'tratamiento-fibra': [30, 50],
+    'diagnostico': [10], 'tratamiento-fibra': [30, 50],
     'spa-esencial': [40], 'spa-equilibrio': [50], 'spa-aura': [70],
     'lavado-peinado': [13], 'corte': [15], 'corte-peinado': [25],
     'barro-raiz': [30, 40], 'barro-completo': [50, 70],
-    'antifrizz-corto': [45, 50], 'antifrizz-medio-largo': [50, 60],
-    'reparacion-nutricion-hidratacion': [30, 50]
+    'antifrizz': [45, 60]
   };
   for (const [id, [min, max]] of Object.entries(esperado)) {
     assert.equal(data.items[id].price, min, `${id}: mínimo`);
@@ -71,20 +70,20 @@ test('duraciones del Spa (confirmadas por Paula)', () => {
   assert.equal(data.items['spa-aura'].duration, '1 h 15 min');
 });
 
-test('el catálogo tiene los 37 items esperados', () => {
+test('el catálogo tiene los 33 items esperados', () => {
   const expectedIds = [
-    'diagnostico', 'oxigenaciones', 'tratamiento-fibra',
+    'diagnostico', 'tratamiento-fibra', 'intensivo-hidratacion', 'intensivo-reparacion',
     'spa-esencial', 'spa-equilibrio', 'spa-aura',
     'barro-raiz', 'barro-completo', 'alisado',
-    'antifrizz-corto', 'antifrizz-medio-largo', 'reparacion-nutricion-hidratacion',
+    'antifrizz',
     'lavado-peinado', 'corte', 'corte-peinado',
     'jaldun-equilibrante', 'jaldun-vitalzen', 'jaldun-multiefecto',
     'jaldun-tonico-equilibrante', 'jaldun-tonico-actianagen',
     'jaldun-nutrianagen', 'jaldun-aceite-bioregenerador', 'jaldun-emulsion-c3q', 'jaldun-acondicionador-spray',
     'jaldun-factor-crecimiento', 'jaldun-oxigenador', 'jaldun-oxigenador-marino',
-    'brazilian-post-alisado', 'brazilian-healing', 'brazilian-alisado', 'brazilian-hidratacion',
-    'brazilian-reparacion', 'brazilian-aceite-coco', 'brazilian-healing-foam',
-    'regalo-25', 'regalo-50', 'regalo-75'
+    'brazilian-post-alisado', 'brazilian-healing', 
+    'brazilian-aceite-coco', 'brazilian-healing-foam',
+    'regalo-spa-esencial', 'regalo-spa-equilibrio', 'regalo-spa-aura'
   ];
   assert.deepEqual(Object.keys(data.items).sort(), expectedIds.sort());
   for (const [id, item] of Object.entries(data.items)) {
@@ -96,8 +95,8 @@ test('ya no quedan bonos: dependían de servicios que se retiraron', () => {
   assert.deepEqual(Object.values(data.items).filter((i) => i.type === 'bono'), []);
 });
 
-test('horario confirmado: L–V 10–13 y 15–20, sábado 8–13 (dos al mes), domingo cerrado', () => {
-  assert.deepEqual(data.hours[0].slots, ['10:00 – 13:00', '15:00 – 20:00']);
+test('horario confirmado: L–V 10–14 y 16–20, sábado 8–13 (dos al mes), domingo cerrado', () => {
+  assert.deepEqual(data.hours[0].slots, ['10:00 – 14:00', '16:00 – 20:00']);
   assert.deepEqual(data.hours[1].slots, ['8:00 – 13:00']);
   assert.equal(data.hours[1].note, 'Se abre dos sábados al mes');
   assert.deepEqual(data.hours[2].slots, []);

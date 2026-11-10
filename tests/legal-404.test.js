@@ -68,9 +68,8 @@ test('404: contenido, salto al contenido y tres salidas', () => {
   assert.equal(attr(wa, 'href'), 'https://wa.me/34610167764');
 });
 
-test('404: estructura común (topbar, cabecera, pie, WhatsApp, fuentes y hojas)', () => {
+test('404: estructura común (cabecera, pie, WhatsApp, fuentes y hojas)', () => {
   for (const needle of [
-    'class="topbar"',
     '<header class="site-header"',
     '<footer class="site-footer"',
     '<a class="wa-float"',
