@@ -39,8 +39,8 @@ test('hero: título, eyebrow, imagen y botones', () => {
   assert.ok(!hero.includes('Spa Capilar · Tricología'), 'la etiqueta pasa a la cabecera, bajo AURA');
   const img = hero.match(/<img class="hero__img"[^>]*>/)[0];
   assert.ok(attr(img, 'src').endsWith('hero-salon.webp'));
-  assert.equal(attr(img, 'width'), '2000');
-  assert.equal(attr(img, 'height'), '1333');
+  assert.equal(attr(img, 'width'), '1672');
+  assert.equal(attr(img, 'height'), '941');
   assert.equal(attr(img, 'fetchpriority'), 'high');
   assert.ok(attr(img, 'alt').trim().length > 0);
   const reservar = hero.match(/<a [^>]*data-wa[^>]*>Reservar cita/)[0];
@@ -71,7 +71,7 @@ test('pilares: cuatro, con título e icono en orden', () => {
   assert.equal(items.length, 4);
   assert.deepEqual(
     items.map((li) => text(li.match(/<h3>([\s\S]*?)<\/h3>/)[1])),
-    ['Peluquería titulada', 'Spa capilar', 'Tricología con microcámara', 'Cosmética natural Jaldún']
+    ['Peluquera titulada', 'Spa capilar', 'Tricología con microcámara', 'Cosmética natural Jaldún']
   );
   assert.deepEqual(
     items.map((li) => li.match(/<use href="#(i-[\w-]+)"/)[1]),
@@ -189,9 +189,9 @@ test('mosaic: tres fotos, cita y sin biografía inventada', () => {
   assert.deepEqual(
     imgs.map((i) => [attr(i, 'src').split('/').pop(), attr(i, 'width'), attr(i, 'height')]),
     [
-      ['servicio-salud.webp', '1000', '1250'],
-      ['destacado-terapias.webp', '900', '1125'],
-      ['servicio-peluqueria.webp', '1000', '1250'],
+      ['paula-aura.webp', '900', '1200'],
+      ['servicio-salud.webp', '940', '1176'],
+      ['destacado-tricologia.webp', '1000', '1250'],
     ]
   );
   for (const i of imgs) assert.ok(attr(i, 'alt').trim().length > 0);
@@ -209,22 +209,20 @@ test('main: las ocho secciones en orden y sin barra superior', () => {
   assert.ok(!html.includes('class="topbar"'), 'la barra superior se ha quitado');
 });
 
-test('gift-banner: foto decorativa, velo, título y botón de WhatsApp', () => {
+test('gift-banner: foto decorativa, velo, título y enlace a la página de tarjetas regalo', () => {
   const sec = sectionOf('gift-banner');
   const img = sec.match(/<img\b[^>]*>/)[0];
   assert.ok(attr(img, 'src').endsWith('tarjeta-regalo.webp'));
   assert.equal(attr(img, 'alt'), '');
-  assert.equal(attr(img, 'width'), '1200');
-  assert.equal(attr(img, 'height'), '900');
+  assert.equal(attr(img, 'width'), '940');
+  assert.equal(attr(img, 'height'), '706');
   const veil = sec.match(/<div class="gift-banner__veil"[^>]*>/)[0];
   assert.equal(attr(veil, 'aria-hidden'), 'true');
   const h2 = sec.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/)[1];
   assert.equal(text(h2), 'Regala Aura');
   assert.ok(h2.includes('<em>Aura</em>'));
-  const btn = sec.match(/<a [^>]*>Pedir tarjeta regalo/)[0];
-  assert.equal(attr(btn, 'data-wa'), 'Tarjeta regalo');
-  assert.equal(attr(btn, 'data-wa-kind'), 'producto');
-  assert.equal(attr(btn, 'href'), WA);
+  const btn = sec.match(/<a [^>]*>Ver tarjetas regalo/)[0];
+  assert.equal(attr(btn, 'href'), 'pages/tarjetas-regalo.html');
   assert.match(rule('.gift-banner__veil'), /rgb\(var\(--veil-dark-rgb\) \/ var\(--veil-dark-alpha\)\)/);
 });
 

@@ -16,13 +16,15 @@ const jsonLd = (html) => {
 };
 const locs = (xml) => [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 
-test('páginas: las seis esperadas, y todo enlace a pages/*.html existe', () => {
+test('páginas: las ocho esperadas, y todo enlace a pages/*.html existe', () => {
   assert.deepEqual([...pages].sort(), [
     'index.html',
     'pages/aviso-legal.html',
     'pages/contacto.html',
+    'pages/cookies.html',
     'pages/privacidad.html',
     'pages/servicios.html',
+    'pages/tarjetas-regalo.html',
     'pages/tienda.html',
   ]);
   for (const rel of [...pages, '404.html']) {

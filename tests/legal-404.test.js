@@ -6,6 +6,7 @@ const { ROOT, read } = require('./helpers');
 
 const aviso = read('pages/aviso-legal.html');
 const privacidad = read('pages/privacidad.html');
+const cookies = read('pages/cookies.html');
 const nf = read('404.html');
 
 const attr = (tag, name) => {
@@ -13,14 +14,17 @@ const attr = (tag, name) => {
   return m ? m[1] : null;
 };
 
-test('legales: h1, textos clave, campos pendientes, BORRADOR y sin formularios', () => {
+test('legales: h1, textos clave, BORRADOR y sin formularios', () => {
   assert.ok(aviso.includes('<h1>Aviso legal</h1>'));
   assert.ok(aviso.includes('Ley 34/2002'));
-  assert.ok(privacidad.includes('<h1>Privacidad y cookies</h1>'));
-  assert.ok(privacidad.includes('no usa cookies propias'));
+  assert.ok(privacidad.includes('<h1>Política de privacidad</h1>'));
+  assert.ok(privacidad.includes('href="cookies.html"'));
+  assert.ok(cookies.includes('<h1>Política de cookies</h1>'));
+  assert.ok(cookies.includes('no usa cookies propias'));
+  assert.ok(cookies.includes('artículo 22.2'));
+  assert.ok(cookies.includes('Ver el mapa'));
   assert.ok(privacidad.includes('aepd.es'));
-  for (const html of [aviso, privacidad]) {
-    assert.ok(html.includes('<mark class="pendiente">'));
+  for (const html of [aviso, privacidad, cookies]) {
     assert.ok(html.includes('BORRADOR'));
     assert.ok(!html.includes('<form'));
   }
@@ -80,4 +84,19 @@ test('404: estructura común (cabecera, pie, WhatsApp, fuentes y hojas)', () => 
   }
   const sheets = [...nf.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(sheets, ['css/fonts.css', 'css/tokens.css', 'css/styles.css']);
+});
+
+test('legales: datos del titular rellenos y sin campos pendientes', () => {
+  for (const html of [aviso, privacidad, cookies]) {
+    assert.ok(html.includes('Paula Ramírez Caballero'));
+    assert.ok(html.includes('saludcapilarpaula@gmail.com'));
+    assert.ok(html.includes('18 de noviembre de 2026'));
+    assert.ok(!html.includes('Registro') && !html.includes('Inscripción registral'));
+    assert.ok(!html.includes('<form'));
+  }
+  for (const html of [aviso, privacidad]) assert.ok(html.includes('49166388R'));
+  assert.ok(!privacidad.includes('<mark class="pendiente">'));
+  assert.ok(!aviso.includes('<mark class="pendiente">'));
+  assert.ok(aviso.includes('Los precios mostrados no llevan IVA.'));
+  for (const d of ['15', '16', '17', '18', '20', '21']) assert.ok(privacidad.includes('art. ' + d + ' RGPD'), 'art. ' + d);
 });

@@ -54,9 +54,7 @@
       'barro-completo': { type: 'servicio', category: 'peluqueria', name: 'Barro completo',   contact: 'Barros', price: 50, priceMax: 70, approx: true },
       'alisado':        { type: 'servicio', category: 'peluqueria', name: 'Alisado',          price: 100, from: true },
       'antifrizz': { type: 'servicio', category: 'peluqueria', name: 'Antifrizz', contact: 'Antifrizz', price: 45, priceMax: 60, approx: true },
-      'intensivo-hidratacion': { type: 'servicio', category: 'peluqueria', name: 'Tratamiento intensivo de hidratación y nutrición', contact: 'Tratamiento intensivo de hidratación y nutrición', price: 30, priceMax: 50, approx: true },
-      'intensivo-reparacion': { type: 'servicio', category: 'peluqueria', name: 'Tratamiento intensivo de reparación y reconstrucción', contact: 'Tratamiento intensivo de reparación y reconstrucción', price: 30, priceMax: 50, approx: true },
-      'tratamiento-fibra': { type: 'servicio', category: 'peluqueria', name: 'Tratamiento para fibra capilar', price: 30, priceMax: 50, approx: true },
+      'tratamiento-capilar': { type: 'servicio', category: 'peluqueria', name: 'Tratamiento capilar', price: 30, priceMax: 50, approx: true },
 
       // Productos Jaldún
       'jaldun-equilibrante': { type: 'producto', name: 'Champú Equilibrante Jaldún', price: 31.5 },

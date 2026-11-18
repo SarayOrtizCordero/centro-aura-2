@@ -573,7 +573,7 @@ body.menu-open::after {
 .mosaic__inner { display: grid; gap: var(--s-12); align-items: center; }
 .mosaic__photos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
 .mosaic__photo { width: 100%; height: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-card); }
-.mosaic__photo--tall { grid-row: span 2; aspect-ratio: auto; border-radius: var(--r-arch); }
+.mosaic__photo--tall { grid-row: span 2; aspect-ratio: auto; border-radius: var(--r-arch); object-position: 38% center; }
 .mosaic__quote {
   margin: var(--s-8) 0 0;
   padding-left: var(--s-6);
@@ -628,7 +628,7 @@ body.menu-open::after {
   text-align: center;
 }
 .page-hero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
-.page-hero__veil { position: absolute; inset: 0; z-index: -1; background: rgb(var(--veil-light-rgb) / var(--veil-light-alpha)); }
+.page-hero__veil { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 45% 75% at 50% 50%, rgb(var(--veil-light-rgb) / 0.6), transparent), rgb(var(--veil-light-rgb) / var(--veil-light-alpha)); }
 .page-hero p { max-width: var(--measure); margin: var(--s-4) auto 0; color: var(--c-text); }
 .page-hero .lotus { margin-inline: auto; }
 
@@ -753,25 +753,6 @@ body:has(.service-dialog[open]) { overflow: hidden; }
 .product-card__body .btn--primary { min-height: 44px; font-size: 0.9375rem; }
 .product-card__body .btn--primary .btn__icon, .product-card__body .btn--primary:has(> .btn__icon)::before { width: 28px; height: 28px; }
 
-.gift-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); margin: 0; padding: 0; list-style: none; }
-.gift-tile__face {
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: var(--s-1);
-  min-height: 120px;
-  background: var(--c-anchor);
-  color: var(--c-on-anchor);
-}
-.gift-tile__brand { font: 500 1rem/1 var(--font-display); letter-spacing: 0.32em; }
-.gift-tile__value { font: 500 2.25rem/1 var(--font-display); font-variant-numeric: lining-nums tabular-nums; }
-.gift-tile { display: flex; flex-direction: column; height: 100%; }
-/* Igual que en las fichas de producto: precio y botón abajo, alineados en las cuatro tarjetas */
-.gift-tile__body { flex: 1; display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-4); }
-.gift-tile__body h3 { font-size: 1.25rem; }
-.gift-tile__body p { margin: 0; }
-.gift-tile__body .price { margin-top: auto; padding-top: var(--s-3); }
-.gift-tile__body .btn { width: 100%; margin-top: var(--s-3); }
 
 /* Páginas interiores · Contacto */
 
@@ -927,8 +908,6 @@ main:focus { outline: none; }
   .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); }
   .product-card { flex-direction: column; }
   .product-card__visual { flex: none; }
-  .gift-grid { gap: var(--s-4); }
-  .gift-tile__face { min-height: 160px; }
   .contact-cards { grid-template-columns: repeat(2, 1fr); }
   .pillars__list { grid-template-columns: repeat(2, 1fr); }
   .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
@@ -1015,7 +994,7 @@ main:focus { outline: none; }
   .site-footer { padding-bottom: var(--s-8); }
   .site-footer__grid { grid-template-columns: 1.1fr 1.1fr 1fr 1.2fr; gap: var(--s-8) var(--s-8); }
   .site-footer__bottom { grid-template-columns: 1fr auto auto; align-items: center; gap: var(--s-8); }
-  .wa-float { display: none; }
+  .wa-float { right: var(--s-8); bottom: var(--s-8); }
   :root { --r-curve: 64px; }
   .hero { padding-bottom: var(--s-24); }
   .hero__inner {
@@ -1047,8 +1026,8 @@ main:focus { outline: none; }
   .category__head { grid-template-columns: 1fr 280px; align-items: center; }
   .contact-cards { grid-template-columns: repeat(4, 1fr); }
   .contact-visit { grid-template-columns: 1fr 1fr; }
-  .product-card__body, .gift-tile__body { padding: var(--s-6); }
-  .product-grid, .gift-grid { gap: var(--s-6); }
+  .product-card__body { padding: var(--s-6); }
+  .product-grid { gap: var(--s-6); }
 }
 
 /* Filtro de productos y selector Lista / Cuadrícula en una misma barra */
@@ -1081,16 +1060,12 @@ main:focus { outline: none; }
 [data-view-block][data-view="list"] .product-grid { grid-template-columns: 1fr; gap: var(--s-3); }
 /* En pantalla ancha la lista va a dos columnas: una ficha a todo el ancho dejaba medio recuadro vacío */
 @media (min-width: 900px) {
-  [data-view-block][data-view="list"] .product-grid, [data-view-block][data-view="list"] .gift-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4); }
+  [data-view-block][data-view="list"] .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4); }
 }
 [data-view-block][data-view="list"] .product-card { display: flex; flex-direction: row; }
 [data-view-block][data-view="list"] .product-card__visual { flex: 0 0 clamp(140px, 38%, 240px); }
 [data-view-block][data-view="list"] .product-card__body { padding: var(--s-4); }
 [data-view-block][data-view="list"] .product-card__body .btn { width: auto; align-self: flex-start; }
-[data-view-block][data-view="list"] .gift-grid { grid-template-columns: 1fr; gap: var(--s-3); }
-[data-view-block][data-view="list"] .gift-tile { flex-direction: row; }
-[data-view-block][data-view="list"] .gift-tile__face { flex: 0 0 clamp(120px, 30%, 240px); min-height: 0; }
-[data-view-block][data-view="list"] .gift-tile__body { padding: var(--s-4); }
 
 /* Vista en cuadrícula de la tienda: dos por fila en móvil (el último, solo, a todo el ancho) */
 [data-view-block][data-view="grid"] .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1116,14 +1091,13 @@ main:focus { outline: none; }
   [data-view-block][data-view="list"] .service-row { padding: var(--s-6); }
   [data-view-block][data-view="list"] .service-row h3 { font-size: var(--fs-h3); }
   [data-view-block][data-view="list"] .service-row .price { font-size: 2rem; }
-  [data-view-block][data-view="list"] .product-card__body, [data-view-block][data-view="list"] .gift-tile__body { padding: var(--s-6); }
+  [data-view-block][data-view="list"] .product-card__body { padding: var(--s-6); }
   [data-view-block][data-view="grid"] .product-card__body { padding: var(--s-6); }
 }
 
 @media (min-width: 1200px) {
   .category-tiles { grid-template-columns: repeat(3, 1fr); }
   .category-tiles > .category-tile:last-child:nth-child(odd) { grid-column: auto; }
-  .gift-grid { grid-template-columns: repeat(4, 1fr); }
   .js .site-nav__list { gap: var(--s-6); }
   .js .site-nav__list > li > a { font-size: 1rem; }
   .site-header .brand__name { font-size: 1.75rem; }
@@ -1139,17 +1113,17 @@ main:focus { outline: none; }
 }
 
 /* Tienda: más aire entre fichas y secciones, y fotos de producto más contenidas */
-#jaldun, #brazilian-hairtech, #tarjetas-regalo { padding-block: var(--s-24); }
-#jaldun .section-head, #brazilian-hairtech .section-head, #tarjetas-regalo .section-head { margin-bottom: var(--s-12); }
+#jaldun, #brazilian-hairtech { padding-block: var(--s-24); }
+#jaldun .section-head, #brazilian-hairtech .section-head { margin-bottom: var(--s-12); }
 [data-view-block] .shop-toolbar, [data-view-block] .view-bar { margin-bottom: var(--s-6); }
-[data-view-block] .product-grid, [data-view-block] .gift-grid { gap: var(--s-6); }
+[data-view-block] .product-grid { gap: var(--s-6); }
 .product-card__body { gap: var(--s-3); }
 .product-card__body .price { padding-top: var(--s-4); }
 [data-view-block][data-view="grid"] .product-card__body { padding: var(--s-4); }
 
 @media (min-width: 900px) {
-  [data-view-block] .product-grid, [data-view-block] .gift-grid { gap: var(--s-8); }
-  [data-view-block][data-view="list"] .product-card__body, [data-view-block][data-view="list"] .gift-tile__body { padding: var(--s-8); }
+  [data-view-block] .product-grid { gap: var(--s-8); }
+  [data-view-block][data-view="list"] .product-card__body { padding: var(--s-8); }
   [data-view-block][data-view="grid"] .product-card__body { padding: var(--s-6); }
   /* Fotos más pequeñas en escritorio: el producto no debe ocupar toda la ficha */
   [data-view-block][data-view="grid"] .product-card__visual img { max-height: 240px; margin-inline: auto; }
@@ -1228,10 +1202,8 @@ main:focus { outline: none; }
 .category-tiles { gap: var(--s-8); }
 .category-tile { gap: var(--s-6); padding: var(--s-6); }
 .category-tile p { margin-block: var(--s-2) var(--s-4); }
-.product-card__body, .gift-tile__body { gap: var(--s-4); }
-.gift-tile__body { padding: var(--s-6); }
-.gift-grid { gap: var(--s-6); }
-[data-view-block][data-view="list"] .product-card__body, [data-view-block][data-view="list"] .gift-tile__body { padding: var(--s-6); }
+.product-card__body { gap: var(--s-4); }
+[data-view-block][data-view="list"] .product-card__body { padding: var(--s-6); }
 .shop-toolbar { margin-bottom: var(--s-8); }
 
 .contact-cards { gap: var(--s-4); }
@@ -1247,13 +1219,96 @@ main:focus { outline: none; }
   .icon-row__item { padding: var(--s-8) var(--s-6); }
   .category-tiles { gap: var(--s-8); }
   .contact-cards { gap: var(--s-6); }
-  .gift-grid { gap: var(--s-8); }
 }
-.gift-tile__value { font-size: 1.5rem; line-height: 1.15; text-align: center; padding-inline: var(--s-2); }
 
 /* Cabecera · espacio en blanco alrededor de la marca y del menú */
 .site-header__inner { padding-block: var(--s-4); }
 .brand__tag { margin-top: var(--s-2); }
 @media (min-width: 900px) {
   .site-header__inner { padding-block: var(--s-6); }
+}
+
+/* Título del hero más grande en escritorio */
+@media (min-width: 900px) {
+  .hero__title { font-size: clamp(3rem, 5vw, 4.5rem); text-wrap: balance; }
+}
+
+/* Página de tarjetas regalo: el nombre, el precio y la duración van sobre la parte lisa de la tarjeta (a la izquierda de la foto) */
+.gift-cards { display: grid; gap: var(--s-6); margin: 0; padding: 0; list-style: none; }
+.gift-card { display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+.gift-card__visual { position: relative; container-type: inline-size; }
+.gift-card__visual img { display: block; width: 100%; height: auto; }
+.gift-card__info {
+  position: absolute;
+  left: 9.5cqw;
+  top: 34cqw;
+  width: 56cqw;
+  height: 18cqw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5cqw;
+  color: var(--c-anchor);
+}
+.gift-card__name { font-size: 8.5cqw; line-height: 1.05; }
+.gift-card__meta { display: flex; align-items: baseline; gap: 3cqw; margin: 0; }
+.gift-card__price { font: 500 7cqw/1 var(--font-display); font-variant-numeric: lining-nums tabular-nums; }
+.gift-card__dur { font-size: 3.8cqw; line-height: 1; color: var(--c-text-soft); }
+.gift-card__body { flex: 1; display: flex; flex-direction: column; gap: var(--s-4); padding: var(--s-6); }
+.gift-card__body p { margin: 0; }
+.gift-card__body .btn { margin-top: auto; align-self: flex-start; }
+@media (min-width: 900px) {
+  .gift-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-8); }
+}
+
+/* Salud capilar, Spa y Peluquería: la foto de categoría, más grande en escritorio */
+@media (min-width: 900px) {
+  .category__head { grid-template-columns: 1fr 380px; }
+  .category__photo { max-width: 380px; }
+}
+
+/* Cabecera en escritorio: el menú no se pega a la marca AURA ni salta de línea (cinco enlaces a un lado, marca al centro) */
+@media (min-width: 900px) {
+  .js .site-nav__list { flex-wrap: nowrap; gap: var(--s-2); }
+  .js .site-nav__list > li > a { white-space: nowrap; }
+  .js .site-nav__list > li > a { font-size: 0.8125rem; }
+  .js .site-nav__list .sub-toggle { width: 20px; }
+  .site-header__inner { column-gap: var(--s-4); }
+  .site-header .brand__tag { font-size: 0.625rem; letter-spacing: 0.04em; }
+}
+@media (min-width: 1200px) {
+  /* La cabecera es más ancha que el contenido: el menú queda más a la izquierda, con más aire entre enlaces según crece la pantalla */
+  .site-header__inner { width: min(100% - 2 * var(--s-8), 1480px); }
+  .js .site-nav__list { gap: clamp(var(--s-3), calc(var(--s-3) + (100vw - 1200px) * 0.125), var(--s-8)); }
+  .js .site-nav__list > li > a { font-size: 0.9375rem; }
+  .js .site-nav__list .sub-toggle { width: 28px; }
+  .site-header__inner { column-gap: var(--s-8); }
+  .site-header .brand__tag { font-size: 0.6875rem; letter-spacing: 0.16em; }
+}
+
+/* Cabeceras de página con foto: más altas en escritorio para que la foto se vea más grande */
+@media (min-width: 900px) {
+  .page-hero { padding-block: var(--s-24); }
+}
+
+/* Portada · pilares con más aire */
+.pillars { padding-block: var(--s-16); }
+.pillars__list { gap: var(--s-16); }
+.pillar { gap: var(--s-4); }
+.pillar p { line-height: 1.7; }
+@media (min-width: 900px) {
+  .pillars { padding-block: var(--s-24); }
+  .pillars__list { gap: var(--s-16); }
+}
+
+/* Portada · Sobre Aura: fotos más anchas. En móvil Paula va a todo el ancho y entera (3:4); en pantalla ancha ocupa dos filas con la proporción de su foto */
+.mosaic__photos { grid-template-columns: 1fr 1fr; }
+.mosaic__photo { aspect-ratio: 1 / 1; }
+.mosaic__photo--tall { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 3 / 4; object-position: center; }
+@media (min-width: 600px) {
+  .mosaic__photos { grid-template-columns: 3fr 2fr; }
+  .mosaic__photo--tall { grid-column: auto; grid-row: span 2; aspect-ratio: auto; }
+}
+@media (min-width: 900px) {
+  .mosaic__inner { grid-template-columns: 4fr 7fr; }
 }

@@ -24,7 +24,7 @@ test('los servicios tienen categoría válida y duración', () => {
   const cats = data.categories.map((c) => c.id);
   assert.deepEqual(cats, ['salud', 'spa', 'peluqueria']);
   const servicios = Object.entries(data.items).filter(([, i]) => i.type === 'servicio');
-  assert.equal(servicios.length, 14);
+  assert.equal(servicios.length, 12);
   for (const [id, item] of servicios) {
     assert.ok(cats.includes(item.category), `${id}: categoría inválida`);
   }
@@ -39,7 +39,7 @@ test('los tres Spa tienen duración; el resto no inventa una', () => {
 
 test('precios en rango: máximo mayor que mínimo y marcados como orientativos', () => {
   const rangos = Object.entries(data.items).filter(([, i]) => i.priceMax !== undefined);
-  assert.equal(rangos.length, 6);
+  assert.equal(rangos.length, 4);
   for (const [id, item] of rangos) {
     assert.ok(item.priceMax > item.price, `${id}: priceMax debe ser mayor que price`);
     assert.equal(item.approx, true, `${id}: un rango es orientativo`);
@@ -49,7 +49,7 @@ test('precios en rango: máximo mayor que mínimo y marcados como orientativos',
 
 test('precios de la carta (lista dada por Paula)', () => {
   const esperado = {
-    'diagnostico': [10], 'tratamiento-fibra': [30, 50],
+    'diagnostico': [10], 'tratamiento-capilar': [30, 50],
     'spa-esencial': [40], 'spa-equilibrio': [50], 'spa-aura': [70],
     'lavado-peinado': [13], 'corte': [15], 'corte-peinado': [25],
     'barro-raiz': [30, 40], 'barro-completo': [50, 70],
@@ -70,9 +70,9 @@ test('duraciones del Spa (confirmadas por Paula)', () => {
   assert.equal(data.items['spa-aura'].duration, '1 h 15 min');
 });
 
-test('el catálogo tiene los 33 items esperados', () => {
+test('el catálogo tiene los 31 items esperados', () => {
   const expectedIds = [
-    'diagnostico', 'tratamiento-fibra', 'intensivo-hidratacion', 'intensivo-reparacion',
+    'diagnostico', 'tratamiento-capilar',
     'spa-esencial', 'spa-equilibrio', 'spa-aura',
     'barro-raiz', 'barro-completo', 'alisado',
     'antifrizz',

@@ -1,13 +1,13 @@
 [
-  { "name": "hero-salon", "width": 2000, "height": 1333 },
+  { "name": "hero-salon", "width": 1672, "height": 941 },
   { "name": "destacado-spa", "width": 900, "height": 1125 },
-  { "name": "destacado-tricologia", "width": 900, "height": 1125 },
+  { "name": "destacado-tricologia", "width": 1000, "height": 1250 },
   { "name": "destacado-terapias", "width": 900, "height": 1125 },
-  { "name": "tarjeta-regalo", "width": 1200, "height": 900 },
+  { "name": "tarjeta-regalo", "width": 940, "height": 706 },
   { "name": "textura-lino", "width": 2000, "height": 900 },
-  { "name": "servicio-salud", "width": 1000, "height": 1250 },
+  { "name": "servicio-salud", "width": 940, "height": 1176 },
   { "name": "servicio-tratamientos", "width": 1000, "height": 1250 },
-  { "name": "servicio-peluqueria", "width": 1000, "height": 1250 },
+  { "name": "servicio-peluqueria", "width": 996, "height": 1244 },
   { "name": "champu-equilibrante", "width": 2250, "height": 2250 },
   { "name": "champu-vitalzen", "width": 2250, "height": 2250 },
   { "name": "champu-multiefecto", "width": 2250, "height": 2250 },
@@ -26,5 +26,10 @@
   { "name": "acondicionador-spray", "width": 720, "height": 720 },
   { "name": "factor-crecimiento", "width": 720, "height": 720 },
   { "name": "oxigenador", "width": 720, "height": 720 },
-  { "name": "oxigenador-marino", "width": 720, "height": 720 }
+  { "name": "oxigenador-marino", "width": 720, "height": 720 },
+  { "name": "paula-aura", "width": 900, "height": 1200 },
+  { "name": "tarjeta-aura", "width": 1600, "height": 1135 },
+  { "name": "hero-servicios", "width": 1086, "height": 488 },
+  { "name": "hero-tienda", "width": 1022, "height": 460 },
+  { "name": "hero-contacto", "width": 1200, "height": 540 }
 ]

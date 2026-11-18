@@ -20,3 +20,17 @@ Son provisionales: se sustituirán por fotos reales de Centro Aura manteniendo e
 `brazilian-post-alisado.webp`, `brazilian-healing.webp`, `brazilian-alisado.webp`, `brazilian-hidratacion.webp`, `brazilian-reparacion.webp`, `brazilian-aceite-coco.webp` y `brazilian-healing-foam.webp`: fotos de los productos Brazilian Hairtech, aportadas por la clienta, con el fondo quitado y centradas en un cuadrado blanco.
 
 `nutrianagen.webp`, `aceite-bioregenerador.webp`, `emulsion-c3q.webp`, `acondicionador-spray.webp`, `factor-crecimiento.webp`, `oxigenador.webp`, `oxigenador-marino.webp`: fotos de producto de Jaldún, aportadas por la clienta.
+
+## Fotos reales de Centro Aura (noviembre de 2026)
+
+Aportadas por la clienta. Sustituyen a las provisionales con el mismo nombre de archivo:
+
+- `hero-salon.webp` — el salón (sillón, espejo redondo iluminado y lavacabezas).
+- `destacado-tricologia.webp` — mesa de diagnóstico con microcámara y tableta (recorte vertical 4:5).
+- `servicio-salud.webp` — rincón de la cabina con velas y luz cálida (recorte vertical 4:5).
+- `servicio-peluqueria.webp` — cuencos de madera y productos de cuidado capilar (recorte vertical 4:5).
+- `tarjeta-regalo.webp` — recorte horizontal de la foto de la cabina, para el banner de la portada.
+- `paula-aura.webp` — Paula junto al cartel de Centro Aura (portada, «Sobre Aura»).
+- `tarjeta-aura.webp` — diseño de la tarjeta regalo, sin texto en el recuadro central: el nombre, el precio y la duración se escriben encima desde `pages/tarjetas-regalo.html`.
+
+Cabeceras de página (recortes horizontales de fotos reales de la clienta, bajo un velo claro): `hero-servicios.webp` (mesa de diagnóstico), `hero-tienda.webp` (productos y cuencos) y `hero-contacto.webp` (Paula junto al cartel). Tarjetas regalo, Aviso legal y Privacidad usan `textura-lino.webp`.
