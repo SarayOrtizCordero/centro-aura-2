@@ -6,13 +6,15 @@ const { ROOT, read, pageFiles, webpSize } = require('./helpers');
 const data = require('../js/data.js');
 
 const WA = 'https://wa.me/34610167764';
-const LEGAL = ['pages/aviso-legal.html', 'pages/privacidad.html'];
+const LEGAL = ['pages/aviso-legal.html', 'pages/privacidad.html', 'pages/cookies.html'];
 const LATER = new Set([
   'pages/servicios.html',
   'pages/tienda.html',
+  'pages/tarjetas-regalo.html',
   'pages/contacto.html',
   'pages/aviso-legal.html',
   'pages/privacidad.html',
+  'pages/cookies.html',
 ]);
 
 const sprite = read('assets/icons/sprite.svg');
@@ -163,7 +165,8 @@ for (const rel of pageFiles()) {
       ['Visítanos', 'Horario', 'Contacto']
     );
     assert.match(footer, />Aviso legal<\/a>/);
-    assert.match(footer, />Privacidad y cookies<\/a>/);
+    assert.match(footer, />Privacidad<\/a>/);
+    assert.match(footer, />Cookies<\/a>/);
     assert.equal((html.match(/<a class="wa-float"/g) || []).length, 1);
     if (prefix) {
       for (const m of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {

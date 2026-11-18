@@ -32,12 +32,12 @@ test('styles.css: reglas de la estructura común', () => {
   assert.match(css, /body\.menu-open \.site-nav\s*\{[^}]*visibility:\s*visible/);
 });
 
-test('styles.css: en @media (min-width: 900px) se ocultan .nav-toggle y .wa-float', () => {
+test('styles.css: en @media (min-width: 900px) se oculta .nav-toggle y el botón de WhatsApp sigue visible', () => {
   const idx = css.split('@media (min-width: 900px)').slice(1);
   assert.ok(idx.length > 0);
   const body = idx.join('\n');
   assert.match(body, /\.js \.nav-toggle\s*\{\s*display:\s*none;\s*\}/);
-  assert.match(body, /\.wa-float\s*\{\s*display:\s*none;\s*\}/);
+  assert.doesNotMatch(body, /\.wa-float\s*\{\s*display:\s*none;\s*\}/);
 });
 
 test('menú móvil: Servicios y Tienda son pestañas plegables y el panel ocupa todo el ancho', () => {

@@ -32,13 +32,13 @@ test('vercel.json: build con tools/build.mjs, salida dist y sin framework', () =
   assert.equal(cfg.framework, null);
 });
 
-test('lo publicado: las siete páginas, recursos, fuentes e imágenes', () => {
+test('lo publicado: las nueve páginas, recursos, fuentes e imágenes', () => {
   const required = [
     'index.html', '404.html', 'robots.txt', 'sitemap.xml',
     'css/fonts.css', 'css/tokens.css', 'css/styles.css',
     'js/main.js', 'js/data.js', 'js/lib.js',
-    'pages/servicios.html', 'pages/tienda.html', 'pages/contacto.html',
-    'pages/aviso-legal.html', 'pages/privacidad.html',
+    'pages/servicios.html', 'pages/tienda.html', 'pages/tarjetas-regalo.html', 'pages/contacto.html',
+    'pages/aviso-legal.html', 'pages/privacidad.html', 'pages/cookies.html',
     'assets/icons/loto.svg', 'assets/icons/favicon.svg', 'assets/icons/sprite.svg',
     'assets/fonts/cormorant-garamond-normal.woff2',
     'assets/fonts/cormorant-garamond-italic.woff2',
@@ -60,7 +60,7 @@ test('lo que no se publica: tests, herramientas, docs, blueprints ni archivos in
 
 test('recursos completos: todo href/src local y todo url() de fonts.css existen en dist', () => {
   const htmlFiles = published.filter((f) => f.endsWith('.html'));
-  assert.equal(htmlFiles.length, 7);
+  assert.equal(htmlFiles.length, 9);
   for (const rel of htmlFiles) {
     const html = fs.readFileSync(path.join(dist, rel), 'utf8').replace(/<script\b(?![^>]*\bsrc=)[\s\S]*?<\/script>/g, '');
     const dir = rel === '404.html' ? '' : path.posix.dirname(rel);

@@ -17,7 +17,6 @@ const attr = (tag, name) => {
   return m ? m[1] : null;
 };
 const jaldun = html.match(/<section class="section section--alt" id="jaldun"[\s\S]*?<\/section>/)[0];
-const regalo = html.match(/<section class="section section--alt" id="tarjetas-regalo"[\s\S]*?<\/section>/)[0];
 
 test('fotos de producto: los doce productos de Jaldún tienen foto con tamaño, lazy y alt reales', () => {
   const expected = {
@@ -46,12 +45,12 @@ test('fotos de producto: los doce productos de Jaldún tienen foto con tamaño, 
   assert.ok(!html.includes('class="bottle'));
 });
 
-test('secciones: Jaldún, Brazilian Hairtech y Tarjetas regalo, con su mosaico', () => {
+test('secciones: Jaldún y Brazilian Hairtech, con su mosaico (las tarjetas regalo tienen su propia página)', () => {
   assert.match(html, /<section class="section section--alt" id="jaldun"/);
   assert.match(html, /<section class="section" id="brazilian-hairtech"/);
-  assert.match(html, /<section class="section section--alt" id="tarjetas-regalo"/);
+  assert.ok(!html.includes('id="tarjetas-regalo"'), 'las tarjetas regalo ya no están en la tienda');
   const tiles = html.match(/<a class="category-tile card"[^>]*>/g);
-  assert.deepEqual(tiles.map((t) => attr(t, 'href')), ['#jaldun', '#brazilian-hairtech', '#tarjetas-regalo']);
+  assert.deepEqual(tiles.map((t) => attr(t, 'href')), ['#jaldun', '#brazilian-hairtech']);
   assert.ok(!html.includes('id="bonos"') && !html.includes('href="#bonos"'));
 });
 
@@ -133,73 +132,68 @@ test('Brazilian Hairtech: cuatro fichas iguales a las de Jaldún, con foto de pr
   assert.ok(!css.includes('product-card__visual--photo'), 'ya no hay variante de foto de ambiente');
 });
 
-test('cuadrículas: fichas en tres columnas y tarjetas regalo 2 × 2', () => {
-  assert.match(css, /\.gift-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,/);
+test('cuadrículas: fichas en tres columnas', () => {
   assert.match(css, /\.product-grid\s*\{\s*grid-template-columns:\s*repeat\(3,/);
 });
 
 test('precios: todo ítem que no es servicio tiene su data-price igual a formatPrice', () => {
   for (const [id, it] of Object.entries(data.items)) {
-    if (it.type === 'servicio') continue;
+    if (it.type === 'servicio' || it.type === 'regalo') continue;
     const found = [...html.matchAll(new RegExp(`data-price="${id}">([^<]*)<`, 'g'))];
     assert.ok(found.length > 0, 'falta data-price de ' + id);
     for (const m of found) assert.equal(norm(m[1]), norm(lib.formatPrice(it)), id);
   }
 });
 
-test('botones: diecinueve enlaces de WhatsApp de producto (16 Lo quiero, 3 Regalar)', () => {
+test('botones: dieciséis enlaces de WhatsApp de producto, todos «Lo quiero»', () => {
   const links = main.match(/<a\b[^>]*\sdata-wa="[^"]*"[^>]*>[\s\S]*?<\/a>/g);
-  assert.equal(links.length, 19);
+  assert.equal(links.length, 16);
   for (const a of links) assert.equal(attr(a.match(/<a\b[^>]*>/)[0], 'data-wa-kind'), 'producto');
   const labels = links.map((a) => a.replace(/<[^>]+>/g, '').trim());
   assert.equal(labels.filter((l) => l === 'Lo quiero').length, 16);
-  assert.equal(labels.filter((l) => l === 'Regalar').length, 3);
 });
 
 test('nota, cabecera y CSS', () => {
   assert.ok(main.includes('Recogida en el salón. Te confirmamos disponibilidad por WhatsApp.'));
   assert.match(main, /<h1>Tienda<\/h1>/);
-  assert.ok(main.includes('textura-lino.webp') && main.includes('class="page-hero__veil"'));
+  assert.ok(main.includes('hero-tienda.webp') && main.includes('class="page-hero__veil"'));
   assert.ok(css.includes('mix-blend-mode: multiply'));
 });
 
-test('selector Lista / Cuadrícula en Jaldún, Brazilian Hairtech y las tarjetas regalo, con iconos', () => {
+test('selector Lista / Cuadrícula en Jaldún y Brazilian Hairtech, con iconos', () => {
   const bars = html.match(/<div class="view-bar"[^>]*>[\s\S]*?<\/div>\s*<\/div>/g);
-  assert.equal(bars.length, 3);
+  assert.equal(bars.length, 2);
   for (const bar of bars) {
     assert.ok(/\shidden\b/.test(bar.match(/<div class="view-bar"[^>]*>/)[0]));
-    // Jaldún y Brazilian Hairtech empiezan en cuadrícula (foto arriba); las tarjetas regalo, en lista
-    assert.equal(attr(bar.match(/<div class="view-bar"[^>]*>/)[0], 'data-view-default'), bars.indexOf(bar) < 2 ? 'grid' : 'list');
+    // Jaldún y Brazilian Hairtech empiezan en cuadrícula (foto arriba)
+    assert.equal(attr(bar.match(/<div class="view-bar"[^>]*>/)[0], 'data-view-default'), 'grid');
     assert.ok(bar.includes('#i-lista') && bar.includes('#i-cuadricula'));
     assert.ok(!/Ver como|>Lista<|>Cuadrícula</.test(bar));
   }
   assert.equal((jaldun.match(/class="view-bar"/g) || []).length, 1);
-  assert.equal((regalo.match(/class="view-bar"/g) || []).length, 1);
-  assert.match(css, /\[data-view-block\]\[data-view="list"\] \.gift-grid\s*\{[^}]*grid-template-columns:\s*1fr/);
   assert.match(css, /\[data-view-block\]\[data-view="grid"\] \.product-grid\s*\{[^}]*repeat\(3,/);
 });
 
-test('menú: Tienda → Jaldún, Brazilian Hairtech y Tarjetas regalo, sin subcategorías', () => {
+test('menú: Tienda → Jaldún y Brazilian Hairtech, sin subcategorías; Tarjetas regalo es una página aparte', () => {
   assert.ok(!css.includes('subnav__sub'), 'ya no hay subcategorías en el menú');
   assert.match(css, /\.subnav li \+ li\s*\{[^}]*border-top:\s*1px solid/);
-  for (const href of ['tienda.html#jaldun', 'tienda.html#brazilian-hairtech', 'tienda.html#tarjetas-regalo']) assert.ok(html.includes('href="' + href + '"'), href);
+  for (const href of ['tienda.html#jaldun', 'tienda.html#brazilian-hairtech', 'tarjetas-regalo.html']) assert.ok(html.includes('href="' + href + '"'), href);
+  assert.ok(!html.includes('tienda.html#tarjetas-regalo'));
 });
 
-test('los productos de Jaldún y las tarjetas regalo tienen cada uno su propia vista', () => {
+test('los productos de Jaldún tienen su propia vista', () => {
   assert.match(html, /<section class="section section--alt" id="jaldun"[^>]*data-view-block>/);
-  assert.match(html, /<section class="section section--alt" id="tarjetas-regalo"[^>]*data-view-block>/);
 });
 
-test('botones de la tienda: "Lo quiero" más pequeño y "Regalar" separado del texto', () => {
+test('botones de la tienda: "Lo quiero" más pequeño', () => {
   assert.match(css, /\.product-card__body \.btn--primary\s*\{[^}]*min-height:\s*44px/);
-  assert.match(css, /\.gift-tile__body \.btn\s*\{[^}]*margin-top:\s*var\(--s-3\)/);
 });
 
-test('mosaico de marcas: logo de Jaldún y de Brazilian Hairtech, y el loto de Aura en las tarjetas regalo', () => {
+test('mosaico de marcas: logo de Jaldún y de Brazilian Hairtech', () => {
   const tiles = html.match(/<a class="category-tile card"[\s\S]*?<\/a>/g);
-  assert.equal(tiles.length, 3);
+  assert.equal(tiles.length, 2);
   const logos = tiles.map((t) => attr(t.match(/<img\b[^>]*>/)[0], 'src'));
-  assert.deepEqual(logos, ['../assets/brands/jaldun-salud-capilar.jpg', '../assets/brands/brazilian-hairtech.webp', '../assets/icons/loto.svg']);
+  assert.deepEqual(logos, ['../assets/brands/jaldun-salud-capilar.jpg', '../assets/brands/brazilian-hairtech.webp']);
   for (const t of tiles) {
     const img = t.match(/<img\b[^>]*>/)[0];
     assert.equal(attr(img, 'alt'), '', 'logo decorativo: el nombre ya está en el título');

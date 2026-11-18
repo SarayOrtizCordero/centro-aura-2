@@ -89,22 +89,22 @@ test('cabecera, fotos de categoría, análisis y llamada final', () => {
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
   assert.equal(text(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)[1]), 'Servicios');
   const bg = html.match(/<img class="page-hero__bg"[^>]*>/)[0];
-  assert.ok(attr(bg, 'src').endsWith('textura-lino.webp'));
+  assert.ok(attr(bg, 'src').endsWith('hero-servicios.webp'));
   assert.equal(attr(bg, 'alt'), '');
-  assert.deepEqual([attr(bg, 'width'), attr(bg, 'height')], ['2000', '900']);
+  assert.deepEqual([attr(bg, 'width'), attr(bg, 'height')], ['1086', '488']);
   assert.ok(html.includes('class="page-hero__veil"'));
   const photos = html.match(/<img class="category__photo"[^>]*>/g);
   assert.equal(photos.length, 3);
   assert.deepEqual(
     photos.map((p) => attr(p, 'alt')),
     [
-      'Aceites, cremas y un peine de madera junto a un mechón de cabello largo',
-      'Peine de masaje de madera junto a un aceite capilar, un cepillo y lavanda',
-      'Secado del cabello con cepillo redondo y secador',
+      'Mesa de diagnóstico con microcámara, tableta y espejo redondo',
+      'Rincón de la cabina con velas, luz cálida y el lavacabezas',
+      'Cuencos de madera y productos de cuidado capilar sobre una mesa',
     ]
   );
   const sizes = photos.map((p) => [attr(p, 'width'), attr(p, 'height'), attr(p, 'loading')]);
-  assert.deepEqual(sizes, [['900', '1125', 'lazy'], ['1000', '1250', 'lazy'], ['1000', '1250', 'lazy']]);
+  assert.deepEqual(sizes, [['1000', '1250', 'lazy'], ['940', '1176', 'lazy'], ['996', '1244', 'lazy']]);
   assert.ok(html.includes('<span class="eyebrow">Paso a paso</span>') && html.includes('¿Cómo es el análisis del cuero cabelludo?'));
   assert.ok(panelOf('salud-capilar').includes('steps-grid'), 'el paso a paso solo va en salud capilar');
   assert.equal((html.match(/steps-grid/g) || []).length, 1);
@@ -200,7 +200,7 @@ test('"Ver qué incluye" se ve como un subtítulo (acento, mayúsculas pequeñas
 test('resúmenes breves: solo con textos de la clienta (o el propio nombre del servicio) y visibles también en cuadrícula', () => {
   const esperado = {
     'diagnostico': 'Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.',
-    'tratamiento-fibra': 'Tres opciones según lo que necesite tu cabello: reparación, hidratación o nutrición.',
+    'tratamiento-capilar': 'Tratamiento para reparar y reconstruir la fibra capilar.',
     'lavado-peinado': 'Incluye lavado y peinado.',
     'barro-raiz': 'Coloración natural solo en la raíz.',
     'barro-completo': 'Coloración natural en todo el cabello.',
