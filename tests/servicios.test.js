@@ -229,3 +229,12 @@ test('Salud capilar: oxigenaciones y Actividerma de Jaldún, cada grupo con su t
   assert.ok(rowOf('ipanema').includes('El precio varía según la cantidad'), 'Ipanema avisa de que el precio varía');
   assert.ok(css.includes('.group-note'), 'existe el estilo del texto de grupo');
 });
+
+// Regresión: con tabindex="0" el navegador enfocaba el panel entero al llegar con #salud-capilar (desde el menú)
+// y en escritorio lo rodeaba con un recuadro oscuro. Los paneles ya contienen controles enfocables
+// (selector de vista y botones de reservar), así que no necesitan ser un punto de tabulación.
+test("los paneles de las pestañas no llevan tabindex (si no, el foco los rodea con un recuadro en escritorio)", () => {
+  const panels = html.match(/<div class="category"[^>]*role="tabpanel"[^>]*>/g);
+  assert.equal(panels.length, 3);
+  for (const p of panels) assert.equal(attr(p, "tabindex"), null, p);
+});
