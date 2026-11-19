@@ -771,19 +771,19 @@ body.menu-open::after {
    Portada · tarjetas de servicios
    ========================================================================== */
 
+/* Móvil: lista, una tarjeta debajo de otra y en horizontal (imagen a la izquierda, texto a la derecha).
+   Desde 600 px pasan a tres columnas con la imagen arriba. */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--s-6);
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* Si el último queda solo en su fila, ocupa todo el ancho y se pone en horizontal */
-.card-grid > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
-.card-grid > li:last-child:nth-child(odd) .service-card { flex-direction: row; }
-.card-grid > li:last-child:nth-child(odd) .service-card__media { flex: 0 0 40%; }
-.card-grid > li:last-child:nth-child(odd) .service-card__media img { height: 100%; aspect-ratio: auto; }
+.card-grid .service-card { flex-direction: row; }
+.card-grid .service-card__media { flex: 0 0 40%; }
+.card-grid .service-card__media img { height: 100%; aspect-ratio: auto; }
 .service-card { position: relative; display: flex; flex-direction: column; height: 100%; }
 .service-card__media { overflow: hidden; }
 .service-card__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: scale 600ms var(--ease); }
@@ -799,8 +799,7 @@ body.menu-open::after {
   background: var(--c-anchor);
   color: var(--c-on-anchor);
 }
-.service-card .service-card__media--brand img,
-.card-grid > li:last-child:nth-child(odd) .service-card .service-card__media--brand img {
+.service-card .service-card__media--brand img {
   width: 64px;
   height: 40px;
   aspect-ratio: auto;
@@ -832,20 +831,19 @@ body.menu-open::after {
 .section-more { margin: var(--s-12) 0 0; text-align: center; }
 
 @media (min-width: 600px) {
-  /* Tablet: tarjetas de Spa y de servicios, tres por fila */
+  /* Tablet: tarjetas de Spa y de servicios, tres por fila y con la imagen arriba */
   .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .card-grid > li:last-child:nth-child(odd) { grid-column: auto; }
-  .card-grid > li:last-child:nth-child(odd) .service-card { flex-direction: column; }
-  .card-grid > li:last-child:nth-child(odd) .service-card__media { flex: none; }
-  .card-grid > li:last-child:nth-child(odd) .service-card__media img { height: auto; aspect-ratio: 4 / 5; }
+  .card-grid .service-card { flex-direction: column; }
+  .card-grid .service-card__media { flex: none; }
+  .card-grid .service-card__media img { height: auto; aspect-ratio: 4 / 5; }
   .service-card h3 { font-size: 1.375rem; }
   .service-card .chip { font-size: inherit; }
   .service-card__foot .link-arrow { display: inline-flex; }
 }
 
 @media (min-width: 900px) {
-  .card-grid { grid-template-columns: repeat(3, 1fr); gap: var(--s-8); }
-  .card-grid > li:last-child:nth-child(odd) .service-card__media img { aspect-ratio: 1 / 1; }
+  .card-grid { gap: var(--s-8); }
+  .card-grid .service-card__media img { aspect-ratio: 1 / 1; }
   .service-card__media img { aspect-ratio: 1 / 1; }
   .service-card h3 { font-size: var(--fs-h3); }
 }
@@ -924,6 +922,37 @@ body.menu-open::after {
 @media (min-width: 900px) {
   .mosaic__inner { grid-template-columns: 4fr 7fr; }
 }
+
+/* ==========================================================================
+   Portada · banner de tarjetas regalo
+   ========================================================================== */
+
+.gift-banner :focus-visible { outline-color: var(--c-on-anchor); }
+.gift-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: var(--s-24);
+  color: var(--c-on-anchor);
+}
+.gift-banner__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gift-banner__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(var(--veil-dark-rgb) / var(--veil-dark-alpha));
+}
+.gift-banner__inner { max-width: var(--measure); }
+.gift-banner h2 { color: var(--c-on-anchor); }
+.gift-banner h2 em, .gift-banner .eyebrow { color: var(--c-on-anchor-soft); }
+.gift-banner p { margin: var(--s-6) 0 var(--s-8); }
 
 /* ==========================================================================
    Portada y contacto · visita, mapa y loto
@@ -1560,9 +1589,8 @@ body:has(.service-dialog[open]) { overflow: hidden; }
    Tarjetas regalo
    ========================================================================== */
 
-/* Lista de tarjetas regalo (página de tarjetas y portada): una debajo de otra en móvil y tres por fila
-   desde 900 px. La imagen ya lleva el nombre, la duración, el precio y la descripción; debajo,
-   fuera de la imagen, solo va el botón para regalarla. */
+/* Página de tarjetas regalo: la imagen ya lleva el nombre, la duración, el precio y la descripción;
+   debajo, fuera de la imagen, solo va el botón para regalarla */
 .gift-cards {
   display: grid;
   gap: var(--s-6);
