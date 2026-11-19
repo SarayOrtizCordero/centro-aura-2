@@ -156,3 +156,42 @@ test('movimiento y foco: reduced-motion, :focus-visible 2px, [hidden]', () => {
   assert.ok(/:focus-visible\s*\{[^}]*outline:\s*2px solid/.test(styles));
   assert.ok(/\[hidden\]\s*\{\s*display:\s*none\s*!important;\s*\}/.test(styles));
 });
+
+// Un bloque por selector: styles.css está organizado por componente (base + ajustes @media justo
+// debajo). Si un selector vuelve a aparecer dos veces en el mismo contexto, el valor que gana
+// depende del orden y hay que leer el archivo entero para saberlo: se edita el bloque que ya existe.
+function ruleKeys(source) {
+  const css = source.replace(/\/\*[\s\S]*?\*\//g, '');
+  const keys = [];
+  let i = 0;
+  const readBlock = (context) => {
+    while (i < css.length) {
+      while (i < css.length && /\s/.test(css[i])) i++;
+      if (i >= css.length) return;
+      if (css[i] === '}') { i++; return; }
+      const open = css.indexOf('{', i);
+      const prelude = css.slice(i, open).trim().replace(/\s+/g, ' ');
+      i = open + 1;
+      if (prelude.startsWith('@media')) readBlock(prelude);
+      else if (prelude.startsWith('@keyframes')) {
+        for (let depth = 1; depth; i++) depth += css[i] === '{' ? 1 : css[i] === '}' ? -1 : 0;
+      } else {
+        i = css.indexOf('}', i) + 1;
+        keys.push(`${context} → ${prelude}`);
+      }
+    }
+  };
+  readBlock('base');
+  return keys;
+}
+
+test('un solo bloque por selector y contexto: ninguna regla repetida en styles.css', () => {
+  const seen = new Set();
+  const repeated = [];
+  for (const key of ruleKeys(styles)) {
+    if (seen.has(key)) repeated.push(key);
+    seen.add(key);
+  }
+  assert.deepEqual(repeated, [], 'selectores repetidos (edita el bloque existente en vez de añadir otro)');
+  assert.ok(seen.size > 300, 'el analizador no leyó las reglas');
+});

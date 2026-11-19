@@ -196,7 +196,8 @@ test('mosaic: tres fotos, cita y sin biografía inventada', () => {
   );
   for (const i of imgs) assert.ok(attr(i, 'alt').trim().length > 0);
   assert.ok(sec.includes('<em>la energía del interior y la que envuelve al cuerpo físico</em>'));
-  for (const banned of ['Hola, soy Paula', 'retrato', 'años de experiencia']) {
+  // 'retrato' ya no se veta: la clienta decidió incluir la foto de Paula (noviembre de 2026)
+  for (const banned of ['Hola, soy Paula', 'años de experiencia']) {
     assert.ok(!sec.includes(banned), 'no debe contener: ' + banned);
   }
   assert.ok(!/\d\s*años/.test(sec));

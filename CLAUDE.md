@@ -61,6 +61,7 @@ HTML5 · CSS plano con propiedades personalizadas · JavaScript vanilla (ES2022)
 8. **Textos de A literales; textos nuevos solo con hechos de A.** Prohibido inventar años, cifras, premios, reseñas, nombres, ingredientes o beneficios médicos.
 9. **Cada paso escribe y ejecuta su test.** No se edita un test para que pase; se arregla el código.
 10. **Sin dependencias nuevas.** `package.json` no lleva `dependencies` ni `devDependencies`.
+11. **CSS: un bloque por componente y un bloque por selector.** `css/styles.css` va ordenado por componente (cada uno con su cabecera de comentario): primero sus reglas base y justo debajo sus ajustes `@media`. Para cambiar un componente se edita **su** regla; no se añade otra con el mismo selector al final del archivo (`tests/css.test.js` lo comprueba). Ojo con la especificidad: `[data-view-block][data-view="list"] .service-row` gana a `.service-row` en cualquier ancho, aunque la segunda esté en un `@media` posterior.
 
 ## Design system
 
@@ -106,7 +107,7 @@ Skills del proyecto: `add-page` (añadir una página con su test, sitemap y meta
 ## Non-negotiable
 
 1. No inventes contenido: textos, datos y fotos salen de `docs/contenido-fuente.md`, `js/data.js` y `assets/`.
-2. No implementes nada de los Non-Goals de `blueprints/centro-aura-2/blueprint.md` §1 (carrito, calendario, CMS, blog, multidioma, modo oscuro, reseñas o cifras de prueba social, retrato, banner de cookies, selector A↔B, analítica).
+2. No implementes nada de los Non-Goals de `blueprints/centro-aura-2/blueprint.md` §1 (carrito, calendario, CMS, blog, multidioma, modo oscuro, reseñas o cifras de prueba social, banner de cookies, selector A↔B, analítica). El retrato de Paula **sí** está permitido: lo decidió la clienta en noviembre de 2026 y es `assets/img/paula-aura.webp` en la portada.
 3. No edites a mano archivos entregados por `workspace/` salvo que un paso lo diga: `js/data.js`, `js/lib.js`, `js/main.js`, `tools/*`, `package.json`, `vercel.json`, `assets/icons/sprite.svg`.
 4. No marques una tarea como hecha con un test o un `Verify` fallando, ni edites un `Verify`.
 5. No publiques `tests/`, `tools/`, `docs/` ni `blueprints/`: la lista blanca de `tools/build.mjs` es la única puerta.

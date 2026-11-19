@@ -7,7 +7,7 @@ Este documento es la **única fuente de textos** para construir la demo B. El co
 - **PARTE 3** son los textos nuevos de la demo B. Son los que comprueban los tests.
 
 > **Estado del documento (noviembre de 2026).** Tras las reuniones con la clienta la web ha cambiado y este texto **va por detrás** en estas partes; ahí manda el HTML publicado, que es lo que los tests comprueban:
-> - **Tienda:** ahora tiene dos marcas (Jaldún y Brazilian Hairtech), más productos y un filtro. Los textos de producto (incluidas las descripciones de Actianagen y Brazilian) **no tienen fuente aquí**: falta la ficha del fabricante o el texto de la clienta.
+> - **Tienda:** ahora tiene dos marcas (Jaldún y Brazilian Hairtech), más productos y un filtro. Los textos de producto (incluidas las descripciones de Actianagen y Brazilian) **los aportó la clienta** y están solo en `pages/tienda.html`; no se han copiado aquí.
 > - **Tarjetas regalo:** ya no son las tres de 25, 50 y 75 € de abajo, sino una página propia (`pages/tarjetas-regalo.html`) con los diseños de la clienta.
 > - **Privacidad y cookies:** son dos páginas, `pages/privacidad.html` y `pages/cookies.html`.
 > - **Barra superior:** se quitó; el horario se ve en el bloque `[data-hours]`.
