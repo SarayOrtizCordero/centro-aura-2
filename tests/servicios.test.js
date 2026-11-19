@@ -226,7 +226,7 @@ test('Salud capilar: oxigenaciones y Actividerma de Jaldún, cada grupo con su t
   }
   const peluqueria = panelOf('peluqueria');
   assert.ok(peluqueria.includes('id="ipanema"'), 'Ipanema va en Peluquería');
-  assert.match(peluqueria, /<p class="service-group">Ipanema<\/p>\s*<ul class="service-rows" role="list">\s*<li class="service-row card" id="ipanema">/, 'Ipanema es una sección aparte, con su propio título');
+  assert.match(peluqueria, /<p class="service-group">Botox capilar<\/p>\s*<ul class="service-rows" role="list">\s*<li class="service-row card" id="ipanema">/, 'Ipanema es una sección aparte, con su propio título');
   assert.ok(rowOf('ipanema').includes('El precio varía según la cantidad'), 'Ipanema avisa de que el precio varía');
   assert.ok(css.includes('.group-note'), 'existe el estilo del texto de grupo');
 });
