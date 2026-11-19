@@ -1593,7 +1593,7 @@ body:has(.service-dialog[open]) { overflow: hidden; }
    ========================================================================== */
 
 /* Página de tarjetas regalo: la imagen ya lleva el nombre, la duración, el precio y la descripción;
-   debajo, fuera de la imagen, solo va el botón para regalarla */
+   debajo, fuera de la imagen, van los botones: regalarla y "Más info" (lleva a su Spa en Servicios) */
 .gift-cards {
   display: grid;
   gap: var(--s-6);
@@ -1608,6 +1608,8 @@ body:has(.service-dialog[open]) { overflow: hidden; }
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--s-3);
   padding: var(--s-6);
 }
 
