@@ -38,6 +38,17 @@ test('tres tarjetas, una por spa: el precio va dentro de la imagen (y en su alt)
     assert.equal(attr(btn, 'data-wa-kind'), 'producto');
   });
 });
+test('cada tarjeta tiene "Más info": enlaza a su Spa en la página de servicios y esa fila existe', () => {
+  const servicios = read('pages/servicios.html');
+  cards.forEach((c, i) => {
+    const id = IDS[i];
+    const link = c.match(/<a [^>]*href="servicios\.html#[^"]*"[^>]*>/)[0];
+    assert.equal(attr(link, 'href'), 'servicios.html#' + id);
+    assert.ok(!link.includes('data-wa'), 'Más info no es un botón de reserva');
+    assert.ok(servicios.includes('id="' + id + '"'), 'existe la fila ' + id + ' en servicios');
+  });
+});
+
 test('el precio de cada tarjeta es el de su spa', () => {
   for (const id of IDS) assert.equal(data.items['regalo-' + id].price, data.items[id].price, id);
 });
