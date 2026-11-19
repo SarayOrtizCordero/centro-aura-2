@@ -5,7 +5,6 @@ Son provisionales: se sustituirán por fotos reales de Centro Aura manteniendo e
 
 - `hero-salon.webp` — https://images.unsplash.com/photo-1706629503650-cade709d15e3
 - `destacado-spa.webp` — https://images.unsplash.com/photo-1757066033634-bbbf874ce525
-- `tarjeta-regalo.webp` — https://images.unsplash.com/photo-1687617788315-cf8bfd1592c3
 - `textura-lino.webp` — https://images.unsplash.com/photo-1705951320394-eda5d939d0ac
 - `servicio-tratamientos.webp` — https://images.unsplash.com/photo-1573807195700-9e9db54988f6
 
@@ -29,7 +28,6 @@ Aportadas por la clienta. Sustituyen a las provisionales con el mismo nombre de 
 - `destacado-tricologia.webp` — mesa de diagnóstico con microcámara y tableta (recorte vertical 4:5).
 - `servicio-salud.webp` — rincón de la cabina con velas y luz cálida (recorte vertical 4:5).
 - `servicio-peluqueria.webp` — cuencos de madera y productos de cuidado capilar (recorte vertical 4:5).
-- `tarjeta-regalo.webp` — recorte horizontal de la foto de la cabina, para el banner de la portada.
 - `paula-aura.webp` — Paula junto al cartel de Centro Aura (portada, «Sobre Aura»).
 - `tarjeta-spa-esencial.webp`, `tarjeta-spa-equilibrio.webp`, `tarjeta-spa-aura.webp` — diseños de las tarjetas regalo entregados por la clienta (noviembre de 2026; llevan el nombre, la duración, el precio y la descripción dentro de la imagen, 564 × 402 px). Sustituyen a los diseños anteriores, que llevaban el precio aparte; la página ya no repite el precio como texto.
 
