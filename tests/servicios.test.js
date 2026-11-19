@@ -199,12 +199,14 @@ test('"Ver qué incluye" se ve como un subtítulo (acento, mayúsculas pequeñas
 
 test('resúmenes breves: solo con textos de la clienta (o el propio nombre del servicio) y visibles también en cuadrícula', () => {
   const esperado = {
-    'diagnostico': 'Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.',
+    'diagnostico': 'Estudio personalizado del cuero cabelludo y del cabello mediante microcámara para valorar su estado, identificar sus necesidades y recomendar el tratamiento más adecuado.',
     'tratamiento-capilar': 'Tratamiento para reparar y reconstruir la fibra capilar.',
     'lavado-peinado': 'Incluye lavado y peinado.',
     'barro-raiz': 'Coloración natural solo en la raíz.',
     'barro-completo': 'Coloración natural en todo el cabello.',
-    'oxigenaciones': 'Tratamiento para el cuero cabelludo que busca mejorar su salud.',
+    'actividerma-estimulacion': 'Incluye oxigenación higiénica.',
+    'actividerma-choque-semanal': 'No incluye oxigenación higiénica.',
+    'ipanema': 'Botox que actúa sobre la fibra capilar para devolver densidad, hidratación y control del frizz con un acabado natural y sellado.',
     'antifrizz': 'Elimina el encrespamiento, sella la cutícula del cabello consiguiendo un acabado suave y brillante por más tiempo, facilitando así el peinado diario.',
   };
   for (const [id, text] of Object.entries(esperado)) {
@@ -212,3 +214,18 @@ test('resúmenes breves: solo con textos de la clienta (o el propio nombre del s
   }
 });
 
+
+test('Salud capilar: oxigenaciones y Actividerma de Jaldún, cada grupo con su texto de Paula; Ipanema en Peluquería', () => {
+  const salud = panelOf('salud-capilar');
+  const groups = [...salud.matchAll(/<p class="service-group">([^<]*)<\/p>\s*<p class="group-note">([^<]*)<\/p>/g)].map((m) => [m[1], m[2]]);
+  assert.deepEqual(groups.map((g) => g[0]), ['Oxigenaciones capilares', 'Actividerma de Jaldún']);
+  assert.ok(groups[0][1].startsWith('Tratamientos enfocados en la higiene, el equilibrio y la revitalización del cuero cabelludo'));
+  assert.ok(groups[1][1].includes('Especialmente indicado para cabellos debilitados, con pérdida de densidad o tendencia a la caída.'));
+  for (const id of ['oxigenacion-higienica', 'oxigenacion-terapeutica', 'tratamiento-profundo-intensivo', 'actividerma-estimulacion', 'actividerma-choque-semanal']) {
+    assert.ok(salud.includes(`id="${id}"`), id + ' va en Salud capilar');
+  }
+  const peluqueria = panelOf('peluqueria');
+  assert.ok(peluqueria.includes('id="ipanema"'), 'Ipanema va en Peluquería, con los otros tratamientos');
+  assert.ok(rowOf('ipanema').includes('El precio varía según la cantidad'), 'Ipanema avisa de que el precio varía');
+  assert.ok(css.includes('.group-note'), 'existe el estilo del texto de grupo');
+});

@@ -10,6 +10,7 @@ Este documento es la **única fuente de textos** para construir la demo B. El co
 > - **Tienda:** ahora tiene dos marcas (Jaldún y Brazilian Hairtech), más productos y un filtro. Los textos de producto (incluidas las descripciones de Actianagen y Brazilian) **los aportó la clienta** y están solo en `pages/tienda.html`; no se han copiado aquí.
 > - **Tarjetas regalo:** ya no son las tres de 25, 50 y 75 € de abajo, sino una página propia (`pages/tarjetas-regalo.html`) con los diseños de la clienta: Spa esencial 40 €, Spa equilibrio 50 € y Spa aura 70 €. El precio va dentro de la imagen y no se repite como texto.
 > - **Duraciones del Spa (noviembre de 2026):** Spa esencial 45 min y Spa aura 1 h 20 min (antes 50 min y 1 h 15 min, que son las que aparecen más abajo); manda `js/data.js`.
+> - **Servicios de Salud capilar y Ipanema (noviembre de 2026, textos y precios de Paula):** Consulta y diagnóstico capilar 10 €; Oxigenaciones capilares (higiénica 30–40 €, terapéutica 40–50 €, tratamiento profundo intensivo 50–60 €); Actividerma de Jaldún (estimulación dérmica profunda capilar 65 €, incluye oxigenación higiénica; choque semanal 30 €, no la incluye); y en Peluquería, Ipanema de Brazilian Hairtech (botox capilar, 45–55 € según la cantidad). Los textos están solo en `pages/servicios.html` y en `js/data.js`.
 > - **IVA:** los precios incluyen IVA (confirmado por la titular).
 > - **Privacidad y cookies:** son dos páginas, `pages/privacidad.html` y `pages/cookies.html`.
 > - **Barra superior:** se quitó; el horario se ve en el bloque `[data-hours]`.
