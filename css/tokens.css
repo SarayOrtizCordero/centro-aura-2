@@ -5,7 +5,6 @@
   /* Capa 1 · primitivas */
   --p-cream-50: #FFFDF7;
   --p-cream-100: #F6F0E4;
-  --p-stone-100: #E9E5E4;
   --p-sand-200: #E9DDC8;
   --p-sand-400: #B2A38F;
   --p-gold-400: #D2C244;
@@ -20,7 +19,6 @@
   /* Capa 2 · semánticos */
   --c-bg: var(--p-cream-50);
   --c-bg-alt: var(--p-cream-100);
-  --c-logo-bg: var(--p-stone-100);     /* fondo de la imagen del logo de las tarjetas de Spa; debe coincidir con ella */
   --c-line: var(--p-sand-200);
   --c-muted: var(--p-sand-400);        /* SOLO decorativo: nunca como color de texto */
   --c-gold: var(--p-gold-400);         /* SOLO decorativo: loto y filetes, nunca como texto */
