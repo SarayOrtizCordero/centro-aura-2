@@ -101,7 +101,7 @@
           <button class="tab" type="button" role="tab" id="tab-peluqueria" aria-controls="peluqueria" aria-selected="false" tabindex="-1" data-category="peluqueria">Peluquería</button>
         </div>
 
-        <div class="category" id="salud-capilar" role="tabpanel" aria-labelledby="tab-salud" tabindex="0" data-view-block>
+        <div class="category" id="salud-capilar" role="tabpanel" aria-labelledby="tab-salud" data-view-block>
           <div class="category__head">
             <div>
               <h2>Salud capilar</h2>
@@ -118,22 +118,67 @@
           <ul class="service-rows" role="list">
             <li class="service-row card" id="diagnostico">
               <div class="service-row__main">
-                <h3>Diagnóstico</h3>
-                <p class="service-row__note">Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p>
+                <h3>Consulta y diagnóstico capilar</h3>
+                <p class="service-row__note">Estudio personalizado del cuero cabelludo y del cabello mediante microcámara para valorar su estado, identificar sus necesidades y recomendar el tratamiento más adecuado.</p>
               </div>
               <div class="service-row__side">
                 <span class="price" data-price="diagnostico">10 €</span>
-                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Diagnóstico">Reservar</a>
+                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Consulta y diagnóstico capilar">Reservar</a>
               </div>
             </li>
-            <li class="service-row card" id="oxigenaciones">
+          </ul>
+          <p class="service-group">Oxigenaciones capilares</p>
+          <p class="group-note">Tratamientos enfocados en la higiene, el equilibrio y la revitalización del cuero cabelludo, adaptados a las necesidades de cada persona.</p>
+          <ul class="service-rows" role="list">
+            <li class="service-row card" id="oxigenacion-higienica">
               <div class="service-row__main">
-                <h3>Oxigenaciones para cuero cabelludo</h3>
-                <p class="service-row__note">Tratamiento para el cuero cabelludo que busca mejorar su salud.</p>
+                <h3>Oxigenación higiénica</h3>
               </div>
               <div class="service-row__side">
-                <span class="price-sub">Según cabello y necesidades</span>
-                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Oxigenaciones para cuero cabelludo">Reservar</a>
+                <span class="price" data-price="oxigenacion-higienica">30–40 €</span>
+                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Oxigenación higiénica">Reservar</a>
+              </div>
+            </li>
+            <li class="service-row card" id="oxigenacion-terapeutica">
+              <div class="service-row__main">
+                <h3>Oxigenación terapéutica</h3>
+              </div>
+              <div class="service-row__side">
+                <span class="price" data-price="oxigenacion-terapeutica">40–50 €</span>
+                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Oxigenación terapéutica">Reservar</a>
+              </div>
+            </li>
+            <li class="service-row card" id="tratamiento-profundo-intensivo">
+              <div class="service-row__main">
+                <h3>Tratamiento profundo intensivo</h3>
+              </div>
+              <div class="service-row__side">
+                <span class="price" data-price="tratamiento-profundo-intensivo">50–60 €</span>
+                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Tratamiento profundo intensivo">Reservar</a>
+              </div>
+            </li>
+          </ul>
+          <p class="service-group">Actividerma de Jaldún</p>
+          <p class="group-note">Tratamiento especializado que busca estimular y revitalizar el cuero cabelludo, favoreciendo su equilibrio y contribuyendo a mejorar la calidad y vitalidad del cabello. Especialmente indicado para cabellos debilitados, con pérdida de densidad o tendencia a la caída.</p>
+          <ul class="service-rows" role="list">
+            <li class="service-row card" id="actividerma-estimulacion">
+              <div class="service-row__main">
+                <h3>Estimulación dérmica profunda capilar</h3>
+                <p class="service-row__note">Incluye oxigenación higiénica.</p>
+              </div>
+              <div class="service-row__side">
+                <span class="price" data-price="actividerma-estimulacion">65 €</span>
+                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Estimulación dérmica profunda capilar">Reservar</a>
+              </div>
+            </li>
+            <li class="service-row card" id="actividerma-choque-semanal">
+              <div class="service-row__main">
+                <h3>Estimulación dérmica profunda capilar – Choque semanal</h3>
+                <p class="service-row__note">No incluye oxigenación higiénica.</p>
+              </div>
+              <div class="service-row__side">
+                <span class="price" data-price="actividerma-choque-semanal">30 €</span>
+                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Estimulación dérmica profunda capilar – Choque semanal">Reservar</a>
               </div>
             </li>
           </ul>
@@ -147,7 +192,7 @@
           </div>
         </div>
 
-        <div class="category" id="spa" role="tabpanel" aria-labelledby="tab-spa" tabindex="0" data-view-block>
+        <div class="category" id="spa" role="tabpanel" aria-labelledby="tab-spa" data-view-block>
           <div class="category__head">
             <div>
               <h2>Spa</h2>
@@ -204,7 +249,7 @@
           </ul>
         </div>
 
-        <div class="category" id="peluqueria" role="tabpanel" aria-labelledby="tab-peluqueria" tabindex="0" data-view-block>
+        <div class="category" id="peluqueria" role="tabpanel" aria-labelledby="tab-peluqueria" data-view-block>
           <div class="category__head">
             <div>
               <h2>Peluquería</h2>
@@ -292,6 +337,17 @@
               <div class="service-row__side">
                 <span class="price" data-price="antifrizz">45–60 €</span>
                 <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Antifrizz">Reservar</a>
+              </div>
+            </li>
+            <li class="service-row card" id="ipanema">
+              <div class="service-row__main">
+                <h3>Ipanema de Brazilian Hairtech</h3>
+                <p class="service-row__note">Botox que actúa sobre la fibra capilar para devolver densidad, hidratación y control del frizz con un acabado natural y sellado.</p>
+                <small class="price-hint">El precio varía según la cantidad y el largo del cabello.</small>
+              </div>
+              <div class="service-row__side">
+                <span class="price" data-price="ipanema">45–55 €</span>
+                <a class="btn btn--outline btn--sm" href="https://wa.me/34610167764" data-wa="Ipanema de Brazilian Hairtech">Reservar</a>
               </div>
             </li>
             <li class="service-row card" id="tratamiento-capilar">

@@ -1104,6 +1104,9 @@ body.menu-open::after {
   height: 2px;
   background: var(--c-clay);
 }
+/* Texto de apoyo bajo el título de un grupo (p. ej. "Oxigenaciones capilares") */
+.group-note { max-width: var(--measure); margin: 0 0 var(--s-6); color: var(--c-text-soft); }
+.service-group:has(+ .group-note) { margin-bottom: var(--s-3); }
 .view-bar + .service-group, .category__head + .service-group { margin-top: var(--s-8); }
 .category__head .lead { margin-top: var(--s-4); }
 

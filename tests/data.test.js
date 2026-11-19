@@ -24,7 +24,7 @@ test('los servicios tienen categoría válida y duración', () => {
   const cats = data.categories.map((c) => c.id);
   assert.deepEqual(cats, ['salud', 'spa', 'peluqueria']);
   const servicios = Object.entries(data.items).filter(([, i]) => i.type === 'servicio');
-  assert.equal(servicios.length, 12);
+  assert.equal(servicios.length, 18);
   for (const [id, item] of servicios) {
     assert.ok(cats.includes(item.category), `${id}: categoría inválida`);
   }
@@ -39,7 +39,7 @@ test('los tres Spa tienen duración; el resto no inventa una', () => {
 
 test('precios en rango: máximo mayor que mínimo y marcados como orientativos', () => {
   const rangos = Object.entries(data.items).filter(([, i]) => i.priceMax !== undefined);
-  assert.equal(rangos.length, 4);
+  assert.equal(rangos.length, 8);
   for (const [id, item] of rangos) {
     assert.ok(item.priceMax > item.price, `${id}: priceMax debe ser mayor que price`);
     assert.equal(item.approx, true, `${id}: un rango es orientativo`);
@@ -53,12 +53,18 @@ test('precios de la carta (lista dada por Paula)', () => {
     'spa-esencial': [40], 'spa-equilibrio': [50], 'spa-aura': [70],
     'lavado-peinado': [13], 'corte': [15], 'corte-peinado': [25],
     'barro-raiz': [30, 40], 'barro-completo': [50, 70],
-    'antifrizz': [45, 60]
+    'antifrizz': [45, 60],
+    'ipanema': [45, 55],
+    'oxigenacion-higienica': [30, 40], 'oxigenacion-terapeutica': [40, 50], 'tratamiento-profundo-intensivo': [50, 60]
   };
   for (const [id, [min, max]] of Object.entries(esperado)) {
     assert.equal(data.items[id].price, min, `${id}: mínimo`);
     assert.equal(data.items[id].priceMax, max, `${id}: máximo`);
   }
+  // Actividerma de Jaldún: precio fijo (la estimulación incluye una oxigenación higiénica; el choque semanal, no)
+  assert.equal(data.items['actividerma-estimulacion'].price, 65);
+  assert.equal(data.items['actividerma-choque-semanal'].price, 30);
+  assert.equal(data.items['actividerma-estimulacion'].priceMax, undefined);
   assert.equal(data.items.alisado.price, 100);
   assert.equal(data.items.alisado.from, true);
   assert.equal(data.items.alisado.priceMax, undefined);
@@ -70,9 +76,11 @@ test('duraciones del Spa (confirmadas por Paula)', () => {
   assert.equal(data.items['spa-aura'].duration, '1 h 20 min');
 });
 
-test('el catálogo tiene los 31 items esperados', () => {
+test('el catálogo tiene los 37 items esperados', () => {
   const expectedIds = [
     'diagnostico', 'tratamiento-capilar',
+    'oxigenacion-higienica', 'oxigenacion-terapeutica', 'tratamiento-profundo-intensivo',
+    'actividerma-estimulacion', 'actividerma-choque-semanal', 'ipanema',
     'spa-esencial', 'spa-equilibrio', 'spa-aura',
     'barro-raiz', 'barro-completo', 'alisado',
     'antifrizz',

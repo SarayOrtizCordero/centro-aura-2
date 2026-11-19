@@ -36,8 +36,14 @@
     ],
 
     items: {
-      // Salud capilar: el diagnóstico cuesta 10 €; las oxigenaciones van según el cabello y las necesidades (sin precio fijo).
-      'diagnostico':       { type: 'servicio', category: 'salud', name: 'Diagnóstico', price: 10, from: false },
+      // Salud capilar (precios dados por Paula). "contact" agrupa varias filas en una sola opción del formulario de Contacto.
+      'diagnostico':       { type: 'servicio', category: 'salud', name: 'Consulta y diagnóstico capilar', price: 10, from: false },
+      'oxigenacion-higienica':  { type: 'servicio', category: 'salud', name: 'Oxigenación higiénica',  contact: 'Oxigenaciones capilares', price: 30, priceMax: 40, approx: true },
+      'oxigenacion-terapeutica': { type: 'servicio', category: 'salud', name: 'Oxigenación terapéutica', contact: 'Oxigenaciones capilares', price: 40, priceMax: 50, approx: true },
+      'tratamiento-profundo-intensivo': { type: 'servicio', category: 'salud', name: 'Tratamiento profundo intensivo', contact: 'Oxigenaciones capilares', price: 50, priceMax: 60, approx: true },
+      // Actividerma de Jaldún: la estimulación incluye una oxigenación higiénica; el choque semanal no.
+      'actividerma-estimulacion':     { type: 'servicio', category: 'salud', name: 'Estimulación dérmica profunda capilar', contact: 'Actividerma de Jaldún', price: 65, from: false },
+      'actividerma-choque-semanal':   { type: 'servicio', category: 'salud', name: 'Estimulación dérmica profunda capilar – Choque semanal', contact: 'Actividerma de Jaldún', price: 30, from: false },
 
       // Spa
       'spa-esencial':   { type: 'servicio', category: 'spa', name: 'Spa esencial',   duration: '45 min', price: 40, from: false },
@@ -54,6 +60,8 @@
       'barro-completo': { type: 'servicio', category: 'peluqueria', name: 'Barro completo',   contact: 'Barros', price: 50, priceMax: 70, approx: true },
       'alisado':        { type: 'servicio', category: 'peluqueria', name: 'Alisado',          price: 100, from: true },
       'antifrizz': { type: 'servicio', category: 'peluqueria', name: 'Antifrizz', contact: 'Antifrizz', price: 45, priceMax: 60, approx: true },
+      // Ipanema de Brazilian Hairtech: botox capilar; el precio varía según la cantidad que se necesite, como los demás.
+      'ipanema': { type: 'servicio', category: 'peluqueria', name: 'Ipanema de Brazilian Hairtech', contact: 'Ipanema', price: 45, priceMax: 55, approx: true },
       'tratamiento-capilar': { type: 'servicio', category: 'peluqueria', name: 'Tratamiento capilar', price: 30, priceMax: 50, approx: true },
 
       // Productos Jaldún
