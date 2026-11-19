@@ -133,6 +133,9 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 500; color: var(--c-clay)
   text-decoration: none;
 }
 .link-arrow::after {
+  /* Dos declaraciones a propósito: la primera es el respaldo para navegadores que no entienden la
+     sintaxis con texto alternativo; la segunda pone alternativa vacía para que el lector de pantalla
+     no lea la flecha. */
   content: "→";
   content: "→" / "";
   display: inline-grid;
@@ -173,7 +176,7 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 500; color: var(--c-clay)
 
 .arch { border-radius: var(--r-arch); overflow: hidden; background: var(--c-bg-alt); }
 
-/* En móvil el día va encima de las horas para que "9:30 – 14:00 · 17:00 – 20:30" no se parta */
+/* En móvil el día va encima de las horas para que "10:00 – 14:00 · 16:00 – 20:00" no se parta */
 .hours { display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; }
 .hours dt { font-weight: 500; }
 .hours dd { margin: 0 0 var(--s-2); }
@@ -358,8 +361,8 @@ body.menu-open::after {
 .js .site-nav__list .has-sub.is-open > .subnav { display: block; }
 .subnav { margin: 0; padding: 0; list-style: none; }
 .js .site-nav__list .subnav { padding: 0 0 var(--s-3) var(--s-4); }
-/* Categorías (Jaldún, Tarjetas regalo…) en negrita y separadas por una línea; la subcategoría
-   (Champús) va sangrada, con letra más ligera y un puntito delante */
+/* Enlaces del submenú (categorías de Servicios, marcas de la Tienda): separados por una línea fina
+   y con 44 px de alto como mínimo para que se puedan tocar bien */
 .js .site-nav__list .subnav li + li { border-top: 1px solid var(--c-line); }
 .js .site-nav__list .subnav a { min-height: 44px; font: 500 1.125rem/1.3 var(--font-body); color: var(--c-text); }
 
@@ -814,9 +817,11 @@ body:has(.service-dialog[open]) { overflow: hidden; }
 
 .legal { max-width: var(--measure); }
 .legal h2 { margin-top: var(--s-8); font-size: 1.75rem; }
-.legal-data { display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-6); }
+/* Datos de la titular: etiqueta + valor. `minmax(0, 1fr)` deja que la columna del valor se encoja por
+   debajo de su contenido y `overflow-wrap` parte el correo largo; sin ello desborda a 320 px. */
+.legal-data { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-2) var(--s-6); }
 .legal-data dt { font-weight: 500; }
-.legal-data dd { margin: 0; }
+.legal-data dd { margin: 0; overflow-wrap: anywhere; }
 .legal a, .visit__item a { color: var(--c-clay); }
 mark.pendiente { padding: 0 0.25em; border-radius: 4px; background: var(--c-clay-soft); color: var(--c-anchor); }
 
@@ -1069,6 +1074,8 @@ main:focus { outline: none; }
 
 /* Vista en cuadrícula de la tienda: dos por fila en móvil (el último, solo, a todo el ancho) */
 [data-view-block][data-view="grid"] .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Cuadrícula de 2 columnas: si el filtro deja un número IMPAR de fichas, la última ocupa todo el ancho
+   para no dejar un hueco. `of :not([hidden])` hace que se cuenten solo las fichas visibles tras filtrar. */
 [data-view-block][data-view="grid"] .product-grid > li:nth-last-child(1 of :not([hidden])):nth-child(odd of :not([hidden])) { grid-column: 1 / -1; }
 [data-view-block][data-view="grid"] .product-card { flex-direction: column; }
 [data-view-block][data-view="grid"] .product-card__visual { flex: none; }

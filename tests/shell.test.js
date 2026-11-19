@@ -8,7 +8,6 @@ const main = read('js/main.js');
 
 test('main.js: contiene las cadenas del contrato y no usa max-width', () => {
   const strings = [
-    "'[data-hours-summary]'",
     'closest(\'a[href^="tel:"]\')',
     'aria-expanded',
     "'Escape'",

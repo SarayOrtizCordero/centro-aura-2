@@ -9,7 +9,7 @@ description: Añade una página nueva a la web de Centro Aura demo B (por ejempl
 Cuando haya que crear una URL nueva bajo `pages/`. No la uses para cambiar el contenido de una página existente.
 
 ## Steps
-1. Copia el `<head>`, la barra superior, la cabecera, el pie y el botón flotante de `pages/servicios.html` (prefijo `../`). Cambia `<title>`, `meta description`, `canonical`, `og:url`, `og:title` y `og:description`: los tres primeros deben ser **únicos** en el sitio.
+1. Copia el `<head>`, la cabecera, el pie y el botón flotante de `pages/servicios.html` (prefijo `../`). Cambia `<title>`, `meta description`, `canonical`, `og:url`, `og:title` y `og:description`: los tres primeros deben ser **únicos** en el sitio.
 2. Deja un único `<h1>` y los niveles de encabezado sin saltos; toda `<img>` con `alt`, `width` y `height` reales.
 3. Si la página cuelga del menú, añade su enlace a la navegación de **todas** las páginas y su `aria-current="page"` en la propia; si es legal, no lleva `aria-current`.
 4. Añade su `<url><loc>` a `sitemap.xml` con el dominio actual del sitio. Ejecuta `node tools/sync-sprite.mjs` para que la página nueva lleve el sprite de iconos incrustado.

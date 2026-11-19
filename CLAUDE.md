@@ -69,7 +69,7 @@ Tokens en `css/tokens.css`; los componentes solo usan nombres.
 | Role | Value | Used for |
 |---|---|---|
 | `--c-bg` | `#FFFDF7` | fondo de página |
-| `--c-bg-alt` | `#F6F0E4` | bandas alternas, topbar, panel en arco |
+| `--c-bg-alt` | `#F6F0E4` | bandas alternas, panel en arco |
 | `--c-text` / `--c-text-soft` | `#4A4238` / `#6B6153` | texto / texto secundario |
 | `--c-anchor` | `#3F372D` | banda cacao, botón primario, pie |
 | `--c-on-anchor` / `--c-on-anchor-soft` | `#FFFDF7` / `#E9DDC8` | texto sobre cacao |
@@ -78,7 +78,7 @@ Tokens en `css/tokens.css`; los componentes solo usan nombres.
 | `--c-error` | `#9B3D2E` | errores |
 | `--c-muted` / `--c-gold` | `#B2A38F` / `#D2C244` | SOLO decorativos |
 
-- **Type:** títulos Cormorant Garamond 500 con UNA palabra en `<em>` (cursiva, `--c-clay`); texto DM Sans 400/500, 17 px / 1,65; eyebrow DM Sans 500, `.75rem`, mayúsculas, `.14em`; precios en Cormorant. h1 `clamp(2.75rem,7vw,5.25rem)`, h2 `clamp(2rem,4.2vw,3.1rem)`, h3 `clamp(1.4rem,2.6vw,1.75rem)`.
+- **Type:** títulos Cormorant Garamond 500 con UNA palabra en `<em>` (cursiva, `--c-clay`); texto DM Sans 400/500, 17 px / 1,6; eyebrow DM Sans 500, `.8125rem`, mayúsculas, `.14em`; precios en Cormorant. h1 `clamp(2.75rem,7vw,5.25rem)`, h2 `clamp(2rem,4.2vw,3.1rem)`, h3 `clamp(1.4rem,2.6vw,1.75rem)`.
 - **Spacing:** base 4 px — 4, 8, 12, 16, 24, 32, 48, 64, 96, 128 (`--s-1 … --s-32`). Sin valores arbitrarios.
 - **Radius:** pill 999px (botones, chips) · 24px tarjetas · arco `999px 999px 24px 24px` · curva del hero 32px (64px desde 900px).
 - **Elevation:** una sombra, `--shadow-soft`. Nada de cristal translúcido.

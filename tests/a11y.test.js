@@ -90,6 +90,15 @@ test('css: movimiento reducido y aparición condicionada a .reveal-ready', () =>
   }
 });
 
+// Regresión del desborde a 320 px (WCAG 1.4.10): un `1fr` suelto no baja del ancho del correo de la
+// titular y empuja la página. Es una guardia sobre el CSS; el ancho real se comprueba en el navegador.
+test('css: .legal-data deja encoger la columna del valor y parte los textos largos', () => {
+  const grid = rulesOf('.legal-data').find((b) => /grid-template-columns/.test(b));
+  assert.ok(grid, 'falta .legal-data con grid-template-columns');
+  assert.match(grid, /minmax\(0,\s*1fr\)/, 'usa minmax(0, 1fr), no 1fr suelto');
+  assert.ok(rulesOf('.legal-data dd').some((b) => /overflow-wrap:\s*anywhere/.test(b)), '.legal-data dd parte palabras largas');
+});
+
 test('css: sin overflow-x: hidden en html ni body', () => {
   for (const sel of ['html', 'body']) {
     for (const b of rulesOf(sel)) assert.ok(!/overflow-x:\s*hidden/.test(b), `overflow-x: hidden en ${sel}`);

@@ -6,6 +6,15 @@ Este documento es la **única fuente de textos** para construir la demo B. El co
 - **PARTE 2** son los datos de negocio: precios, duraciones, horario y teléfono viven en `js/data.js` (idéntico al de A). El HTML lleva un texto de respaldo que debe coincidir con ellos (lo comprueban los tests).
 - **PARTE 3** son los textos nuevos de la demo B. Son los que comprueban los tests.
 
+> **Estado del documento (noviembre de 2026).** Tras las reuniones con la clienta la web ha cambiado y este texto **va por detrás** en estas partes; ahí manda el HTML publicado, que es lo que los tests comprueban:
+> - **Tienda:** ahora tiene dos marcas (Jaldún y Brazilian Hairtech), más productos y un filtro. Los textos de producto (incluidas las descripciones de Actianagen y Brazilian) **no tienen fuente aquí**: falta la ficha del fabricante o el texto de la clienta.
+> - **Tarjetas regalo:** ya no son las tres de 25, 50 y 75 € de abajo, sino una página propia (`pages/tarjetas-regalo.html`) con los diseños de la clienta.
+> - **Privacidad y cookies:** son dos páginas, `pages/privacidad.html` y `pages/cookies.html`.
+> - **Barra superior:** se quitó; el horario se ve en el bloque `[data-hours]`.
+> - **Navegación:** incluye Tarjetas regalo y submenús de Servicios y Tienda.
+>
+> Cuando se rehaga este documento, que salga del HTML publicado y no al revés.
+
 Reglas de contenido: no inventar años de experiencia, cifras, premios, reseñas, nombres de clientas, ingredientes ni beneficios médicos que no estén aquí. La marca `Pendiente` de los datos legales es deliberada.
 
 Notas de lectura de la PARTE 1: `@` no se usa; las líneas "Botón/enlace" indican el texto y el destino; `[WhatsApp: X]` es el valor de `data-wa`; los textos sueltos entre títulos son párrafos o elementos de lista en el orden del HTML original; el texto que A repetía en cabecera y pie (marca, navegación, horario) está resumido en la PARTE 3, "Elementos comunes".
@@ -756,7 +765,7 @@ Solo usan hechos de la demo A y de `js/data.js`. No hay años de experiencia, ci
 
 ## Elementos comunes (todas las páginas)
 
-- **Barra superior (`.topbar`):** `Las Cabezas de San Juan` · `L–V 9:30–14:00 · 17:00–20:30` (atributo `data-hours-summary`; `js/main.js` lo recompone desde `data.js`) · teléfono con `data-phone`.
+- **Barra superior (`.topbar`):** eliminada. Ya no existe ni `data-hours-summary`; el horario se muestra en los bloques `[data-hours]`.
 - **Marca:** `AURA` / `Spa Capilar · Tricología` (sin cambios respecto a A).
 - **Botón de la cabecera:** `Reservar` (WhatsApp, `data-wa=""`).
 - **Navegación principal:** `Inicio`, `Servicios`, `Tienda`, `Contacto`.

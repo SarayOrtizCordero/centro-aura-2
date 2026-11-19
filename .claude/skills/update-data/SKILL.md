@@ -10,7 +10,7 @@ Cuando Paula o la clienta confirmen un precio, una duración, el horario o el te
 
 ## Steps
 1. **Precio o duración:** edita el ítem en `js/data.js` (un rango usa `price` y `priceMax` con `approx: true`; solo los Spa tienen `duration`). Cambia el texto de respaldo en `index.html` y `pages/servicios.html` o `pages/tienda.html` con el mismo formato que `AuraLib.formatPrice` (espacio duro antes del `€`).
-2. **Horario:** edita `hours` en `js/data.js`, el texto de respaldo de cada `dl[data-hours]`, el de `[data-hours-summary]` en todas las páginas (`L–V ` + franjas con ` – ` → `–`) y el `openingHoursSpecification` del JSON-LD de `index.html`.
+2. **Horario:** edita `hours` en `js/data.js`, el texto de respaldo de cada `dl[data-hours]` en todas las páginas y el `openingHoursSpecification` del JSON-LD de `index.html`.
 3. **Teléfono:** edita `business` en `js/data.js` y sustituye `34610167764` en todos los `wa.me`, `tel:` y en el JSON-LD (`telephone`).
 4. Ejecuta los tests: avisan de cualquier respaldo que no coincida.
 

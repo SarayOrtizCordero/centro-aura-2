@@ -32,6 +32,19 @@ test('vercel.json: build con tools/build.mjs, salida dist y sin framework', () =
   assert.equal(cfg.framework, null);
 });
 
+test('vercel.json: cabeceras de seguridad en todo el sitio y caché para /assets/', () => {
+  const { headers } = JSON.parse(read('vercel.json'));
+  const valuesFor = (source) => Object.fromEntries(
+    (headers.find((h) => h.source === source) || { headers: [] }).headers.map((h) => [h.key, h.value])
+  );
+  const site = valuesFor('/(.*)');
+  assert.equal(site['X-Content-Type-Options'], 'nosniff');
+  assert.ok(site['Referrer-Policy'], 'falta Referrer-Policy');
+  assert.ok(site['Permissions-Policy'], 'falta Permissions-Policy');
+  assert.match(site['Content-Security-Policy'], /frame-ancestors 'none'/);
+  assert.match(valuesFor('/assets/(.*)')['Cache-Control'], /max-age=\d+/);
+});
+
 test('lo publicado: las nueve páginas, recursos, fuentes e imágenes', () => {
   const required = [
     'index.html', '404.html', 'robots.txt', 'sitemap.xml',
