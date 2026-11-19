@@ -71,6 +71,7 @@ Tokens en `css/tokens.css`; los componentes solo usan nombres.
 |---|---|---|
 | `--c-bg` | `#FFFDF7` | fondo de página |
 | `--c-bg-alt` | `#F6F0E4` | bandas alternas, panel en arco |
+| `--c-logo-bg` | `#E9E5E4` | fondo de la imagen del logo en las tarjetas de Spa (`spa-logo-aura.webp`); si cambias la imagen, cámbialo igual |
 | `--c-text` / `--c-text-soft` | `#4A4238` / `#6B6153` | texto / texto secundario |
 | `--c-anchor` | `#3F372D` | banda cacao, botón primario, pie |
 | `--c-on-anchor` / `--c-on-anchor-soft` | `#FFFDF7` / `#E9DDC8` | texto sobre cacao |

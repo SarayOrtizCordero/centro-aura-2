@@ -33,5 +33,6 @@
   { "name": "tarjeta-spa-aura", "width": 564, "height": 402 },
   { "name": "hero-servicios", "width": 1086, "height": 488 },
   { "name": "hero-tienda", "width": 1022, "height": 460 },
-  { "name": "hero-contacto", "width": 1200, "height": 540 }
+  { "name": "hero-contacto", "width": 1200, "height": 540 },
+  { "name": "spa-logo-aura", "width": 352, "height": 270 }
 ]
