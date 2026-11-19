@@ -22,7 +22,7 @@ Hecho por: ____ · Fecha: ____
 
 Con el zoom del navegador al 200 % en escritorio:
 
-- [ ] Las siete páginas (portada, Servicios, Tienda, Contacto, Aviso legal, Privacidad y 404) se leen sin texto cortado ni solapado.
+- [ ] Las nueve páginas (portada, Servicios, Tienda, Tarjetas regalo, Contacto, Aviso legal, Privacidad, Cookies y 404) se leen sin texto cortado ni solapado.
 - [ ] No aparece scroll horizontal.
 - [ ] El menú, los botones y el formulario siguen siendo utilizables.
 
@@ -32,7 +32,7 @@ Hecho por: ____ · Fecha: ____
 
 Con la ventana (o el modo móvil de las herramientas del navegador) a 320 px de ancho:
 
-- [ ] Sin scroll horizontal en ninguna de las siete páginas.
+- [ ] Sin scroll horizontal en ninguna de las nueve páginas (a 320 px, en Aviso legal y Privacidad el correo largo es el caso que más suele desbordar).
 - [ ] Sin texto cortado, solapado ni salido de su caja (revisa títulos largos, precios y la tarjeta de horario).
 - [ ] Las fotos y el mapa no desbordan.
 - [ ] Los botones se pueden pulsar sin acertar a otro elemento.
@@ -41,13 +41,13 @@ Hecho por: ____ · Fecha: ____
 
 ## Anchos 375, 768 y 1440
 
-Captura de las siete páginas a 375 px (móvil), 768 px (tablet) y 1440 px (escritorio):
+Captura de las nueve páginas a 375 px (móvil), 768 px (tablet) y 1440 px (escritorio):
 
 - [ ] Portada: la tarjeta de horario va debajo de la foto en móvil y flotando sobre ella desde 900 px.
 - [ ] Servicios y Tienda: filas, tarjetas y ficha destacada bien repartidas en cada ancho.
 - [ ] Contacto: tarjetas, mapa y formulario ordenados.
 - [ ] Aviso legal, Privacidad y 404: lectura cómoda, sin líneas excesivamente largas.
-- [ ] Cabecera y pie coherentes en las siete páginas.
+- [ ] Cabecera y pie coherentes en las nueve páginas.
 
 Hecho por: ____ · Fecha: ____
 
@@ -90,6 +90,6 @@ Comprobación **a demanda, fuera del build**: no forma parte de `npm test` y nin
 
 - [ ] Si se quiere una revisión automática adicional, usar axe-core con un navegador automatizado (por ejemplo, playwright), instalándolos fuera del proyecto o en una carpeta temporal.
 - [ ] Verificar las versiones disponibles antes de instalar.
-- [ ] Pasarlo sobre las siete páginas y revisar a mano cada aviso: una herramienta automática no detecta todos los problemas de accesibilidad ni sustituye a las pruebas de arriba.
+- [ ] Pasarlo sobre las nueve páginas y revisar a mano cada aviso: una herramienta automática no detecta todos los problemas de accesibilidad ni sustituye a las pruebas de arriba.
 
 Hecho por: ____ · Fecha: ____

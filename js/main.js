@@ -11,12 +11,6 @@
 
   const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
 
-  /* "L–V 9:30–14:00 · 17:00–20:30": primera fila del horario, en versión corta */
-  function hoursSummary() {
-    const first = data.hours[0];
-    return 'L–V ' + first.slots.map((slot) => slot.replace(/ – /g, '–')).join(' · ');
-  }
-
   /* Vuelca precios, duraciones, teléfono y horario desde data.js */
   function fillData() {
     $$('[data-price]').forEach((el) => {
@@ -30,9 +24,6 @@
       el.textContent = data.business.phoneDisplay;
       const link = el.closest('a[href^="tel:"]');
       if (link) link.href = 'tel:+' + data.business.phoneDigits;
-    });
-    $$('[data-hours-summary]').forEach((el) => {
-      el.textContent = hoursSummary();
     });
     $$('[data-hours]').forEach((dl) => {
       dl.replaceChildren(...lib.hoursToRows(data.hours).flatMap((row, i) => {
@@ -76,7 +67,9 @@
     const menu = document.getElementById('site-menu');
     if (!toggle || !menu) return;
 
-    const outside = $$('main, .site-footer, .topbar, .wa-float');
+    /* Todo lo que queda fuera del menú: se vuelve inerte mientras está abierto, para que el foco
+       y el lector de pantalla no se escapen a la página de detrás */
+    const outside = $$('main, .site-footer, .wa-float');
     const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
     const setOpen = (open) => {
       toggle.setAttribute('aria-expanded', String(open));
@@ -149,9 +142,10 @@
   }
 
   /* Selector Lista / Cuadrícula (Servicios y Tienda). Cada bloque de elementos ([data-view-block]:
-     una categoría de servicios, los champús, las tarjetas regalo) tiene su propia vista, que se
-     guarda en el atributo data-view del bloque. Empieza en lista (o en la vista que pida data-view-default) y la elección del visitante se
-     recuerda en este navegador. Sin JavaScript los selectores quedan ocultos y se ve la cuadrícula. */
+     una categoría de servicios, la lista de productos) tiene su propia vista, que se guarda en el
+     atributo data-view del bloque. Empieza en lista (o en la vista que pida data-view-default) y
+     la elección del visitante se recuerda en este navegador. Sin JavaScript los selectores quedan
+     ocultos y se ve la cuadrícula. */
   function initViewToggle() {
     $$('[data-view-block]').forEach((block) => {
       const buttons = $$('.view-bar [data-view]', block);
@@ -177,7 +171,8 @@
         buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
       };
 
-      /* La vista de partida de cada bloque se pide en data-view-default de su selector (las fichas de producto empiezan en cuadrícula: foto arriba) */
+      /* La vista de partida de cada bloque se pide en data-view-default de su selector
+         (las fichas de producto empiezan en cuadrícula: foto arriba) */
       const bar = block.querySelector('.view-bar');
       const fallback = bar && bar.dataset.viewDefault === 'grid' ? 'grid' : null;
       apply(read() || fallback || 'list');
@@ -393,10 +388,13 @@
 
   /* Mapas de Google: no se contacta con Google hasta que el visitante pulsa el
      botón. Sin JS queda el enlace "Abrir en Google Maps". */
+  const MAP_TIMEOUT_MS = 10000;
+
   function initMaps() {
     $$('.map[data-map-src]').forEach((map) => {
       const button = map.querySelector('[data-map-load]');
       if (!button) return;
+      const idleLabel = button.textContent;
       button.hidden = false;
       button.addEventListener('click', () => {
         if (map.dataset.loading) return;
@@ -410,8 +408,23 @@
         frame.className = 'map__frame';
         frame.src = map.dataset.mapSrc;
         frame.title = map.dataset.mapTitle;
-        frame.referrerPolicy = 'no-referrer-when-downgrade';
+        /* Google solo recibe el origen de la web, no la ruta completa de la página */
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        /* Aísla el mapa del resto de la web: conserva solo lo que Google Maps necesita para funcionar */
+        frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox');
+
+        /* Si el mapa no carga (sin conexión, bloqueador de contenido), se devuelve el botón para
+           reintentar en vez de dejar "Cargando…" para siempre; el enlace "Abrir en Google Maps" sigue ahí */
+        const giveUp = window.setTimeout(() => {
+          frame.remove();
+          delete map.dataset.loading;
+          map.removeAttribute('aria-busy');
+          button.disabled = false;
+          button.textContent = idleLabel;
+        }, MAP_TIMEOUT_MS);
+
         frame.addEventListener('load', () => {
+          window.clearTimeout(giveUp);
           frame.classList.remove('map__frame');
           map.replaceChildren(frame);
           map.removeAttribute('aria-busy');
@@ -422,15 +435,17 @@
     });
   }
 
-  fillData();
-  wireWhatsApp();
-  initMaps();
-  initMenu();
-  initSubmenus();
-  initViewToggle();
-  initServiceMore();
-  initProductFilter();
-  initTabs();
-  initContactForm();
-  initReveal();
+  /* Orden de arranque. fillData va primero porque initServiceMore clona filas ya rellenadas con
+     precio y duración. Cada función se aísla: si una falla (por ejemplo, por un HTML mal formado),
+     el resto de la web sigue funcionando. */
+  [
+    fillData, wireWhatsApp, initMaps, initMenu, initSubmenus, initViewToggle,
+    initServiceMore, initProductFilter, initTabs, initContactForm, initReveal
+  ].forEach((init) => {
+    try {
+      init();
+    } catch (error) {
+      console.error('[Centro Aura] ' + init.name + ' ha fallado:', error);
+    }
+  });
 })();

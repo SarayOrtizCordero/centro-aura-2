@@ -88,6 +88,25 @@ test('unicidad: title, meta description y og:title distintos; og:description pre
   }
 });
 
+test('canonical: cada página apunta a su propia URL (no solo al mismo dominio)', () => {
+  const origin = originOf(locs(read('sitemap.xml'))[0]);
+  for (const rel of pages) {
+    const expected = origin + (rel === 'index.html' ? '/' : '/' + rel);
+    assert.equal(meta(read(rel), /<link rel="canonical" href="([^"]+)"/), expected, rel);
+    assert.equal(meta(read(rel), /<meta property="og:url" content="([^"]+)"/), expected, `${rel}: og:url`);
+  }
+});
+
+test('longitudes: title de 15 a 70 caracteres y description de 70 a 160 (lo que Google suele mostrar)', () => {
+  for (const rel of [...pages, '404.html']) {
+    const html = read(rel);
+    const title = meta(html, /<title>([^<]*)<\/title>/);
+    const description = meta(html, /<meta name="description" content="([^"]*)"/);
+    assert.ok(title.length >= 15 && title.length <= 70, `${rel}: title de ${title.length} caracteres`);
+    assert.ok(description.length >= 70 && description.length <= 160, `${rel}: description de ${description.length} caracteres`);
+  }
+});
+
 test('robots.txt y datos estructurados', () => {
   const robots = read('robots.txt');
   assert.match(robots, /^User-agent:\s*\*/m);

@@ -97,6 +97,6 @@ test('legales: datos del titular rellenos y sin campos pendientes', () => {
   for (const html of [aviso, privacidad]) assert.ok(html.includes('49166388R'));
   assert.ok(!privacidad.includes('<mark class="pendiente">'));
   assert.ok(!aviso.includes('<mark class="pendiente">'));
-  assert.ok(aviso.includes('Los precios mostrados no llevan IVA.'));
+  assert.ok(aviso.includes('Los precios mostrados incluyen IVA.'));
   for (const d of ['15', '16', '17', '18', '20', '21']) assert.ok(privacidad.includes('art. ' + d + ' RGPD'), 'art. ' + d);
 });

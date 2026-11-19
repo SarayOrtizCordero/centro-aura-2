@@ -21,38 +21,31 @@ test('cabecera: un solo h1, textura y velo', () => {
   assert.ok(main.includes('textura-lino.webp') && main.includes('class="page-hero__veil"'));
 });
 
-test('tres tarjetas, una por spa, con la foto de la tarjeta y la información encima', () => {
+test('tres tarjetas, una por spa: el precio va dentro de la imagen (y en su alt), no como texto aparte', () => {
   assert.equal(cards.length, 3);
   cards.forEach((c, i) => {
     const id = IDS[i];
     const img = c.match(/<img\b[^>]*>/)[0];
-    assert.ok(attr(img, 'src').endsWith('tarjeta-aura.webp'));
-    assert.equal(attr(img, 'alt'), '', 'la información va en texto real; la imagen es decorativa');
-    assert.deepEqual([attr(img, 'width'), attr(img, 'height')], ['1600', '1135']);
-    const info = c.match(/<div class="gift-card__info">[\s\S]*?<\/div>/)[0];
-    assert.equal(norm(info.match(/<h3 class="gift-card__name">([^<]*)</)[1]), data.items[id].name);
-    assert.equal(norm(info.match(new RegExp('data-price="regalo-' + id + '">([^<]*)<'))[1]), norm(lib.formatPrice(data.items['regalo-' + id])));
-    assert.equal(norm(info.match(new RegExp('data-duration="' + id + '">([^<]*)<'))[1]), data.items[id].duration);
+    assert.ok(attr(img, 'src').endsWith('tarjeta-' + id + '.webp'));
+    const alt = norm(attr(img, 'alt'));
+    assert.ok(alt.includes(data.items[id].name) && alt.includes(data.items[id].duration), 'el alt recoge el texto de la imagen');
+    assert.ok(alt.includes(norm(lib.formatPrice(data.items['regalo-' + id]))), 'el alt recoge el precio que lleva la imagen');
+    assert.deepEqual([attr(img, 'width'), attr(img, 'height')], ['564', '402']);
+    assert.ok(!c.includes('data-price'), 'el precio ya no se repite como texto bajo la imagen');
     const btn = c.match(/<a [^>]*data-wa[^>]*>/)[0];
     assert.equal(attr(btn, 'href'), 'https://wa.me/34610167764');
     assert.equal(attr(btn, 'data-wa'), 'Tarjeta regalo ' + data.items[id].name);
     assert.equal(attr(btn, 'data-wa-kind'), 'producto');
   });
 });
-
 test('el precio de cada tarjeta es el de su spa', () => {
   for (const id of IDS) assert.equal(data.items['regalo-' + id].price, data.items[id].price, id);
 });
 
-test('css: la información se escala con la tarjeta y queda en la parte lisa, a la izquierda de la foto', () => {
-  assert.match(css, /\.gift-card__visual\s*\{[^}]*container-type:\s*inline-size/);
-  const info = css.match(/\.gift-card__info\s*\{[^}]*\}/)[0];
-  const left = parseFloat(info.match(/left:\s*([\d.]+)cqw/)[1]);
-  const width = parseFloat(info.match(/width:\s*([\d.]+)cqw/)[1]);
-  assert.ok(left + width <= 68, 'el texto no debe invadir la foto (empieza al 71 % del ancho)');
+test('css: cuadrícula de tarjetas y la imagen ocupa todo el ancho', () => {
   assert.match(css, /\.gift-cards\s*\{[^}]*display:\s*grid/);
+  assert.match(css, /\.gift-card__img\s*\{[^}]*width:\s*100%/);
 });
-
 test('las tarjetas regalo ya no están en la tienda', () => {
   const tienda = read('pages/tienda.html');
   assert.ok(!tienda.includes('data-wa="Tarjeta regalo'));
