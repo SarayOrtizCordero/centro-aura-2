@@ -205,26 +205,31 @@ test('mosaic: tres fotos, cita y sin biografía inventada', () => {
 
 test('main: las ocho secciones en orden y sin barra superior', () => {
   assert.deepEqual(sections, [
-    'hero', 'pillars', 'icon-row', 'service-cards', 'spotlight', 'mosaic', 'gift-banner', 'visit',
+    'hero', 'pillars', 'icon-row', 'service-cards', 'spotlight', 'mosaic', 'gift-section', 'visit',
   ]);
   assert.ok(!html.includes('class="topbar"'), 'la barra superior se ha quitado');
 });
 
-test('gift-banner: foto decorativa, velo, título y enlace a la página de tarjetas regalo', () => {
-  const sec = sectionOf('gift-banner');
-  const img = sec.match(/<img\b[^>]*>/)[0];
-  assert.ok(attr(img, 'src').endsWith('tarjeta-regalo.webp'));
-  assert.equal(attr(img, 'alt'), '');
-  assert.equal(attr(img, 'width'), '940');
-  assert.equal(attr(img, 'height'), '706');
-  const veil = sec.match(/<div class="gift-banner__veil"[^>]*>/)[0];
-  assert.equal(attr(veil, 'aria-hidden'), 'true');
+test('gift-section: título, las tres tarjetas nuevas en lista y enlace a la página de tarjetas regalo', () => {
+  const sec = sectionOf('gift-section');
   const h2 = sec.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/)[1];
   assert.equal(text(h2), 'Regala Aura');
   assert.ok(h2.includes('<em>Aura</em>'));
-  const btn = sec.match(/<a [^>]*>Ver tarjetas regalo/)[0];
-  assert.equal(attr(btn, 'href'), 'pages/tarjetas-regalo.html');
-  assert.match(rule('.gift-banner__veil'), /rgb\(var\(--veil-dark-rgb\) \/ var\(--veil-dark-alpha\)\)/);
+  assert.ok(/<ul class="gift-cards" role="list">/.test(sec), 'las tarjetas van en una lista (una debajo de otra en móvil)');
+  const cards = sec.match(/<li class="gift-card card[^"]*"[\s\S]*?<\/li>/g);
+  assert.equal(cards.length, 3);
+  ['spa-esencial', 'spa-equilibrio', 'spa-aura'].forEach((id, i) => {
+    const img = cards[i].match(/<img\b[^>]*>/)[0];
+    assert.equal(attr(img, 'src'), `assets/img/tarjeta-${id}.webp`);
+    assert.deepEqual([attr(img, 'width'), attr(img, 'height')], ['564', '402']);
+    assert.ok(attr(img, 'alt').includes(data.items[id].name), 'el alt recoge el nombre de la tarjeta');
+    assert.ok(!cards[i].includes('data-price'), 'el precio va dentro de la imagen, no como texto aparte');
+    const btn = cards[i].match(/<a [^>]*data-wa[^>]*>/)[0];
+    assert.equal(attr(btn, 'data-wa'), 'Tarjeta regalo ' + data.items[id].name);
+  });
+  const more = sec.match(/<a [^>]*>Ver tarjetas regalo/)[0];
+  assert.equal(attr(more, 'href'), 'pages/tarjetas-regalo.html');
+  assert.ok(!html.includes('tarjeta-regalo.webp') && !html.includes('gift-banner'), 'ya no queda el banner con foto de stock');
 });
 
 test('visit: mapa bajo demanda, sin iframe, horario, teléfono y cómo llegar', () => {
