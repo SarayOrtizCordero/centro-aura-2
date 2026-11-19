@@ -8,7 +8,9 @@ Este documento es la **única fuente de textos** para construir la demo B. El co
 
 > **Estado del documento (noviembre de 2026).** Tras las reuniones con la clienta la web ha cambiado y este texto **va por detrás** en estas partes; ahí manda el HTML publicado, que es lo que los tests comprueban:
 > - **Tienda:** ahora tiene dos marcas (Jaldún y Brazilian Hairtech), más productos y un filtro. Los textos de producto (incluidas las descripciones de Actianagen y Brazilian) **los aportó la clienta** y están solo en `pages/tienda.html`; no se han copiado aquí.
-> - **Tarjetas regalo:** ya no son las tres de 25, 50 y 75 € de abajo, sino una página propia (`pages/tarjetas-regalo.html`) con los diseños de la clienta.
+> - **Tarjetas regalo:** ya no son las tres de 25, 50 y 75 € de abajo, sino una página propia (`pages/tarjetas-regalo.html`) con los diseños de la clienta: Spa esencial 40 €, Spa equilibrio 50 € y Spa aura 70 €. El precio va dentro de la imagen y no se repite como texto.
+> - **Duraciones del Spa (noviembre de 2026):** Spa esencial 45 min y Spa aura 1 h 20 min (antes 50 min y 1 h 15 min, que son las que aparecen más abajo); manda `js/data.js`.
+> - **IVA:** los precios incluyen IVA (confirmado por la titular).
 > - **Privacidad y cookies:** son dos páginas, `pages/privacidad.html` y `pages/cookies.html`.
 > - **Barra superior:** se quitó; el horario se ve en el bloque `[data-hours]`.
 > - **Navegación:** incluye Tarjetas regalo y submenús de Servicios y Tienda.
@@ -550,7 +552,7 @@ Esta web da a conocer los servicios, productos y el horario de Centro Aura y fac
 
 Esta web no realiza ventas ni cobros en línea. Las citas, los bonos, las tarjetas regalo y los productos se solicitan por WhatsApp, por teléfono o en el propio centro, y quedan confirmados cuando el centro responde. Los productos se recogen en el centro.
 
-Los precios mostrados son los vigentes en el centro y pueden cambiar. [Confirmar: los precios incluyen IVA]
+Los precios mostrados son los vigentes en el centro y pueden cambiar. Los precios mostrados incluyen IVA.
 
 **H2:** 4. Propiedad intelectual
 
@@ -679,7 +681,7 @@ La PARTE 1 de arriba reduce los textos a líneas; **estos bloques son el marcado
 
         <h2>3. Reservas y pedidos</h2>
         <p>Esta web no realiza ventas ni cobros en línea. Las citas, los bonos, las tarjetas regalo y los productos se solicitan por WhatsApp, por teléfono o en el propio centro, y quedan confirmados cuando el centro responde. Los productos se recogen en el centro.</p>
-        <p>Los precios mostrados son los vigentes en el centro y pueden cambiar. <mark class="pendiente">[Confirmar: los precios incluyen IVA]</mark></p>
+        <p>Los precios mostrados son los vigentes en el centro y pueden cambiar. Los precios mostrados incluyen IVA.</p>
 
         <h2>4. Propiedad intelectual</h2>
         <p>Los textos, el diseño, el logotipo y las imágenes de esta web pertenecen a su titular o se usan con licencia. No pueden copiarse ni reutilizarse sin su permiso.</p>

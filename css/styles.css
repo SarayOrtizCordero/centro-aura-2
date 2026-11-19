@@ -1591,8 +1591,8 @@ body:has(.service-dialog[open]) { overflow: hidden; }
    Tarjetas regalo
    ========================================================================== */
 
-/* Página de tarjetas regalo: la imagen ya lleva el nombre, la duración y la descripción; el precio y el
-   botón van debajo, fuera de la imagen */
+/* Página de tarjetas regalo: la imagen ya lleva el nombre, la duración, el precio y la descripción;
+   debajo, fuera de la imagen, solo va el botón para regalarla */
 .gift-cards {
   display: grid;
   gap: var(--s-6);
@@ -1606,19 +1606,9 @@ body:has(.service-dialog[open]) { overflow: hidden; }
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--s-4);
+  justify-content: center;
   padding: var(--s-6);
 }
-.gift-card__meta {
-  display: flex;
-  align-items: baseline;
-  gap: var(--s-3);
-  margin: 0;
-  color: var(--c-anchor);
-}
-.gift-card__price { font: 500 2.25rem/1 var(--font-display); font-variant-numeric: lining-nums tabular-nums; }
 
 @media (min-width: 900px) {
   .gift-cards { gap: var(--s-8); grid-template-columns: repeat(3, minmax(0, 1fr)); }

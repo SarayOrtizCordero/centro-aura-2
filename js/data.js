@@ -40,9 +40,9 @@
       'diagnostico':       { type: 'servicio', category: 'salud', name: 'Diagnóstico', price: 10, from: false },
 
       // Spa
-      'spa-esencial':   { type: 'servicio', category: 'spa', name: 'Spa esencial',   duration: '50 min', price: 40, from: false },
+      'spa-esencial':   { type: 'servicio', category: 'spa', name: 'Spa esencial',   duration: '45 min', price: 40, from: false },
       'spa-equilibrio': { type: 'servicio', category: 'spa', name: 'Spa equilibrio', duration: '1 h',           price: 50, from: false },
-      'spa-aura':       { type: 'servicio', category: 'spa', name: 'Spa aura',       duration: '1 h 15 min',    price: 70, from: false },
+      'spa-aura':       { type: 'servicio', category: 'spa', name: 'Spa aura',       duration: '1 h 20 min',    price: 70, from: false },
 
       // Peluquería (incluye barros, alisado y antifrizz). Los precios en rango son orientativos
       // (varían según los productos que se gasten).

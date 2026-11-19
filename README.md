@@ -57,7 +57,7 @@ El mapa **no se carga** hasta que la visitante pulsa "Ver el mapa". Hasta entonc
 
 1. `npm run pendientes` lista lo que falta: los datos legales sin rellenar y el dominio provisional. Termina con código 0 cuando no queda nada.
 2. El dominio definitivo es `centroauraspa.es`. Si cambiara: `npm run domain -- https://www.tudominio.es` (con `https://`, sin barra final).
-3. Confirma con la clienta los precios, el horario definitivo y si los precios incluyen IVA (el aviso legal lo afirma y debe ser cierto).
+3. Confirma con la clienta los precios y el horario definitivos. Los precios incluyen IVA (confirmado), y así lo dice el aviso legal.
 4. `npm run build` copia a `dist/` **solo la web** (lista blanca en `tools/build.mjs`); no se publican `tests/`, `tools/`, `docs/` ni `blueprints/`. En Vercel lo hace `vercel.json`, que además añade las cabeceras de seguridad y la caché de `/assets/`.
 5. La página 404 se sirve en cualquier URL gracias a `<base href="/">`.
 
@@ -106,6 +106,6 @@ La demo B nació de la A (commit `1444fd6`): mismos datos y mismas URLs, otra im
 ## Pendiente de la clienta
 
 - Fotos reales que sustituyan a las de stock que quedan (ver `assets/img/CREDITOS.md`).
-- Precios y horario definitivos, y confirmar si los precios incluyen IVA (el aviso legal dice que no los incluyen: pendiente de consultar).
+- Precios y horario definitivos.
 - Las páginas legales se dan por buenas (noviembre de 2026), pero conservan el comentario `<!-- BORRADOR -->` en el código fuente, que no se ve en la web. Quitarlo exige también cambiar `tests/legal-404.test.js`.
 - Reseñas reales para añadir tras el lanzamiento, nunca inventadas.

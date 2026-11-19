@@ -21,18 +21,17 @@ test('cabecera: un solo h1, textura y velo', () => {
   assert.ok(main.includes('textura-lino.webp') && main.includes('class="page-hero__veil"'));
 });
 
-test('tres tarjetas, una por spa, con su imagen y el precio debajo, fuera de la imagen', () => {
+test('tres tarjetas, una por spa: el precio va dentro de la imagen (y en su alt), no como texto aparte', () => {
   assert.equal(cards.length, 3);
   cards.forEach((c, i) => {
     const id = IDS[i];
     const img = c.match(/<img\b[^>]*>/)[0];
     assert.ok(attr(img, 'src').endsWith('tarjeta-' + id + '.webp'));
-    const alt = attr(img, 'alt');
+    const alt = norm(attr(img, 'alt'));
     assert.ok(alt.includes(data.items[id].name) && alt.includes(data.items[id].duration), 'el alt recoge el texto de la imagen');
+    assert.ok(alt.includes(norm(lib.formatPrice(data.items['regalo-' + id]))), 'el alt recoge el precio que lleva la imagen');
     assert.deepEqual([attr(img, 'width'), attr(img, 'height')], ['564', '402']);
-    const body = c.match(/<div class="gift-card__body">[\s\S]*<\/div>/)[0];
-    assert.equal(norm(body.match(new RegExp('data-price="regalo-' + id + '">([^<]*)<'))[1]), norm(lib.formatPrice(data.items['regalo-' + id])));
-    assert.ok(!c.slice(0, c.indexOf('<div class="gift-card__body">')).includes('data-price'), 'el precio no va sobre la imagen');
+    assert.ok(!c.includes('data-price'), 'el precio ya no se repite como texto bajo la imagen');
     const btn = c.match(/<a [^>]*data-wa[^>]*>/)[0];
     assert.equal(attr(btn, 'href'), 'https://wa.me/34610167764');
     assert.equal(attr(btn, 'data-wa'), 'Tarjeta regalo ' + data.items[id].name);
