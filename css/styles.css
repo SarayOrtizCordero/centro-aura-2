@@ -926,6 +926,37 @@ body.menu-open::after {
 }
 
 /* ==========================================================================
+   Portada · banner de tarjetas regalo
+   ========================================================================== */
+
+.gift-banner :focus-visible { outline-color: var(--c-on-anchor); }
+.gift-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: var(--s-24);
+  color: var(--c-on-anchor);
+}
+.gift-banner__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gift-banner__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(var(--veil-dark-rgb) / var(--veil-dark-alpha));
+}
+.gift-banner__inner { max-width: var(--measure); }
+.gift-banner h2 { color: var(--c-on-anchor); }
+.gift-banner h2 em, .gift-banner .eyebrow { color: var(--c-on-anchor-soft); }
+.gift-banner p { margin: var(--s-6) 0 var(--s-8); }
+
+/* ==========================================================================
    Portada y contacto · visita, mapa y loto
    ========================================================================== */
 
@@ -1560,9 +1591,8 @@ body:has(.service-dialog[open]) { overflow: hidden; }
    Tarjetas regalo
    ========================================================================== */
 
-/* Lista de tarjetas regalo (página de tarjetas y portada): una debajo de otra en móvil y tres por fila
-   desde 900 px. La imagen ya lleva el nombre, la duración, el precio y la descripción; debajo,
-   fuera de la imagen, solo va el botón para regalarla. */
+/* Página de tarjetas regalo: la imagen ya lleva el nombre, la duración, el precio y la descripción;
+   debajo, fuera de la imagen, solo va el botón para regalarla */
 .gift-cards {
   display: grid;
   gap: var(--s-6);
