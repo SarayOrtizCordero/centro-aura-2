@@ -1233,30 +1233,13 @@ main:focus { outline: none; }
   .hero__title { font-size: clamp(3rem, 5vw, 4.5rem); text-wrap: balance; }
 }
 
-/* Página de tarjetas regalo: el nombre, el precio y la duración van sobre la parte lisa de la tarjeta (a la izquierda de la foto) */
+/* Página de tarjetas regalo: la imagen ya lleva el nombre, la duración y la descripción; el precio y el botón van debajo, fuera de la imagen */
 .gift-cards { display: grid; gap: var(--s-6); margin: 0; padding: 0; list-style: none; }
 .gift-card { display: flex; flex-direction: column; overflow: hidden; height: 100%; }
-.gift-card__visual { position: relative; container-type: inline-size; }
-.gift-card__visual img { display: block; width: 100%; height: auto; }
-.gift-card__info {
-  position: absolute;
-  left: 9.5cqw;
-  top: 34cqw;
-  width: 56cqw;
-  height: 18cqw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.5cqw;
-  color: var(--c-anchor);
-}
-.gift-card__name { font-size: 8.5cqw; line-height: 1.05; }
-.gift-card__meta { display: flex; align-items: baseline; gap: 3cqw; margin: 0; }
-.gift-card__price { font: 500 7cqw/1 var(--font-display); font-variant-numeric: lining-nums tabular-nums; }
-.gift-card__dur { font-size: 3.8cqw; line-height: 1; color: var(--c-text-soft); }
-.gift-card__body { flex: 1; display: flex; flex-direction: column; gap: var(--s-4); padding: var(--s-6); }
-.gift-card__body p { margin: 0; }
-.gift-card__body .btn { margin-top: auto; align-self: flex-start; }
+.gift-card__img { display: block; width: 100%; height: auto; }
+.gift-card__body { flex: 1; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-4); padding: var(--s-6); }
+.gift-card__meta { display: flex; align-items: baseline; gap: var(--s-3); margin: 0; color: var(--c-anchor); }
+.gift-card__price { font: 500 2.25rem/1 var(--font-display); font-variant-numeric: lining-nums tabular-nums; }
 @media (min-width: 900px) {
   .gift-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-8); }
 }

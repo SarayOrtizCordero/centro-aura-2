@@ -31,6 +31,6 @@ Aportadas por la clienta. Sustituyen a las provisionales con el mismo nombre de 
 - `servicio-peluqueria.webp` — cuencos de madera y productos de cuidado capilar (recorte vertical 4:5).
 - `tarjeta-regalo.webp` — recorte horizontal de la foto de la cabina, para el banner de la portada.
 - `paula-aura.webp` — Paula junto al cartel de Centro Aura (portada, «Sobre Aura»).
-- `tarjeta-aura.webp` — diseño de la tarjeta regalo, sin texto en el recuadro central: el nombre, el precio y la duración se escriben encima desde `pages/tarjetas-regalo.html`.
+- `tarjeta-spa-esencial.webp`, `tarjeta-spa-equilibrio.webp`, `tarjeta-spa-aura.webp` — diseños de las tarjetas regalo entregados por la clienta (llevan el nombre, la duración y la descripción); el precio va debajo, desde `pages/tarjetas-regalo.html`.
 
 Cabeceras de página (recortes horizontales de fotos reales de la clienta, bajo un velo claro): `hero-servicios.webp` (mesa de diagnóstico), `hero-tienda.webp` (productos y cuencos) y `hero-contacto.webp` (Paula junto al cartel). Tarjetas regalo, Aviso legal y Privacidad usan `textura-lino.webp`.

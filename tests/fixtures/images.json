@@ -28,7 +28,9 @@
   { "name": "oxigenador", "width": 720, "height": 720 },
   { "name": "oxigenador-marino", "width": 720, "height": 720 },
   { "name": "paula-aura", "width": 900, "height": 1200 },
-  { "name": "tarjeta-aura", "width": 1600, "height": 1135 },
+  { "name": "tarjeta-spa-esencial", "width": 564, "height": 402 },
+  { "name": "tarjeta-spa-equilibrio", "width": 564, "height": 402 },
+  { "name": "tarjeta-spa-aura", "width": 564, "height": 402 },
   { "name": "hero-servicios", "width": 1086, "height": 488 },
   { "name": "hero-tienda", "width": 1022, "height": 460 },
   { "name": "hero-contacto", "width": 1200, "height": 540 }
